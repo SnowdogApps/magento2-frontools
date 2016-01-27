@@ -1,7 +1,15 @@
 # Magento 2 Forntools
-Set of front-end tools for Magento 2 based on Gulp.js
+Set of front-end tools for Magento 2, based on Gulp.js
+
+## How to start?
+* (optional) Use this repository as Magento 2 component via composer
+* You need to have `node.js`
+* `cd` to theme and then to `/tools`
+* Run `npm install`
+* Use one of listed bellow tasks
 
 ## Currently working well, standalone tasks
+* `default` - type just `gulp` to see this readme in console
 * `deploy` - Process themes styles
   * `--theme name` - Process single theme styles
 * `clean` - Removes `/pub/static` folder
