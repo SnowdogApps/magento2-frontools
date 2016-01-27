@@ -4,12 +4,14 @@ module.exports = function() {
       plugins = this.opts.plugins,
       configs = this.opts.configs;
 
-  return gulp.src(configs.currentSrc + '/**/*.less')
+  // local configs
+  // less compiler is dumb as f*ck
+  // can't figure out what files to process when pass paths like "theme/**/*.less"
+  var lessFiles = [];
+  configs.themes[configs.currentTheme].files.forEach(file => lessFiles.push(configs.currentSrc + file));
+
+  return gulp.src(lessFiles)
     .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
-    .pipe(plugins.less({
-      paths: ['../lib/web/css', '../lib/web/css/source', '../lib/web/css/source/lib'],
-      // configs.fallbackSrc ?  configs.fallbackSrc + '/css' : ''
-      plugins: [require('less-plugin-glob')]
-    }))
+    .pipe(plugins.less())
     .pipe(gulp.dest(configs.currentDest));
 };

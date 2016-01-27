@@ -1,27 +1,38 @@
 {
   "backend": {
-    "package": false,
     "area": "adminhtml",
     "vendor": "Magento",
     "name": "backend",
     "locale": ["en_US"],
-    "lang": "less"
+    "lang": "less",
+    "files": [
+      "css/styles-old",
+      "css/styles"
+    ]
   },
   "blank": {
-    "package": false,
     "area": "frontend",
     "vendor": "Magento",
     "name": "blank",
     "locale": ["en_US"],
-    "lang": "less"
+    "lang": "less",
+    "files": [
+      "css/styles-m",
+      "css/styles-l",
+      "css/email",
+      "css/email-inline"
+    ]
   },
   "luma": {
-    "package": false,
     "area": "frontend",
     "vendor": "Magento",
     "name": "luma",
     "locale": ["en_US"],
-    "lang": "less"
+    "lang": "less",
+    "files": [
+      "css/styles-m",
+      "css/styles-l"
+    ]
   },
   "demo": {
     "package": "Snowdog/theme-frontend-demo",
@@ -29,6 +40,7 @@
     "vendor": "Snowdog",
     "name": "demo",
     "locale": ["en_US", "pl_PL"],
-    "lang": "sass"
+    "lang": "sass",
+    "custom": true
   }
 }
