@@ -1,6 +1,6 @@
 {
-    "name": "snowdog/frontend-tools",
-    "description": "Magento 2 Gulp.js based set of front-end tools",
+    "name": "snowdog/frontools",
+    "description": "Set of front-end tools for Magento 2, based on Gulp.js",
     "type": "magento2-component",
     "version": "0.1.0",
     "extra": {
