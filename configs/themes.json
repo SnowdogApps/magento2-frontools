@@ -1,0 +1,34 @@
+{
+  "backend": {
+    "package": false,
+    "area": "adminhtml",
+    "vendor": "Magento",
+    "name": "backend",
+    "locale": ["en_US"],
+    "lang": "less"
+  },
+  "blank": {
+    "package": false,
+    "area": "frontend",
+    "vendor": "Magento",
+    "name": "blank",
+    "locale": ["en_US"],
+    "lang": "less"
+  },
+  "luma": {
+    "package": false,
+    "area": "frontend",
+    "vendor": "Magento",
+    "name": "luma",
+    "locale": ["en_US"],
+    "lang": "less"
+  },
+  "demo": {
+    "package": "Snowdog/theme-frontend-demo",
+    "area": "frontend",
+    "vendor": "Snowdog",
+    "name": "demo",
+    "locale": ["en_US", "pl_PL"],
+    "lang": "sass"
+  }
+}
