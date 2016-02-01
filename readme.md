@@ -28,3 +28,10 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--full` - Prints full CSSLint output (without any config)
 6. `scripts` - Lint and build JS files
 7. `uglify` - Uglify JS files
+
+## `configs/themes.json` structure
+- `area`, `vendor`, `name` - self-descriptive :)
+- `locale` - array of available locales (yah, tasks iterate trough array and compile all locales by default)
+- `package` - (optional) name of composer package if theme is loaded via composer
+- `lang` - what lang want to use for styles processing (right now it's only LESS and SASS, but adding any other is simple -> create new file in `tasks` folder with same name as you define in theme config -> put processor of choice inside -> ready)
+- `custom` - (optional) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy' do not use this parameter. If you have fully custom theme and want processing without looking for files anywhere but inside theme dir (all imports are static to be maintained manually) pass here `true`.
