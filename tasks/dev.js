@@ -4,8 +4,5 @@ module.exports = function() {
       plugins = this.opts.plugins,
       configs = this.opts.configs;
 
-  // Gulp task body
-  plugins.browserSync({
-    proxy: "m2test.dev"
-  });
+  plugins.runSequence('browser-sync', 'watch');
 };

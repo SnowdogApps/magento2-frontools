@@ -4,7 +4,6 @@ module.exports = function() {
       plugins = this.opts.plugins,
       configs = this.opts.configs;
 
-  return gulp.src(configs.currentSrc + '/**/*.scss')
-    .pipe(plugins.sass())
-    .pipe(gulp.dest(configs.currentDest));
+  plugins.util.env.prod = true;
+  plugins.runSequence(['clean', 'deploy', 'styles']);
 };

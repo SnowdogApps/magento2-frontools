@@ -1,21 +1,27 @@
 {
   "backend": {
+    "src": "../app/design/adminhtml/Magento/backend",
+    "dest": "../pub/static/adminhtml/Magento/backend",
+    "locale": ["en_US"],
+    "lang": "less",
+    "default": true,
     "area": "adminhtml",
     "vendor": "Magento",
     "name": "backend",
-    "locale": ["en_US"],
-    "lang": "less",
     "files": [
       "css/styles-old",
       "css/styles"
     ]
   },
   "blank": {
+    "src": "../app/design/frontend/Magento/blank",
+    "dest": "../pub/static/frontend/Magento/blank",
+    "locale": ["en_US", "pl_PL"],
+    "lang": "less",
+    "default": true,
     "area": "frontend",
     "vendor": "Magento",
     "name": "blank",
-    "locale": ["en_US"],
-    "lang": "less",
     "files": [
       "css/styles-m",
       "css/styles-l",
@@ -24,23 +30,24 @@
     ]
   },
   "luma": {
+    "src": "../app/design/frontend/Magento/luma",
+    "dest": "../pub/static/frontend/Magento/luma",
+    "locale": ["en_US"],
+    "lang": "less",
+    "default": true,
     "area": "frontend",
     "vendor": "Magento",
     "name": "luma",
-    "locale": ["en_US"],
-    "lang": "less",
     "files": [
       "css/styles-m",
       "css/styles-l"
     ]
   },
   "demo": {
-    "package": "Snowdog/theme-frontend-demo",
-    "area": "frontend",
-    "vendor": "Snowdog",
-    "name": "demo",
-    "locale": ["en_US", "pl_PL"],
+    "src": "../vendor/snowdog/theme-frontend-demo",
+    "dest": "../pub/static/frontend/snowdog/demo",
+    "locale": ["en_US", "pl_PL", "ru_RU"],
     "lang": "sass",
-    "custom": true
+    "postcss": ["plugins.autoprefixer()"]
   }
 }

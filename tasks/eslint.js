@@ -5,17 +5,23 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // Gulp task body
-  if (plugins.gutil.env.file) {
-    gulp.watch('../**/' + gutil.env.file + '.js', function(event) {
+  if (plugins.util.env.file) {
+    plugins.util.log(
+      plugins.util.colors.red.bold('Gulp is looking for files. Please wait till "eslint" task end.')
+    );
+    
+    gulp.watch('../**/' + plugins.util.env.file + '.js', function(event) {
       gulp.src(event.path)
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("ESLint found problems") }))
         .pipe(plugins.logger({ display: 'name' }))
-        .pipe(eslint(esLintSettings))
-        .pipe(eslint.format());
+        .pipe(plugins.eslint(configs.eslint))
+        .pipe(plugins.eslint.format());
     });
   }
   else {
-    plugins.gutil.log(plugins.gutil.colors.red.bold('ERROR: Specify file name, for example: ')
-                      + plugins.gutil.colors.green('gulp eslint --file formValidator-2.2.8'));
+    plugins.util.log(
+      plugins.util.colors.red.bold('ERROR: Specify file name, for example: ')
+      + plugins.util.colors.green('gulp eslint --file category')
+    );
   }
-}
+};

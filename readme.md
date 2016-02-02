@@ -1,37 +1,49 @@
 # Magento 2 Forntools
 Set of front-end tools for Magento 2, based on Gulp.js
-
+---
 ## How to start?
-* (optional) Use this repository as Magento 2 component via composer
-* You need to have `node.js`
+* Use this repository as Magento 2 component via composer or simply copy everything to `[project]/tools`
+* You need to have `node >= 4.2.6` - current LTS
 * `cd` to theme and then to `/tools`
 * Run `npm install`
-* Use one of listed bellow tasks
-
-## Currently working well, standalone tasks
-* `default` - type just `gulp` to see this readme in console
-* `deploy` - Process themes styles
-  * `--theme name` - Process single theme styles
+* Use one of listed bellow task
+---
+## Tasks list
+* `browser-sync` - Run BrowserSync - it's much better and easier to use than "LiveReload"
 * `clean` - Removes `/pub/static` folder
-
-## Tasks working well, but depending on other task data
-* `less` - Compiles LESS files of given theme
-* `sass` - Compile  SASS files of given theme
-
-## Tasks "to do" list
-1. `assets` - Probably just wrapper to `bin/magento setup:static-content:deploy` - I create "lighter" version of this tool, without styles processing, and works fast enough.
-2. `watch` - Watch for changes and run files processing
-3. `browser-sync` - Run BrowserSync - it's much better and easier to use than "LiveReload"
-4. `eslint` - Watch and run eslint on specified JS file
- * `--file fileName` - You have to specify what file you want lint
-5. `css-lint` - Lining CSS files
-  * `--full` - Prints full CSSLint output (without any config)
-6. `scripts` - Lint and build JS files
-7. `uglify` - Uglify JS files
-
+* `default` - type `gulp` to see this readme in console
+* `deploy` - Wrapper for `bin/magento dev:source-theme:deploy` - only for default themes
+  * `--theme name` - Deploy single theme
+* `dev` - Runs `browser-sync` and `watch` tasks
+  * `--theme name` - Process single theme
+  * `--maps` - Toggles source maps generation
+  * `--prod` - Production output - minifies styles
+* `styles` - Use it to manually trigger styles processing pipeline
+  * `--theme name` - Process single theme
+  * `--maps` - Toggles source maps generation
+  * `--prod` - Production output - minifies styles
+* `eslint` - Watch and run eslint on specified JS file
+ * `--file fileName` - You have to specify what file you want to lint
+* `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
+* `watch` - Watch for styles changes and run processing task
+  * `--theme name` - Process single theme
+  * `--maps` - Toggles source maps generation
+  * `--prod` - Production output - minifies styles
+---
 ## `configs/themes.json` structure
-- `area`, `vendor`, `name` - self-descriptive :)
-- `locale` - array of available locales (yah, tasks iterate trough array and compile all locales by default)
-- `package` - (optional) name of composer package if theme is loaded via composer
-- `lang` - what lang want to use for styles processing (right now it's only LESS and SASS, but adding any other is simple -> create new file in `tasks` folder with same name as you define in theme config -> put processor of choice inside -> ready)
-- `custom` - (optional) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy' do not use this parameter. If you have fully custom theme and want processing without looking for files anywhere but inside theme dir (all imports are static to be maintained manually) pass here `true`.
+- `src` - full path to theme
+- `dest` - full path to `pub/static/[theme]`
+- `locale` - array of available locales
+- `lang` - define styles lang want to use for processing
+- `default` - (optional) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy` set this to `true`.
+- `area`, `vendor`, `name` - (optional) self-descriptive, only for `default` themes
+- `files` - (optional) Array of LESS files to process
+- `postcss` - (optional) PostCSS plugins config. This have to be an array.
+---
+## Tasks "to do" list
+1. `assets` - Probably just wrapper to `bin/magento setup:static-content:deploy` - I create "lighter" version of this tool, without styles processing, and works fast enough for production deployment purposes.
+2. `css-lint` - Lining CSS files
+  * `--full` - Prints full CSSLint output (without any config)
+3. `scripts` - Lint and build JS files
+4. `uglify` - Uglify JS files
+5. `requirejs` - Right now I have no idea how processing of JS i M2 work, but I'm pretty sure that some automation will be needed :)
