@@ -4,7 +4,6 @@ env:
   amd: true
   es6: true
   jquery: true
-  prototypejs: true
 rules:
   indent: 0
   brace-style: [2, "stroustrup"]
@@ -50,33 +49,3 @@ rules:
 globals:
   jQuery: false
   $j: true
-  VarienForm: true
-  Modernizr: true
-  threesixty: true
-  productType: true
-  selectPlaceholderText: true
-  productAddToCartForm: true
-  baseCategoryUrl: true
-  baseCategoryUrlPage: true
-  sliderMaxValue: true
-  wNumb: true
-  currentCurrencyCode: true
-  Translator: true
-  IEVersion: true
-  customerHasAddresses: true
-  saveBillingUrl: true
-  setMethodsSeparateUrl: true
-  checkEmailUrl: true
-  productData: true
-  simpleProductStockQty: true
-  domReady: true
-  ajaxForgotpasswordUrl: true
-  ajaxLoginUrl: true
-  popupLoginWindowOpen: true
-  popupLoginWindowClose: true
-  isValidNumber: true
-  checkGender: true
-  justFilter: true
-  specialChars: true
-  defaultCountryCode: true
-  google: true

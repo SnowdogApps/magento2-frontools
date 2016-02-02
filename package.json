@@ -1,7 +1,20 @@
 {
+  "name": "magento2-frontools",
+  "author": {
+    "name": "Bartek Igielski",
+    "email": "igloczek@gmail.com"
+  },
+  "verions": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SnowdogApps/magento2-frontools"
+  },
+  "license": "MIT",
+  "engine": "node >= 4.2.6",
   "devDependencies": {
     "autoprefixer": "6.3.1",
     "browser-sync": "2.11.1",
+    "cssnano": "3.4.0",
     "gulp": "3.9.0",
     "gulp-concat": "2.6.0",
     "gulp-csslint": "0.2.0",

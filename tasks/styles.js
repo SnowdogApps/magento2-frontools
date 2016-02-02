@@ -10,13 +10,7 @@ module.exports = function() {
 
   themes.forEach(name => {
     configs.themes[name].locale.forEach(locale => {
-      var theme = configs.themes[name];
-      if (theme.default) {
-        gulp.watch(theme.dest + '/**/*.' + theme.lang, [configs.themes[name].lang + ':' + name + ':' + locale]);
-      }
-      else {
-        gulp.watch(theme.src + '/**/*.' + theme.lang, [configs.themes[name].lang + ':' + name + ':' + locale]);
-      }
+      plugins.runSequence(configs.themes[name].lang + ':' + name + ':' + locale);
     });
   });
 };

@@ -1,5 +1,5 @@
 module.exports = function() {
-  var exec = require('child_process').exec;
+  var execSync = require('child_process').execSync;
 
-  return exec('rm -rf ../pub/static');
+  return execSync('rm -rf ../pub/static');
 };
