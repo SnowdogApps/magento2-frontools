@@ -40,7 +40,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
 - `locale` - array of available locales
-- `lang` - define styles lang want to use for processing
+- `lang` - define styles lang want to use for processing i.e. `less` or `scss`. Should be same as files extension.
 - `default` - (optional) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy` set this to `true`.
 - `area`, `vendor`, `name` - (optional) self-descriptive, only for `default` themes
 - `files` - (optional) Array of LESS files to process

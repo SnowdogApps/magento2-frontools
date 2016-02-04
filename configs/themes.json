@@ -47,7 +47,7 @@
     "src": "../vendor/snowdog/theme-frontend-demo",
     "dest": "../pub/static/frontend/snowdog/demo",
     "locale": ["en_US", "pl_PL", "ru_RU"],
-    "lang": "sass",
+    "lang": "scss",
     "postcss": ["plugins.autoprefixer()"]
   }
 }
