@@ -1,5 +1,9 @@
 module.exports = function() {
-  var execSync = require('child_process').execSync;
+  // global vars
+  var gulp    = this.gulp,
+      plugins = this.opts.plugins,
+      configs = this.opts.configs;
 
-  return execSync('rm -rf ../pub/static');
+  return gulp.src(['../pub/static/*/', '!../pub/static/.htaccess'], {read: false})
+    .pipe(plugins.clean({force: true}));
 };
