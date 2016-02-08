@@ -11,7 +11,8 @@ module.exports = function() {
   var themeName = plugins.util.env.theme || false,
       themes = themeName ? [themeName] : Object.keys(configs.themes);
 
-  if (!configs.themes[themeName].default) {
+
+  if (!!configs.themes[themeName] && !configs.themes[themeName].default) {
     plugins.util.log(
       plugins.util.colors.red.bold('[Warining] ')
       + plugins.util.colors.yellow('This tasks is designed only for LESS themes which use ')
@@ -22,6 +23,7 @@ module.exports = function() {
     themes.forEach(name => {
       configs.themes[name].locale.forEach(locale => {
         if (configs.themes[name].default) {
+          var theme = configs.themes[name];
           theme.locale.forEach(locale => {
             // if it's default theme, create symlinks to styles files via Magento CLI
             // porting "@magento-import" to node.js might be time consumig
