@@ -5,18 +5,27 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // local vars
-  var themeName = plugins.util.env.theme || false,
-      themes = themeName ? [themeName] : Object.keys(configs.themes);
+  var globby    = require('globby');
+      themeName = plugins.util.env.theme || false,
+      themes    = themeName ? [themeName] : Object.keys(configs.themes);
 
   themes.forEach(name => {
-    configs.themes[name].locale.forEach(locale => {
-      var theme = configs.themes[name];
-      if (theme.default) {
-        gulp.watch(theme.dest + '/**/*.' + theme.lang, [configs.themes[name].lang + ':' + name + ':' + locale]);
-      }
-      else {
-        gulp.watch(theme.src + '/**/*.' + theme.lang, [configs.themes[name].lang + ':' + name + ':' + locale]);
-      }
+    var theme = configs.themes[name];
+    theme.locale.forEach(locale => {
+      var themePath = theme.default ? theme.dest : theme.src,
+          files = globby.sync(
+            [
+              themePath + '/**/*.' + theme.lang,
+              '!' + themePath + '/**/_*.' + theme.lang
+            ]
+          );
+      files.forEach(file => {
+        var dependencyTree = require('../helpers/dependency-tree-builder')(theme, file);
+        gulp.watch(dependencyTree, () => {
+          configs.currentWatchFile = file;
+          plugins.runSequence(theme.lang + ':' + name + ':' + locale);
+        });
+      });
     });
   });
 };
