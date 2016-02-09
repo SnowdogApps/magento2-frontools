@@ -3,7 +3,6 @@ module.exports = function(theme, file) {
       fs     = require('fs');
 
   function findDependencies(file, dependencyTree) {
-    console.log(file);
     var content = fs.readFileSync(file, 'utf8'),
         path    = file.replace(/(\/[^/]+\..*)/g, ''),
         regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
