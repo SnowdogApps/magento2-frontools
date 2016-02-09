@@ -4,7 +4,7 @@
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
   },
-  "verions": "0.2.2",
+  "verions": "0.3.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/SnowdogApps/magento2-frontools"
@@ -15,6 +15,7 @@
     "autoprefixer": "6.3.1",
     "browser-sync": "2.11.1",
     "cssnano": "3.4.0",
+    "globby": "4.0.0",
     "gulp": "3.9.0",
     "gulp-clean": "0.3.1",
     "gulp-concat": "2.6.0",

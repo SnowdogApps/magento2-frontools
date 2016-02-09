@@ -6,11 +6,13 @@ module.exports = function(gulp, plugins, configs, name, locale) {
         dest       = theme.dest + '/' + locale + '/css',
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
-        lessFiles  = [];
+        lessFiles  = configs.currentWatchFile || [];
 
     // less compiler is dumb as f*ck
     // can't figure out what files to process when path is like "theme/**/*.less"
-    theme.files.forEach(file => lessFiles.push(src + '/' + file + '.less'));
+    if (!lessFiles.length) {
+      theme.files.forEach(file => lessFiles.push(src + '/' + file + '.less'));
+    }
 
     return gulp.src(lessFiles)
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
