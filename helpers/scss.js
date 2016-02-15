@@ -1,8 +1,8 @@
-module.exports = function(gulp, plugins, configs, name, locale) {
+module.exports = function(gulp, plugins, configs, name, locale, file) {
   return () => {
     // local vars
     var theme      = configs.themes[name],
-        src        = configs.currentWatchFile || theme.src + '/**/*.scss',
+        src        = file || theme.src + '/**/*.scss',
         dest       = theme.dest + '/' + locale,
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
@@ -16,6 +16,11 @@ module.exports = function(gulp, plugins, configs, name, locale) {
       .pipe(plugins.if(theme.postcss, plugins.postcss(theme.postcss || [])))
       .pipe(plugins.if(maps, plugins.sourcemaps.write()))
       .pipe(gulp.dest(dest))
+      .pipe(plugins.logger({
+        display: 'name',
+        beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
+        afterEach: ' Compiled!'
+      }))
       .pipe(plugins.browserSync.stream());
   }
 }

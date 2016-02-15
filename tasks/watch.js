@@ -15,15 +15,17 @@ module.exports = function() {
       var themePath = theme.default ? theme.dest : theme.src,
           files = globby.sync(
             [
-              themePath + '/**/*.' + theme.lang,
-              '!' + themePath + '/**/_*.' + theme.lang
+              themePath + '/' + locale + '/**/*.' + theme.lang,
+              '!' + themePath + '/' + locale + '/**/_*.' + theme.lang
             ]
           );
+
       files.forEach(file => {
-        var dependencyTree = require('../helpers/dependency-tree-builder')(theme, file);
+        var dependencyTree = require('../helpers/dependency-tree-builder')(theme, file),
+            compiler = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, file);
+
         gulp.watch(dependencyTree, () => {
-          configs.currentWatchFile = file;
-          plugins.runSequence(theme.lang + ':' + name + ':' + locale);
+          compiler();
         });
       });
     });
