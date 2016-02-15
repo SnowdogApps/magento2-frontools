@@ -5,7 +5,5 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // Gulp task body
-  plugins.browserSync({
-    proxy: "m2test.dev"
-  });
+  plugins.browserSync(configs.browserSync);
 };

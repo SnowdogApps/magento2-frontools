@@ -8,9 +8,10 @@ var plugins = require('gulp-load-plugins')({
     });
 plugins.browserSync.create();
 var configs = {
-  'themes' : require('./configs/themes.json'),
-  'eslint' : require('./configs/eslint.json'),
-  'csslint': require('./configs/css-lint.json')
+  'browserSync': require('./configs/browser-sync.json'),
+  'csslint'     : require('./configs/css-lint.json'),
+  'eslint'      : require('./configs/eslint.json'),
+  'themes'      : require('./configs/themes.json')
 };
 var tasks   = require('gulp-task-loader')({
       dir    : 'tasks',
@@ -23,6 +24,9 @@ var tasks   = require('gulp-task-loader')({
 Object.keys(configs.themes).forEach(name => {
   var theme = configs.themes[name];
   theme.locale.forEach(locale => {
-    gulp.task(theme.lang + ':' + name + ':' + locale, require('./helpers/' + theme.lang)(gulp, plugins, configs, name, locale));
+    gulp.task(
+      theme.lang + ':' + name + ':' + locale,
+      require('./helpers/' + theme.lang)(gulp, plugins, configs, name, locale)
+    );
   });
 });
