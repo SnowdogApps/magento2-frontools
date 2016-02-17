@@ -12,11 +12,11 @@ module.exports = function() {
   themes.forEach(name => {
     var theme = configs.themes[name];
     theme.locale.forEach(locale => {
-      var themePath = theme.default ? theme.dest : theme.src,
+      var themePath = theme.default ? theme.dest + '/' + locale : theme.src,
           files = globby.sync(
             [
-              themePath + '/' + locale + '/**/*.' + theme.lang,
-              '!' + themePath + '/' + locale + '/**/_*.' + theme.lang
+              themePath + '/**/*.' + theme.lang,
+              '!' + themePath + '/**/_*.' + theme.lang
             ]
           );
 
