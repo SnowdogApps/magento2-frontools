@@ -14,7 +14,7 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
       theme.files.forEach(file => lessFiles.push(src + '/' + file + '.less'));
     }
 
-    return gulp.src(lessFiles)
+    return gulp.src(lessFiles, {base: src})
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.less())
