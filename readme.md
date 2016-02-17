@@ -1,4 +1,4 @@
-# Magento 2 Forntools
+# Magento 2 Frontools
 Set of front-end tools for Magento 2, based on Gulp.js
 
 ---
