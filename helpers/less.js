@@ -11,7 +11,10 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
     // less compiler is dumb as f*ck
     // can't figure out what files to process when path is like "theme/**/*.less"
     if (!lessFiles.length) {
-      theme.files.forEach(file => lessFiles.push(src + '/' + file + '.less'));
+      var globby = require('globby'),
+          files = globby.sync([src + '/**/*.less', '!' + src + '/**/_*.less']);
+          
+      files.forEach(file => lessFiles.push(file));
     }
 
     return gulp.src(lessFiles)
