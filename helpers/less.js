@@ -2,7 +2,7 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
   return () => {
     // local vars
     var theme      = configs.themes[name],
-        src        = theme.default ? theme.dest + '/' + locale : theme.src,
+        src        = theme.dest + '/' + locale,
         dest       = theme.dest + '/' + locale + '/css',
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
@@ -14,7 +14,7 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
       theme.files.forEach(file => lessFiles.push(src + '/' + file + '.less'));
     }
 
-    return gulp.src(lessFiles, {base: src})
+    return gulp.src(lessFiles)
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.less())
