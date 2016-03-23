@@ -5,18 +5,13 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // local plugins and configs
-  var help             = require('show-help'),
-      marked           = require('marked'),
-      TerminalRenderer = require('marked-terminal');
+  var marked   = require('marked'),
+      renderer = require('marked-terminal')
+      fs       = require('fs');
 
   marked.setOptions({
-    // Define custom renderer
-    renderer: new TerminalRenderer()
+    renderer: new renderer()
   });
 
-  // Gulp task body
-  return help({
-    filename: './readme.md',
-    transform: marked
-  });
+  console.log(marked(fs.readFileSync('./readme.md', 'UTF-8')));
 }
