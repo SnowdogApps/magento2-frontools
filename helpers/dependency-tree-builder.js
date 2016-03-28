@@ -4,7 +4,7 @@ module.exports = function(theme, file) {
 
   function findDependencies(file, dependencyTree) {
     var content = fs.readFileSync(file, 'utf8'),
-        path    = file.replace(/(\/[^/]+\..*)/g, ''),
+        path    = file.replace(/(.*)\/.*/g, '$1'),
         regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
         result  = '',
         imports = [];
