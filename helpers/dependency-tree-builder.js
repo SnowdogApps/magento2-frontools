@@ -36,7 +36,7 @@ module.exports = function(theme, file) {
     return dependencyTree;
   }
 
-  if (theme.lang === 'less' || theme.lang === 'scss') {
+  if (theme.lang === 'less') {
     return findDependencies(file, []);
   }
   else {

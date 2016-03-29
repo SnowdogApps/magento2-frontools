@@ -19,15 +19,22 @@ module.exports = function() {
               '!' + themePath + '/**/_*.' + theme.lang
             ]
           );
+      if (theme.lang === 'less') {
+        files.forEach(file => {
+          var dependencyTree = require('../helpers/dependency-tree-builder')(theme, file),
+              compiler       = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, file);
 
-      files.forEach(file => {
-        var dependencyTree = require('../helpers/dependency-tree-builder')(theme, file),
-            compiler = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, file);
-
-        gulp.watch(dependencyTree, () => {
+          gulp.watch(dependencyTree, () => {
+            compiler();
+          });
+        });
+      }
+      else {
+        var compiler = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, themePath + '/**/*.' + theme.lang);
+        gulp.watch(themePath + '/**/*.' + theme.lang, () => {
           compiler();
         });
-      });
+      }
     });
   });
 };
