@@ -5,5 +5,5 @@ module.exports = function() {
       configs = this.opts.configs;
 
   return gulp.src(['../pub/static/*/', '!../pub/static/.htaccess'], {read: false})
-    .pipe(plugins.clean({force: true}));
+    .pipe(plugins.rimraf({force: true}));
 };
