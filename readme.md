@@ -6,9 +6,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 ## How to start?
 * You need to have `node >= 4.2.6` - current LTS
 * `composer require snowdog/frontools`
-* `composer update`
-* `cd tools`
-* Run `npm install`
+* `cd tools` and run `npm install`
 * Use one of listed bellow task
 
 ---
