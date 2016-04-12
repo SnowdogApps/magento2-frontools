@@ -53,4 +53,4 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--full` - Prints full CSSLint output (without any config)
 3. `scripts` - Lint and build JS files
 4. `uglify` - Uglify JS files
-5. `requirejs` - Right now I have no idea how processing of JS i M2 work, but I'm pretty sure that some automation will be needed :)
+5. `requirejs` - I have no idea how processing of JS in M2 works, but I'm pretty sure that some automation will be needed :)
