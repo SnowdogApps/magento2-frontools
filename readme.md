@@ -4,10 +4,9 @@ Set of front-end tools for Magento 2, based on Gulp.js
 ---
 
 ## How to start?
-* Use this repository as Magento 2 component via composer or simply copy everything to `[project]/tools`
 * You need to have `node >= 4.2.6` - current LTS
-* `cd` to theme and then to `/tools`
-* Run `npm install`
+* `composer require snowdog/frontools`
+* `cd tools` and run `npm install`
 * Use one of listed bellow task
 
 ---
@@ -54,4 +53,4 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--full` - Prints full CSSLint output (without any config)
 3. `scripts` - Lint and build JS files
 4. `uglify` - Uglify JS files
-5. `requirejs` - Right now I have no idea how processing of JS i M2 work, but I'm pretty sure that some automation will be needed :)
+5. `requirejs` - I have no idea how processing of JS in M2 works, but I'm pretty sure that some automation will be needed :)
