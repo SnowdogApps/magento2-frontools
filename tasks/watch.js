@@ -5,15 +5,14 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // local vars
-  var globby    = require('globby');
-      themeName = plugins.util.env.theme || false,
+  var themeName = plugins.util.env.theme || false,
       themes    = themeName ? [themeName] : Object.keys(configs.themes);
 
   themes.forEach(name => {
     var theme = configs.themes[name];
     theme.locale.forEach(locale => {
       var themePath = theme.default ? theme.dest + '/' + locale : theme.src,
-          files = globby.sync(
+          files = plugins.globby.sync(
             [
               themePath + '/**/*.' + theme.lang,
               '!' + themePath + '/**/_*.' + theme.lang
@@ -31,7 +30,7 @@ module.exports = function() {
       }
       else {
         var compiler = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, themePath + '/**/*.' + theme.lang);
-        gulp.watch(themePath + '/**/*.' + theme.lang, () => {
+        gulp.watch([themePath + '/**/*.' + theme.lang, '!/**/node_modules/**'], () => {
           compiler();
         });
       }

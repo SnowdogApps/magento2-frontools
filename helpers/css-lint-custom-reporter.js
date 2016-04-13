@@ -1,7 +1,9 @@
 module.exports = function(gulp, plugins, configs) {
   function customReporter(file) {
-    plugins.util.log(plugins.util.colors.cyan(file.csslint.errorCount)
-    + ' errors in ' + plugins.util.colors.magenta(file.path));
+    plugins.util.log(
+      plugins.util.colors.cyan(file.csslint.errorCount)
+      + ' errors in ' + plugins.util.colors.magenta(file.path)
+    );
 
     file.csslint.results.forEach(function(result) {
       if (result.error.type === 'warning') {

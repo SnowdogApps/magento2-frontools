@@ -1,23 +1,25 @@
-var gulp    = require('gulp');
-var plugins = require('gulp-load-plugins')({
+var gulp    = require('gulp'),
+    plugins = require('gulp-load-plugins')({
       pattern: ['*', '!gulp', '!gulp-load-plugins'],
       rename: {
-        'browser-sync': 'browserSync',
-        'run-sequence': 'runSequence'
+        'browser-sync'   : 'browserSync',
+        'marked-terminal': 'markedTerminal'
+        'run-sequence'   : 'runSequence'
       }
-    });
-plugins.browserSync.create();
-var configs = {
-  'browserSync': require('./configs/browser-sync.json'),
-  'csslint'     : require('./configs/css-lint.json'),
-  'eslint'      : require('./configs/eslint.json'),
-  'themes'      : require('./configs/themes.json')
-};
-var tasks   = require('gulp-task-loader')({
+    }),
+    configs = {
+      'browserSync': require('./configs/browser-sync.json'),
+      'csslint'    : require('./configs/css-lint.json'),
+      'eslint'     : require('./configs/eslint.json'),
+      'themes'     : require('./configs/themes.json')
+    };
+    tasks   = require('gulp-task-loader')({
       dir    : 'tasks',
       plugins: plugins,
       configs: configs
     });
+
+plugins.browserSync.create();
 
 // define task for each theme, locale, lang, processing type etc.
 // gulp can't run same task in parallel, so we need different names
