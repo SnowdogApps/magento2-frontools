@@ -3,16 +3,31 @@ var gulp    = require('gulp'),
       pattern: ['*', '!gulp', '!gulp-load-plugins'],
       rename: {
         'browser-sync'   : 'browserSync',
-        'marked-terminal': 'markedTerminal'
+        'marked-terminal': 'markedTerminal',
         'run-sequence'   : 'runSequence'
       }
-    }),
-    configs = {
+    });
+
+// Check if user create themes configuration
+if (!plugins.globby.sync('./configs/themes.json').length) {
+  plugins.util.log(
+    plugins.util.colors.red('\n========================================= \n')
+    + plugins.util.colors.yellow('You have to create ')
+    + plugins.util.colors.blue('configs/themes.json')
+    + plugins.util.colors.red('\n=========================================')
+  );
+  throw new plugins.util.PluginError({
+    plugin: 'configs',
+    message: 'You have to create configs/themes.json'
+  });
+}
+
+var configs = {
       'browserSync': require('./configs/browser-sync.json'),
       'csslint'    : require('./configs/css-lint.json'),
       'eslint'     : require('./configs/eslint.json'),
       'themes'     : require('./configs/themes.json')
-    };
+    },
     tasks   = require('gulp-task-loader')({
       dir    : 'tasks',
       plugins: plugins,
