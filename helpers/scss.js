@@ -8,7 +8,7 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
         production = plugins.util.env.prod || false,
         postcss    = theme.postcss || false;
 
-    return gulp.src([src, '!/**/node_modules/**'], {base: theme.src + '/web'})
+    return gulp.src([src, '!' + theme.src + '/node_modules/**/*.scss'], {base: theme.src + '/web'})
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.sass())
