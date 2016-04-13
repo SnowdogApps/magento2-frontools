@@ -4,13 +4,12 @@
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
   },
-  "verions": "0.6.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/SnowdogApps/magento2-frontools"
   },
   "license": "MIT",
-  "engine": "node >= 4.2.6",
+  "engines": "node >= 4.2.6",
   "devDependencies": {
     "autoprefixer": "6.3.6",
     "browser-sync": "2.12.2",
