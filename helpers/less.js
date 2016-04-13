@@ -14,7 +14,7 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
       var files = plugins.globby.sync([
             src + '/**/*.less',
             '!' + src + '/**/_*.less',
-            '!/**/node_modules/**'
+            '!' + src + '/node_modules/**/*.less'
           ]);
 
       files.forEach(file => lessFiles.push(file));
