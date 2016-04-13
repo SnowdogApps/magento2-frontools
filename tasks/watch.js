@@ -30,7 +30,7 @@ module.exports = function() {
       }
       else {
         var compiler = require('../helpers/' + theme.lang)(gulp, plugins, configs, name, locale, themePath + '/**/*.' + theme.lang);
-        gulp.watch([themePath + '/**/*.' + theme.lang, '!/**/node_modules/**'], () => {
+        gulp.watch([themePath + '/**/*.' + theme.lang, '!' + themePath + '/node_modules/**'], () => {
           compiler();
         });
       }
