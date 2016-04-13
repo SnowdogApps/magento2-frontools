@@ -1,7 +1,6 @@
 module.exports = function(theme, file) {
-  var globby = require('globby'),
-      fs     = require('fs');
-
+  const fs = require('fs');
+  
   function findDependencies(file, dependencyTree) {
     var content = fs.readFileSync(file, 'utf8'),
         path    = file.replace(/(.*)\/.*/g, '$1'),
@@ -36,10 +35,5 @@ module.exports = function(theme, file) {
     return dependencyTree;
   }
 
-  if (theme.lang === 'less') {
-    return findDependencies(file, []);
-  }
-  else {
-    return [theme.src + '/**/*.' + theme.lang];
-  }
+  return findDependencies(file, []);
 };

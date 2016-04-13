@@ -1,23 +1,40 @@
-var gulp    = require('gulp');
-var plugins = require('gulp-load-plugins')({
+var gulp    = require('gulp'),
+    plugins = require('gulp-load-plugins')({
       pattern: ['*', '!gulp', '!gulp-load-plugins'],
       rename: {
-        'browser-sync': 'browserSync',
-        'run-sequence': 'runSequence'
+        'browser-sync'   : 'browserSync',
+        'marked-terminal': 'markedTerminal',
+        'run-sequence'   : 'runSequence'
       }
     });
-plugins.browserSync.create();
+
+// Check if user create themes configuration
+if (!plugins.globby.sync('./configs/themes.json').length) {
+  plugins.util.log(
+    plugins.util.colors.red('\n========================================= \n')
+    + plugins.util.colors.yellow('You have to create ')
+    + plugins.util.colors.blue('configs/themes.json')
+    + plugins.util.colors.red('\n=========================================')
+  );
+  throw new plugins.util.PluginError({
+    plugin: 'configs',
+    message: 'You have to create configs/themes.json'
+  });
+}
+
 var configs = {
-  'browserSync': require('./configs/browser-sync.json'),
-  'csslint'     : require('./configs/css-lint.json'),
-  'eslint'      : require('./configs/eslint.json'),
-  'themes'      : require('./configs/themes.json')
-};
-var tasks   = require('gulp-task-loader')({
+      'browserSync': require('./configs/browser-sync.json'),
+      'csslint'    : require('./configs/css-lint.json'),
+      'eslint'     : require('./configs/eslint.json'),
+      'themes'     : require('./configs/themes.json')
+    },
+    tasks   = require('gulp-task-loader')({
       dir    : 'tasks',
       plugins: plugins,
       configs: configs
     });
+
+plugins.browserSync.create();
 
 // define task for each theme, locale, lang, processing type etc.
 // gulp can't run same task in parallel, so we need different names

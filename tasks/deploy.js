@@ -5,7 +5,7 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // local plugins and configs
-  var execSync = require('child_process').execSync;
+  const execSync = require('child_process').execSync;
 
   // local vars
   var themeName = plugins.util.env.theme || false,

@@ -5,13 +5,11 @@ module.exports = function() {
       configs = this.opts.configs;
 
   // local plugins and configs
-  var marked   = require('marked'),
-      renderer = require('marked-terminal')
-      fs       = require('fs');
+  const fs = require('fs');
 
-  marked.setOptions({
-    renderer: new renderer()
+  plugins.marked.setOptions({
+    renderer: new plugins.markedTerminal()
   });
 
-  console.log(marked(fs.readFileSync('./readme.md', 'UTF-8')));
+  console.log(plugins.marked(fs.readFileSync('./readme.md', 'UTF-8')));
 }
