@@ -41,7 +41,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 - `postcss` - (optional) PostCSS plugins config. This have to be an array.
 
 ## Future plans
-Are you curious about future plans? Please check milestiones in issues tab and leve some feedback :+1:
+Are you curious about future plans? Please check milestiones in issues tab and leave some feedback :+1:
 
 ## Contribution
 Do you have some ideas to make this tools bertter? Great, let's add issue and describe it!
