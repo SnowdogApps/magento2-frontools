@@ -1,16 +1,12 @@
 # Magento 2 Frontools
 Set of front-end tools for Magento 2, based on Gulp.js
 
----
-
 ## How to start?
 * You need to have `node >= 4.2.6` - current LTS
 * `composer require snowdog/frontools`
 * `cd tools` and run `npm install`
 * Create `configs/themes.json`
 * Use one of listed bellow task
-
----
 
 ## Tasks list
 * `browser-sync` - Run BrowserSync - it's much better and easier to use than "LiveReload"
@@ -34,8 +30,6 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
 
----
-
 ## `configs/themes.json` structure
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
@@ -45,8 +39,6 @@ Set of front-end tools for Magento 2, based on Gulp.js
 - `area`, `vendor`, `name` - (optional) self-descriptive, only for `default` themes
 - `files` - (optional) Array of LESS files to process
 - `postcss` - (optional) PostCSS plugins config. This have to be an array.
-
----
 
 ## Future plans
 Are you curious about future plans? Please check milestiones in issues tab and leve some feedback :+1:
