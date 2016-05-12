@@ -6,7 +6,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 ## Requirements
 * `node >= 4.0.0` - heavily recommend using current LTS (v4 branch), not a latest version.
 * Gulp CLI global package - `npm install gulp-cli -g`
-* Magento 2 project and composer :)
+* Magento 2 project :smile:
 
 ## How to start?
 * Run `composer require snowdog/frontools`
@@ -47,7 +47,7 @@ First of all check `config/themes.json.sample`
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
 - `locale` - array of available locales
-- `lang` - define styles lang want to use for processing. Out of the box tools support only `less` or `scss`. Should be same as files extension.
+- `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports only `less` and `scss`.
 - `default` - (required for LESS themes) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy` set this to `true`.
 - `area`, `vendor`, `name` - (required for LESS themes) self-descriptive
 - `files` - (required for LESS themes) Array of LESS files to process
