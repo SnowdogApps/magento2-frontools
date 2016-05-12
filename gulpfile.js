@@ -26,6 +26,7 @@ var configs = {
       'browserSync': require('./configs/browser-sync.json'),
       'csslint'    : require('./configs/css-lint.json'),
       'eslint'     : require('./configs/eslint.json'),
+      'projectPath': require('fs').realpathSync('../../../'),
       'themes'     : require('./configs/themes.json')
     },
     tasks   = require('gulp-task-loader')({
