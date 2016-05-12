@@ -1,9 +1,9 @@
-module.exports = function(gulp, plugins, configs, name, locale, file) {
+module.exports = function(gulp, plugins, config, name, locale, file) {
   return () => {
     // local vars
-    var theme      = configs.themes[name],
-        src        = theme.dest + '/' + locale,
-        dest       = theme.dest + '/' + locale + '/css',
+    var theme      = config.themes[name],
+        src        = config.projectPath + theme.dest + '/' + locale,
+        dest       = config.projectPath + theme.dest + '/' + locale + '/css',
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
         lessFiles  = file || [];
@@ -12,9 +12,9 @@ module.exports = function(gulp, plugins, configs, name, locale, file) {
     // can't figure out what files to process when path is like "theme/**/*.less"
     if (!lessFiles.length) {
       var files = plugins.globby.sync([
-            src + '/**/*.less',
-            '!' + src + '/**/_*.less',
-            '!' + src + '/node_modules/**/*.less'
+            config.projectPath + src + '/**/*.less',
+            '!' + config.projectPath + src + '/**/_*.less',
+            '!' + config.projectPath + src + '/node_modules/**/*.less'
           ]);
 
       files.forEach(file => lessFiles.push(file));

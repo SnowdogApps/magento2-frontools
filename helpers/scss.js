@@ -1,14 +1,16 @@
-module.exports = function(gulp, plugins, configs, name, locale, file) {
+module.exports = function(gulp, plugins, config, name, locale, file) {
   return () => {
     // local vars
-    var theme      = configs.themes[name],
-        src        = file || theme.src + '/**/*.scss',
-        dest       = theme.dest + '/' + locale,
+    var theme      = config.themes[name],
+        src        = file || config.projectPath + theme.src + '/**/*.scss',
+        dest       = config.projectPath + theme.dest + '/' + locale,
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
         postcss    = theme.postcss || false;
 
-    return gulp.src([src, '!' + theme.src + '/node_modules/**/*.scss'], {base: theme.src + '/web'})
+    return gulp.src([
+        src, '!' + config.projectPath + theme.src + '/node_modules/**/*.scss'
+      ], {base: config.projectPath + theme.src + '/web'})
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.sass())
