@@ -2,9 +2,9 @@ module.exports = function() {
   // global vars
   var gulp    = this.gulp,
       plugins = this.opts.plugins,
-      configs = this.opts.configs;
+      config  = this.opts.configs;
 
-  // local plugins and configs
+  // local plugins and config
   const fs = require('fs');
 
   plugins.marked.setOptions({

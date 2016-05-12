@@ -9,7 +9,6 @@
     "url": "https://github.com/SnowdogApps/magento2-frontools"
   },
   "license": "MIT",
-  "engines": "node >= 4.2.6",
   "devDependencies": {
     "autoprefixer": "6.3.6",
     "browser-sync": "2.12.2",

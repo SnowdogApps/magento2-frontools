@@ -3,11 +3,17 @@ Set of front-end tools for Magento 2, based on Gulp.js
 
 ---
 
+## Requirements
+* `node >= 4.0.0` - heavily recommend using current LTS (v4 branch), not a latest version.
+* Gulp CLI global package- `npm install gulp-cli -g`
+* Magento 2 project and composer :)
+
 ## How to start?
-* You need to have `node >= 4.2.6` - current LTS
-* `composer require snowdog/frontools`
-* `cd tools` and run `npm install`
-* Use one of listed bellow task
+* Run `composer require snowdog/frontools`
+* Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
+* If you are lazy... I know you are :) Run `gulp symlink` this will create symlink to this dir in project root.
+* Go to project root and then `cd tools`
+* Use one of tasks listed bellow
 
 ---
 
@@ -35,7 +41,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 
 ---
 
-## `configs/themes.json` structure
+## `config/themes.json` structure
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
 - `locale` - array of available locales
