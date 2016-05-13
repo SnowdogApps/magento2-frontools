@@ -5,9 +5,9 @@ module.exports = function() {
       config  = this.opts.configs;
 
   // local plugins
-  var fs = require('fs');
+  const fs = require('fs');
 
-  fs.symlink('./', config.projectPath + '/tools', 'dir', () => {
+  fs.symlink(fs.realpathSync('./'), config.projectPath + '/tools', 'dir', () => {
     plugins.util.log(
       plugins.util.colors.green('Symlink created. Now you can use Frontools from "tools" directory at root of your project.')
     );
