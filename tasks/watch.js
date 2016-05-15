@@ -11,16 +11,17 @@ module.exports = function() {
   themes.forEach(name => {
     var theme = config.themes[name];
     theme.locale.forEach(locale => {
-      var themePath = theme.default ? theme.dest + '/' + locale : theme.src,
-          files = plugins.globby.sync(
-            [
-              config.projectPath + themePath + '/**/*.' + theme.lang,
-              '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
-            ]
-          );
-
+      var themePath = theme.default ? theme.dest + '/' + locale : theme.src;
       if (theme.lang === 'less') {
-        var dependencyTreeBuilder = require('../helpers/dependency-tree-builder');
+        var files = plugins.globby.sync(
+              [
+                config.projectPath + themePath + '/**/*.' + theme.lang,
+                '!' + config.projectPath + themePath + '/**/_*.' + theme.lang,
+                '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
+              ]
+            ),
+            dependencyTreeBuilder = require('../helpers/dependency-tree-builder');
+
         files.forEach(file => {
           var compiler = require('../helpers/' + theme.lang)(gulp, plugins, config, name, locale, file);
           gulp.watch(dependencyTreeBuilder(theme, file), () => {
@@ -29,10 +30,17 @@ module.exports = function() {
         });
       }
       else {
-        var compiler = require('../helpers/' + theme.lang)(
-          gulp, plugins, config, name, locale,
-          config.projectPath + themePath + '/**/*.' + theme.lang
-        );
+        var files = plugins.globby.sync(
+              [
+                config.projectPath + themePath + '/**/*.' + theme.lang,
+                '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
+              ]
+            ),
+            compiler = require('../helpers/' + theme.lang)(
+              gulp, plugins, config, name, locale,
+              config.projectPath + themePath + '/**/*.' + theme.lang
+            );
+            
         gulp.watch(files, () => {
           compiler();
         });
