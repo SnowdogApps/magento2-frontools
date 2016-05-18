@@ -13,7 +13,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 * Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
 * If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create symlink to this dir in project root.
 * Go to project root and then `cd tools`
-* Use one of tasks listed bellow
+* Use one of tasks listed below
 
 ---
 
