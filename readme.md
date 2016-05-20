@@ -46,9 +46,10 @@ Set of front-end tools for Magento 2, based on Gulp.js
 First of all check `config/themes.json.sample`
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
+- `parent` - name of parent theme - not available in themes with `default` flag
 - `locale` - array of available locales
-- `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports only `less` and `scss`.
-- `default` - (required for LESS themes) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy` set this to `true`.
-- `area`, `vendor`, `name` - (required for LESS themes) self-descriptive
-- `files` - (required for LESS themes) Array of LESS files to process
-- `postcss` - (optional) PostCSS plugins config. This have to be an array.
+- `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports `less` and `scss`
+- `default` - (required for default Magento LESS themes) if your theme use default PHP based processing via `bin/magento dev:source-theme:deploy` set this param to `true`
+- `area`, `vendor`, `name` - (required for default Magento LESS themes) self-descriptive
+- `files` - (required for default Magento LESS themes) Array of LESS files to process
+- `postcss` - (optional) PostCSS plugins config - have to be an array
