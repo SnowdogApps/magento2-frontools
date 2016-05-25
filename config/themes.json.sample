@@ -53,7 +53,7 @@
   "sass-custom": {
     "src"    : "vendor/snowdog/theme-custom",
     "dest"   : "pub/static/frontend/snowdog/custom",
-    "parent" : "sass-blank"
+    "parent" : "sass-blank",
     "locale" : ["en_US", "pl_PL"],
     "lang"   : "scss",
     "postcss": ["plugins.autoprefixer()"]
