@@ -6,8 +6,14 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
         dest       = config.projectPath + theme.dest + '/' + locale,
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
-        postcss    = theme.postcss || false,
+        postcss    = [],
         parentPath = require('./parent-theme-dir')(name, config);
+
+    if (theme.postcss) {
+      theme.postcss.forEach(el => {
+        postcss.push(eval(el));
+      });
+    }
 
     return gulp.src([
         src, '!' + config.projectPath + theme.src + '/node_modules/**/*.scss'
@@ -16,7 +22,7 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.sass({ includePaths: parentPath }))
       .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
-      .pipe(plugins.if(theme.postcss, plugins.postcss(theme.postcss || [])))
+      .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
       .pipe(plugins.if(maps, plugins.sourcemaps.write()))
       .pipe(gulp.dest(dest))
       .pipe(plugins.logger({
