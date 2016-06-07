@@ -7,7 +7,14 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
         lessFiles  = file || [],
+        postcss    = [],
         parentPath = require('./parent-theme-dir')(name, config);
+
+    if (theme.postcss) {
+      theme.postcss.forEach(el => {
+        postcss.push(eval(el));
+      });
+    }
 
     // less compiler is dumb as f*ck
     // can't figure out what files to process when path is like "theme/**/*.less"
@@ -26,7 +33,7 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.less({ paths: parentPath.concat('.') }))
       .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
-      .pipe(plugins.if(theme.postcss, plugins.postcss(theme.postcss || [])))
+      .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
       .pipe(plugins.if(maps, plugins.sourcemaps.write()))
       .pipe(gulp.dest(dest))
       .pipe(plugins.logger({
