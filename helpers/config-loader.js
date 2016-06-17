@@ -1,8 +1,9 @@
 module.exports = function(file, plugins) {
-  if (plugins.globby.sync('./config/' + file).length) {
+  if (plugins.globby.sync('../../../dev/tools/frontools/configs/' + file).length) {
+    return require('../../../../dev/tools/frontools/configs/' + file);
+  } else if (plugins.globby.sync('./config/' + file).length) {
     return require('../config/' + file);
-  }
-  else {
+  } else {
     plugins.util.log(
       plugins.util.colors.red('\n========================================= \n')
       + plugins.util.colors.yellow('You have to create ')
