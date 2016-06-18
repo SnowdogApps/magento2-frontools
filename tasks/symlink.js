@@ -1,10 +1,9 @@
 module.exports = function() {
-  // global vars
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
+  // Global variables
+  var plugins = this.opts.plugins,
       config  = this.opts.configs;
 
-  // local plugins
+  // Create a symlink from <project root>/tools to the root of this package
   const fs = require('fs');
 
   fs.symlink(fs.realpathSync('./'), config.projectPath + '/tools', 'dir', () => {

@@ -1,25 +1,31 @@
 module.exports = function() {
-  // global vars
+  // Global variables
   var gulp    = this.gulp,
       plugins = this.opts.plugins,
       config  = this.opts.configs;
 
-  // Load eslint config
+  // Load ESLint config
   config.eslint = require('../helpers/config-loader')('eslint.json', plugins);
 
-  // Gulp task body
+  // Check if --file <filename> is specified
   if (plugins.util.env.file) {
     plugins.util.log(
       plugins.util.colors.red.bold('Gulp is looking for files. Please wait...')
     );
+
+    // Check if filename can be found inside of the project
     var files = plugins.globby.sync([
           config.projectPath + '/**/' + plugins.util.env.file + '.js',
           '!' + config.projectPath + '/**/node_modules/**'
         ]);
+
+
     if (files.length) {
       plugins.util.log(
         plugins.util.colors.green(files.length + ' files found. Watcher initialized.')
       );
+
+      // Watch found files for changes. If they occur we rerun ESLint
       gulp.watch(files, function(event) {
         gulp.src(event.path)
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("ESLint found problems") }))
@@ -27,18 +33,16 @@ module.exports = function() {
           .pipe(plugins.eslint(config.eslint))
           .pipe(plugins.eslint.format());
       });
-    }
-    else {
+    } else {
       plugins.util.log(
         plugins.util.colors.red.bold('ERROR: File not found.')
       );
       return false;
     }
-  }
-  else {
+  } else {
     plugins.util.log(
       plugins.util.colors.red.bold('ERROR: Specify file name, for example: ')
-      + plugins.util.colors.green('gulp eslint --file category')
+      + plugins.util.colors.green('gulp eslint --file fileName')
     );
   }
 };
