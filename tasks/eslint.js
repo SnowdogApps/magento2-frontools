@@ -5,7 +5,7 @@ module.exports = function() {
       config  = this.opts.configs;
 
   // Load eslint config
-  config.eslint = require('../helpers/config-loader')('eslint.json', plugins);
+  config.eslint = require('../helpers/config-loader')('eslint.json', plugins, config);
 
   // Gulp task body
   if (plugins.util.env.file) {

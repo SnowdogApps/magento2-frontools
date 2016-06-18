@@ -6,7 +6,7 @@ module.exports = function() {
 
   // Task body
 
-  config.browserSync = require('../helpers/config-loader')('browser-sync.json', plugins);
+  config.browserSync = require('../helpers/config-loader')('browser-sync.json', plugins, config);
 
   plugins.browserSync.create();
   plugins.browserSync(config.browserSync);

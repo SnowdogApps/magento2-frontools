@@ -12,9 +12,10 @@ var gulp    = require('gulp'),
 
 // global configuration
 var config = {
-      'themes'     : require('./helpers/config-loader')('themes.json', plugins),
-      'projectPath': fs.realpathSync('../../../') + '/'
-    };
+  'projectPath': fs.realpathSync('../../../') + '/'
+};
+
+config.themes = require('./helpers/config-loader')('themes.json', plugins, config);
 
 // tasks loading / creating
 require('gulp-task-loader')({
@@ -24,7 +25,7 @@ require('gulp-task-loader')({
 });
 
 // define task for each theme, locale, lang, processing type etc.
-// gulp can't run same task in parallel, so we need different names
+// gulp can't run same task in parallel, so we need different namdes
 Object.keys(config.themes).forEach(name => {
   var theme = config.themes[name];
   theme.locale.forEach(locale => {
