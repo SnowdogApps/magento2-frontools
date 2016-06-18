@@ -33,13 +33,15 @@ module.exports = function() {
           .pipe(plugins.eslint(config.eslint))
           .pipe(plugins.eslint.format());
       });
-    } else {
+    }
+    else {
       plugins.util.log(
         plugins.util.colors.red.bold('ERROR: File not found.')
       );
       return false;
     }
-  } else {
+  }
+  else {
     plugins.util.log(
       plugins.util.colors.red.bold('ERROR: Specify file name, for example: ')
       + plugins.util.colors.green('gulp eslint --file fileName')

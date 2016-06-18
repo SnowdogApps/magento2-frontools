@@ -14,7 +14,8 @@ module.exports = function() {
       + plugins.util.colors.yellow('This tasks is designed only for LESS themes which use ')
       + plugins.util.colors.blue('@magento-import')
     );
-  } else {
+  }
+  else {
     const execSync = require('child_process').execSync;
 
     // Execute bin/magento dev:source:theme:deploy for every theme
