@@ -1,4 +1,5 @@
 module.exports = function(file, plugins, config) {
+  // Check if file exists inside of config directory
   if (plugins.globby.sync(config.projectPath + 'dev/tools/frontools/configs/' + file).length) {
     return require(config.projectPath + 'dev/tools/frontools/configs/' + file);
   }
@@ -17,4 +18,4 @@ module.exports = function(file, plugins, config) {
       message: 'You have to create dev/tools/frontools/configs/' + file + ' inside of your project root'
     });
   }
-}
+};

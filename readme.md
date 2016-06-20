@@ -30,7 +30,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
 * `eslint` - Watch and run eslint on specified JS file
-  * `--file fileName` - You have to specify what file you want to lint
+  * `--file fileName` - You have to specify what file you want to lint, fileName without .js
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
 * `styles` - Use it to manually trigger styles processing pipeline
   * `--theme name` - Process single theme

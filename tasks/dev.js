@@ -1,8 +1,7 @@
 module.exports = function() {
-  // global vars
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
-      config  = this.opts.configs;
+  // Global variables
+  var plugins = this.opts.plugins;
 
+  // Open browser-sync session and start watchers
   plugins.runSequence('browser-sync', 'watch');
 };

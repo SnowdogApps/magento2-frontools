@@ -1,6 +1,6 @@
 module.exports = function(gulp, plugins, config, name, locale, file) {
+  // Return function that is executed inside of .pipe()
   return () => {
-    // local vars
     var theme      = config.themes[name],
         src        = file || config.projectPath + theme.src + '/**/*.scss',
         dest       = config.projectPath + theme.dest + '/' + locale,
@@ -32,4 +32,4 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
       }))
       .pipe(plugins.browserSync.stream());
   }
-}
+};

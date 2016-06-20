@@ -10,4 +10,4 @@ module.exports = function(themeName, config) {
     }
   }
   return getParentThemeDir(themeName);
-}
+};
