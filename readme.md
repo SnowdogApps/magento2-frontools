@@ -9,11 +9,13 @@ Set of front-end tools for Magento 2, based on Gulp.js
 * Magento 2 project :smile:
 
 ## How to start?
-* Run `composer require snowdog/frontools`
-* Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
-* If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create symlink to this dir in project root.
-* Go to project root and then `cd tools`
-* Use one of tasks listed below
+1. Run `composer require snowdog/frontools`
+2. Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
+3. If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create a symlink to this directory in the project root.
+4. Go to project root and then `cd tools`
+5. In the `config` folder there is a `themes.json.sample`, copy it to `<project root>/dev/tools/frontools/configs/themes.json`
+6. Add your own theme to `themes.json`
+7. Use one of tasks listed below
 
 ## Tasks list
 * `browser-sync` - Run BrowserSync - it's much better and easier to use than "LiveReload"
@@ -26,7 +28,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
 * `eslint` - Watch and run eslint on specified JS file
-  * `--file fileName` - You have to specify what file you want to lint
+  * `--file fileName` - You have to specify what file you want to lint, fileName without .js
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
 * `styles` - Use it to manually trigger styles processing pipeline
   * `--theme name` - Process single theme

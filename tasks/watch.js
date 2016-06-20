@@ -1,13 +1,14 @@
 module.exports = function() {
-  // global vars
+  // Global variables
   var gulp    = this.gulp,
       plugins = this.opts.plugins,
       config  = this.opts.configs;
 
-  // local vars
+  // Check if --theme <theme-name> is defined, if it is, we only watch that one
   var themeName = plugins.util.env.theme || false,
       themes    = themeName ? [themeName] : Object.keys(config.themes);
 
+  // Watch files for changes and run appropriate compiler when they change
   themes.forEach(name => {
     var theme = config.themes[name];
     theme.locale.forEach(locale => {
