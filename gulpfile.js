@@ -25,7 +25,7 @@ require('gulp-task-loader')({
 });
 
 // define task for each theme, locale, lang, processing type etc.
-// gulp can't run same task in parallel, so we need different namdes
+// gulp can't run same task in parallel, so we need different names
 Object.keys(config.themes).forEach(name => {
   var theme = config.themes[name];
   theme.locale.forEach(locale => {
