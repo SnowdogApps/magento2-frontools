@@ -5,7 +5,7 @@ module.exports = function() {
       config  = this.opts.configs;
 
   // Load ESLint config
-  config.eslint = require('../helpers/config-loader')('eslint.json', plugins);
+  config.eslint = require('../helpers/config-loader')('eslint.json', plugins, config);
 
   // Check if --file <filename> is specified
   if (plugins.util.env.file) {

@@ -12,9 +12,10 @@ var gulp    = require('gulp'),
 
 // Global configuration
 var config = {
-      'themes'     : require('./helpers/config-loader')('themes.json', plugins),
-      'projectPath': fs.realpathSync('../../../') + '/'
-    };
+  'projectPath': fs.realpathSync('../../../') + '/'
+};
+
+config.themes = require('./helpers/config-loader')('themes.json', plugins, config);
 
 // Tasks loading
 require('gulp-task-loader')({

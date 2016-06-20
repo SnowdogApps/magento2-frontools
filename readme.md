@@ -9,11 +9,13 @@ Set of front-end tools for Magento 2, based on Gulp.js
 * Magento 2 project :smile:
 
 ## How to start?
-* Run `composer require snowdog/frontools`
-* Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
-* If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create symlink to this dir in project root.
-* Go to project root and then `cd tools`
-* Use one of tasks listed below
+1. Run `composer require snowdog/frontools`
+2. Go to package directory (probably `vendor/snowdog/frontools`) and run `npm install`
+3. If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create a symlink to this directory in the project root.
+4. Go to project root and then `cd tools`
+5. In the `config` folder there is a `themes.json.sample`, copy it to `<project root>/dev/tools/frontools/configs/themes.json`
+6. Add your own theme to `themes.json`
+7. Use one of tasks listed below
 
 ---
 

@@ -1,6 +1,9 @@
-module.exports = function(file, plugins) {
+module.exports = function(file, plugins, config) {
   // Check if file exists inside of config directory
-  if (plugins.globby.sync('./config/' + file).length) {
+  if (plugins.globby.sync(config.projectPath + 'dev/tools/frontools/configs/' + file).length) {
+    return require(config.projectPath + 'dev/tools/frontools/configs/' + file);
+  }
+  else if (plugins.globby.sync('./config/' + file).length) {
     return require('../config/' + file);
   }
   else {
@@ -12,7 +15,7 @@ module.exports = function(file, plugins) {
     );
     throw new plugins.util.PluginError({
       plugin: 'config',
-      message: 'You have to create config/' + file
+      message: 'You have to create dev/tools/frontools/configs/' + file + ' inside of your project root'
     });
   }
 };
