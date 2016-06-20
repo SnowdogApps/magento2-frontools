@@ -1,11 +1,9 @@
 module.exports = function() {
-  // global vars
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
+  // Global variables
+  var plugins = this.opts.plugins,
       config  = this.opts.configs;
 
-  // Task body
-
+  // Load browsersync with config from browser-sync.json
   config.browserSync = require('../helpers/config-loader')('browser-sync.json', plugins);
 
   plugins.browserSync.create();

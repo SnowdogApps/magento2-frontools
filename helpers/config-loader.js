@@ -1,4 +1,5 @@
 module.exports = function(file, plugins) {
+  // Check if file exists inside of config directory
   if (plugins.globby.sync('./config/' + file).length) {
     return require('../config/' + file);
   }
@@ -14,4 +15,4 @@ module.exports = function(file, plugins) {
       message: 'You have to create config/' + file
     });
   }
-}
+};
