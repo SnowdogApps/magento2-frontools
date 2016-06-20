@@ -1,7 +1,7 @@
+[![Travis branch](https://img.shields.io/travis/SnowdogApps/magento2-frontools/master.svg?maxAge=2592000)](https://github.com/SnowdogApps/magento2-frontools) [![Packagist](https://img.shields.io/packagist/v/snowdog/frontools.svg?maxAge=2592000)](https://packagist.org/packages/snowdog/frontools) [![Packagist](https://img.shields.io/packagist/dt/snowdog/frontools.svg?maxAge=2592000)](https://packagist.org/packages/snowdog/frontools)
+
 # Magento 2 Frontools
 Set of front-end tools for Magento 2, based on Gulp.js
-
----
 
 ## Requirements
 * `node >= 4.0.0` - heavily recommend using current LTS (v4 branch), not a latest version.
@@ -14,8 +14,6 @@ Set of front-end tools for Magento 2, based on Gulp.js
 * If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create symlink to this dir in project root.
 * Go to project root and then `cd tools`
 * Use one of tasks listed below
-
----
 
 ## Tasks list
 * `browser-sync` - Run BrowserSync - it's much better and easier to use than "LiveReload"
@@ -39,8 +37,6 @@ Set of front-end tools for Magento 2, based on Gulp.js
   * `--theme name` - Process single theme
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
-
----
 
 ## `config/themes.json` structure
 First of all check `config/themes.json.sample`
