@@ -3,7 +3,7 @@ module.exports = function() {
   var plugins = this.opts.plugins,
       config  = this.opts.configs;
 
-  // Create a relative symlink from <project root>/tools to the root of this package
+  // Create a relative symlink from <magento root>/tools to the root of this package
   const fs = require('fs'),
         path = require('path');
 
