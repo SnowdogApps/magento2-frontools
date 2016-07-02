@@ -25,7 +25,7 @@ Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-versi
 * `default` - type `gulp` to see this readme in console
 * `deploy` - Wrapper for `bin/magento dev:source-theme:deploy` - only for default themes
   * `--theme name` - Deploy single theme
-* `dev` - Runs `browser-sync` and `watch` tasks 
+* `dev` - Runs `browser-sync` and `watch` tasks
   * `--theme name` - Process single theme
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
