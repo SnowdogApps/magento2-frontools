@@ -9,8 +9,7 @@ module.exports = function(file, plugins, config) {
   else {
     plugins.util.log(
       plugins.util.colors.red('\n========================================= \n')
-      + plugins.util.colors.yellow('You have to create ')
-      + plugins.util.colors.blue('config/' + file)
+      + plugins.util.colors.yellow('You have to create <magento root>/dev/tools/frontools/configs/' + file + ' or run "gulp setup"')
       + plugins.util.colors.red('\n=========================================')
     );
     throw new plugins.util.PluginError({
