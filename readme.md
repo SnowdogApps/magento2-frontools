@@ -15,7 +15,7 @@ Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-versi
 3. Run `npm install`
 4. If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create a symlink to this directory in the project root.
 5. Go to `<magento root>/tools`
-6. In the `config` folder there is a `themes.json.sample`, copy it to `<magento root>/dev/tools/frontools/configs/themes.json`
+6. In the `config` folder there is a `themes.sample.json`, copy it to `<magento root>/dev/tools/frontools/configs/themes.json`
 7. Add your own theme to `themes.json`
 8. Use one of tasks listed below
 
@@ -43,7 +43,7 @@ Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-versi
   * `--prod` - Production output - minifies styles
 
 ## `config/themes.json` structure
-First of all check `config/themes.json.sample`
+First of all check `config/themes.sample.json`
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme]`
 - `parent` - name of parent theme - not available in themes with `default` flag
