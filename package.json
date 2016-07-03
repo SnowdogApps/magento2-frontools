@@ -4,6 +4,7 @@
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
   },
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/SnowdogApps/magento2-frontools"
