@@ -14,7 +14,7 @@
     "autoprefixer": "6.3.6",
     "browser-sync": "2.12.8",
     "cssnano": "3.5.2",
-    "fs-extra": "^0.30.0",
+    "fs-extra": "0.30.0",
     "globby": "4.0.0",
     "gulp": "3.9.1",
     "gulp-concat": "2.6.0",
