@@ -1,8 +1,6 @@
-module.exports = function(theme, file) {
-  const fs = require('fs');
-  
+module.exports = function(theme, file, plugins) {  
   function findDependencies(file, dependencyTree) {
-    var content = fs.readFileSync(file, 'utf8'),
+    var content = plugins.fs.readFileSync(file, 'utf8'),
         path    = file.replace(/(.*)\/.*/g, '$1'),
         regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g,
         result  = '',

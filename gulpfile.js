@@ -10,9 +10,11 @@ var gulp    = require('gulp'),
       }
     });
 
+plugins.fs = require('fs-extra');
+
 // Global configuration
 var config = {
-  'projectPath': fs.realpathSync('../../../') + '/'
+  'projectPath': plugins.fs.realpathSync('../../../') + '/'
 };
 
 config.themes = require('./helpers/config-loader')('themes.json', plugins, config);
@@ -20,7 +22,7 @@ config.themes = require('./helpers/config-loader')('themes.json', plugins, confi
 // Tasks loading
 require('gulp-task-loader')({
   dir    : 'tasks',
-  plugins: plugins,
+  plugins: plugins, 
   configs: config
 });
 
