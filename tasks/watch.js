@@ -25,7 +25,7 @@ module.exports = function() {
 
         files.forEach(file => {
           var compiler = require('../helpers/' + theme.lang)(gulp, plugins, config, name, locale, file);
-          gulp.watch(dependencyTreeBuilder(theme, file), () => {
+          gulp.watch(dependencyTreeBuilder(theme, file, plugins), () => {
             compiler();
           });
         });

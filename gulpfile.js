@@ -1,10 +1,10 @@
 // Plugins / Functions / Modules
 var gulp    = require('gulp'),
-    fs      = require('fs'),
     plugins = require('gulp-load-plugins')({
       pattern: ['*', '!gulp', '!gulp-load-plugins'],
       rename: {
         'browser-sync'   : 'browserSync',
+        'fs-extra'       : 'fs',
         'marked-terminal': 'markedTerminal',
         'run-sequence'   : 'runSequence'
       }
@@ -12,7 +12,7 @@ var gulp    = require('gulp'),
 
 // Global configuration
 var config = {
-  'projectPath': fs.realpathSync('../../../') + '/'
+  'projectPath': plugins.fs.realpathSync('../../../') + '/'
 };
 
 config.themes = require('./helpers/config-loader')('themes.json', plugins, config);
