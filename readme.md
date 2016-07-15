@@ -51,3 +51,6 @@ First of all check `config/themes.json.sample`
 - `area`, `vendor`, `name` - (required for default Magento LESS themes) self-descriptive
 - `files` - (required for default Magento LESS themes) Array of LESS files to process
 - `postcss` - (optional) PostCSS plugins config - have to be an array
+
+## Questions
+If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
