@@ -5,12 +5,12 @@ const gulp    = require('gulp'),
         pattern: ['*', '!gulp', '!gulp-load-plugins'],
         rename : {
           'browser-sync'   : 'browserSync',
+          'fs-extra'       : 'fs',
           'marked-terminal': 'markedTerminal',
           'run-sequence'   : 'runSequence'
         }
       });
 
-plugins.fs = require('fs-extra');
 plugins.errorMessage = require('./helpers/error-message')(plugins);
 
 // Global configuration
