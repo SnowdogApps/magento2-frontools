@@ -1,15 +1,17 @@
-module.exports = function(theme, file, plugins) {  
-  function findDependencies(file, dependencyTree) {
-    var content = plugins.fs.readFileSync(file, 'utf8'),
-        path    = file.replace(/(.*)\/.*/g, '$1'),
-        regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g,
-        result  = '',
+'use strict';
+module.exports = function (theme, file, plugins) {
+  function findDependencies (file, dependencyTree) {
+    const content = plugins.fs.readFileSync(file, 'utf8'),
+          path    = file.replace(/(.*)\/.*/g, '$1'),
+          regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
+
+    let result,
         imports = [];
 
     while (result = regex.exec(content)) {
-      var fullPath = '';
+      let fullPath = '';
       if (result[1].match(/\.\.\//g)) {
-        var parentPath = path,
+        let parentPath = path,
             filePath   = result[1];
 
         while (filePath.match(/\.\.\//g)) {
@@ -23,6 +25,7 @@ module.exports = function(theme, file, plugins) {
       }
       imports.push(fullPath);
     }
+
     imports.forEach(el => {
       imports = imports.concat(findDependencies(el, dependencyTree));
     });

@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function() {
   // Global variables
   const plugins = this.opts.plugins;

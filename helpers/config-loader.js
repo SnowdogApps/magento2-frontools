@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(file, plugins, config) {
   // Check if file exists inside of config directory
   if (plugins.globby.sync(config.projectPath + 'dev/tools/frontools/configs/' + file).length) {
@@ -7,14 +8,6 @@ module.exports = function(file, plugins, config) {
     return require('../config/' + file);
   }
   else {
-    plugins.util.log(
-      plugins.util.colors.red('\n========================================= \n')
-      + plugins.util.colors.yellow('You have to create <magento root>/dev/tools/frontools/configs/' + file + ' or run "gulp setup"')
-      + plugins.util.colors.red('\n=========================================')
-    );
-    throw new plugins.util.PluginError({
-      plugin: 'config',
-      message: 'You have to create dev/tools/frontools/configs/' + file + ' inside of your project root'
-    });
+    return {};
   }
 };
