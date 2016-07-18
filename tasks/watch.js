@@ -1,13 +1,10 @@
 'use strict';
-module.exports = function() {
+module.exports = function () {
   // Global variables
   const gulp    = this.gulp,
-      plugins = this.opts.plugins,
-      config  = this.opts.configs;
-
-  // Check if --theme <theme-name> is defined, if it is, we only watch that one
-  const themeName = plugins.util.env.theme || false,
-      themes    = plugins.getThemes(themeName);
+        plugins = this.opts.plugins,
+        config  = this.opts.configs,
+        themes  = plugins.getThemes();
 
   // Watch files for changes and run appropriate compiler when they change
   themes.forEach(name => {
@@ -15,12 +12,12 @@ module.exports = function() {
     theme.locale.forEach(locale => {
       const themePath = theme.default ? theme.dest + '/' + locale : theme.src;
       if (theme.lang === 'less') {
-        let files = plugins.globby.sync(
-              [
-                config.projectPath + themePath + '/**/*.' + theme.lang,
-                '!' + config.projectPath + themePath + '/**/_*.' + theme.lang,
-                '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
-              ]
+        let files                 = plugins.globby.sync(
+          [
+            config.projectPath + themePath + '/**/*.' + theme.lang,
+            '!' + config.projectPath + themePath + '/**/_*.' + theme.lang,
+            '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
+          ]
             ),
             dependencyTreeBuilder = require('../helpers/dependency-tree-builder');
 
@@ -32,11 +29,11 @@ module.exports = function() {
         });
       }
       else {
-        let files = plugins.globby.sync(
-              [
-                config.projectPath + themePath + '/**/*.' + theme.lang,
-                '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
-              ]
+        let files    = plugins.globby.sync(
+          [
+            config.projectPath + themePath + '/**/*.' + theme.lang,
+            '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
+          ]
             ),
             compiler = require('../helpers/' + theme.lang)(
               gulp, plugins, config, name, locale,

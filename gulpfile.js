@@ -18,7 +18,7 @@ const config = {
   'projectPath': plugins.fs.realpathSync('../../../') + '/'
 };
 
-config.themes = require('./helpers/config-loader')('themes.json', plugins, config);
+config.themes = require('./helpers/config-loader')('themes.json', plugins, config, false);
 plugins.getThemes = require('./helpers/get-themes')(plugins, config);
 
 // Tasks loading

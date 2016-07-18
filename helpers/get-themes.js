@@ -1,14 +1,15 @@
 'use strict';
 module.exports = function (plugins, config) {
-  return function (name) {
-    const themeName = name || false;
+  return function () {
+    const themeName = plugins.util.env.theme || false;
     const themes = Object.keys(config.themes);
 
-    if (themes.length === 0) {
+    // If themes is empty we throw a configuration error
+    if(themes.length === 0) {
       throw new plugins.util.PluginError({
-        plugin : 'config',
-        message: plugins.errorMessage('You have to create <magento root>/dev/tools/frontools/configs/themes.json or run "gulp setup"')
-      });
+        'plugin' : 'config',
+        'message': plugins.errorMessage('You have to create <magento root>/dev/frontools/configs/themes.json')
+      })
     }
 
     if (themeName && themes.indexOf(themeName) === -1) {

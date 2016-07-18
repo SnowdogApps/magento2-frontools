@@ -2,11 +2,8 @@
 module.exports = function () {
   // Global variables
   const plugins = this.opts.plugins,
-        config  = this.opts.configs;
-
-  // Check if --theme <theme-name> is defined
-  const themeName = plugins.util.env.theme || false,
-        themes    = plugins.getThemes(themeName);
+        config  = this.opts.configs,
+        themes  = plugins.getThemes();
 
   // Don't panic, !! is no magic voodoo, it just converts an object to a boolean (true if it exists, false if not)
   if (!!config.themes[themeName] && !config.themes[themeName].default) {
