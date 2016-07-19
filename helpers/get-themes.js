@@ -8,7 +8,7 @@ module.exports = function (plugins, config) {
     if(themes.length === 0) {
       throw new plugins.util.PluginError({
         'plugin' : 'config',
-        'message': plugins.errorMessage('You have to create <magento root>/dev/frontools/configs/themes.json')
+        'message': plugins.errorMessage('You have to create <magento root>/dev/tools/frontools/configs/themes.json')
       })
     }
 
