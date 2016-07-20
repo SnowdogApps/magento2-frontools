@@ -7,7 +7,7 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
         maps       = plugins.util.env.maps || false,
         production = plugins.util.env.prod || false,
         postcss    = [],
-        parentPath = require('./parent-theme-dir')(name, config);
+        parentPath = require('./parent-theme-dir')(name, config, plugins);
 
     if (theme.postcss) {
       theme.postcss.forEach(el => {

@@ -1,9 +1,16 @@
-module.exports = function(themeName, config) {
+'use strict';
+module.exports = function(themeName, config, plugins) {
   function getParentThemeDir(themeName) {
-    var theme = config.themes[themeName];
+    let theme = config.themes[themeName];
+
     if (theme.parent) {
-      var path = [config.projectPath + config.themes[theme.parent].src + '/web/css/'];
-      return path.concat(getParentThemeDir(theme.parent));
+      let src   = config.themes[theme.parent].src,
+          paths = plugins.globby.sync([
+            config.projectPath + src + '/**/',
+            '!' + config.projectPath + src + '/**/node_modules/**/',
+          ]);
+
+      return paths.concat(getParentThemeDir(theme.parent));
     }
     else {
       return [];
