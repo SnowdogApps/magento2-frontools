@@ -5,10 +5,10 @@ module.exports = function(themeName, config, plugins) {
 
     if (theme.parent) {
       let src   = config.themes[theme.parent].src,
-          paths = plugins.globby.sync([
+          paths = plugins.globby.sync(
             config.projectPath + src + '/**/',
-            '!' + config.projectPath + src + '/**/node_modules/**/',
-          ]);
+            { ignore: '/**/node_modules/**' }
+          );
 
       return paths.concat(getParentThemeDir(theme.parent));
     }
