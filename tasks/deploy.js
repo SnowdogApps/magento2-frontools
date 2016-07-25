@@ -1,16 +1,14 @@
-module.exports = function() {
+'use strict';
+module.exports = function () {
   // Global variables
-  var plugins = this.opts.plugins,
-      config  = this.opts.configs;
-
-  // Check if --theme <theme-name> is defined, if it is, we only deploy that one
-  var themeName = plugins.util.env.theme || false,
-      themes = themeName ? [themeName] : Object.keys(config.themes);
+  const plugins = this.opts.plugins,
+        config  = this.opts.configs,
+        themes  = plugins.getThemes();
 
   // Don't panic, !! is no magic voodoo, it just converts an object to a boolean (true if it exists, false if not)
   if (!!config.themes[themeName] && !config.themes[themeName].default) {
     plugins.util.log(
-      plugins.util.colors.red.bold('[Warining] ')
+      plugins.util.colors.red.bold('[Warning] ')
       + plugins.util.colors.yellow('This tasks is designed only for LESS themes which use ')
       + plugins.util.colors.blue('@magento-import')
     );
@@ -22,7 +20,7 @@ module.exports = function() {
     themes.forEach(name => {
       // Loop through locales, because you are required to specify a locale
       config.themes[name].locale.forEach(locale => {
-        var theme = config.themes[name];
+        const theme = config.themes[name];
 
         // Only execute the command when this theme is a theme using @magento-import
         if (theme.default) {
@@ -32,11 +30,11 @@ module.exports = function() {
             // and it's not so useful for front-end developers
             // execSync to keep process synchronous and wait till CLI do the job
             execSync(config.projectPath + 'bin/magento dev:source-theme:deploy'
-            + ' --type=' + theme.lang
-            + ' --locale=' + locale
-            + ' --area=' + theme.area
-            + ' --theme=' + theme.vendor + '/' + theme.name
-            + ' ' + theme.files.join(' '));
+              + ' --type=' + theme.lang
+              + ' --locale=' + locale
+              + ' --area=' + theme.area
+              + ' --theme=' + theme.vendor + '/' + theme.name
+              + ' ' + theme.files.join(' '));
           });
         }
       });

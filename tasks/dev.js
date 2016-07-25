@@ -1,7 +1,5 @@
+'use strict';
 module.exports = function() {
-  // Global variables
-  var plugins = this.opts.plugins;
-
   // Open browser-sync session and start watchers
-  plugins.runSequence('browser-sync', 'watch');
+  this.opts.plugins.runSequence('browser-sync', 'watch');
 };

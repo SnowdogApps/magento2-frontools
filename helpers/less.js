@@ -1,14 +1,15 @@
-module.exports = function(gulp, plugins, config, name, locale, file) {
+'use strict';
+module.exports = function (gulp, plugins, config, name, locale, file) {
   // Return function that is executed inside of .pipe()
   return () => {
-    var theme      = config.themes[name],
-        src        = theme.default ? config.projectPath + theme.dest + '/' + locale : config.projectPath + theme.src,
-        dest       = config.projectPath + theme.dest + '/' + locale + '/css',
-        maps       = plugins.util.env.maps || false,
-        production = plugins.util.env.prod || false,
-        lessFiles  = file || [],
-        postcss    = [],
-        parentPath = require('./parent-theme-dir')(name, config, plugins);
+    const theme      = config.themes[name],
+          src        = theme.default ? config.projectPath + theme.dest + '/' + locale : config.projectPath + theme.src,
+          dest       = config.projectPath + theme.dest + '/' + locale + '/css',
+          maps       = plugins.util.env.maps || false,
+          production = plugins.util.env.prod || false,
+          lessFiles  = file || [],
+          postcss    = [],
+          parentPath = require('./parent-theme-dir')(name, config, plugins);
 
     if (theme.postcss) {
       theme.postcss.forEach(el => {
@@ -19,11 +20,11 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
     // less compiler is dumb as f*ck
     // can't figure out what files to process when path is like "theme/**/*.less"
     if (!lessFiles.length) {
-      var files = plugins.globby.sync([
-            src + '/**/*.less',
-            '!' + src + '/**/_*.less',
-            '!' + src + '/node_modules/**/*.less'
-          ]);
+      const files = plugins.globby.sync([
+        src + '/**/*.less',
+        '!' + src + '/**/_*.less',
+        '!' + src + '/node_modules/**/*.less'
+      ]);
 
       files.forEach(file => lessFiles.push(file));
     }
@@ -37,9 +38,9 @@ module.exports = function(gulp, plugins, config, name, locale, file) {
       .pipe(plugins.if(maps, plugins.sourcemaps.write()))
       .pipe(gulp.dest(dest))
       .pipe(plugins.logger({
-        display: 'name',
+        display   : 'name',
         beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
-        afterEach: ' Compiled!'
+        afterEach : ' Compiled!'
       }))
       .pipe(plugins.browserSync.stream());
   }

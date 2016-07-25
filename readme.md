@@ -9,15 +9,15 @@ Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-versi
 * Gulp CLI global package. To install: `npm install gulp-cli -g`
 * Magento 2 project :smile:
 
-## How to start?
+## Installation
 1. Run `composer require snowdog/frontools`
 2. Go to package directory `<magento root>/vendor/snowdog/frontools`
 3. Run `npm install`
-4. If you are lazy... (I know you are :wink: ) Run `gulp symlink` this will create a symlink to this directory in the project root.
-5. Go to `<magento root>/tools`
-6. In the `config` folder there is a `themes.json.sample`, copy it to `<magento root>/dev/tools/frontools/configs/themes.json`
-7. Add your own theme to `themes.json`
-8. Use one of tasks listed below
+4. Run `gulp setup` this creates a convenient symlink from `<magento root>/tools` to frontools.  
+It also copies all sample config files from the `config` directory to `<magento root>/dev/tools/frontools/configs`
+5. Add your own theme to `<magento root>/dev/tools/frontools/configs/themes.json`
+6. Add your local development url to `<magento root>/dev/tools/frontools/configs/browser-sync.json`
+7. Use one of the tasks listed below
 
 ## Tasks list
 * `browser-sync` - Run [BrowserSync](https://www.browsersync.io/) - it's a better alternative to "[LiveReload](http://livereload.com/)"
@@ -32,11 +32,12 @@ Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-versi
 * `eslint` - Watch and run eslint on specified JS file
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
+* `setup` - Creates a convenient symlink from `<magento root>/tools` to `<magento root>/vendor/snowdog/frontools` and copies all sample files if no configuration exists
+  * `--symlink name` - if you don't want to use `tools` as the symlink you can specify another name
 * `styles` - Use this task to manually trigger styles processing pipeline
   * `--theme name` - Process single theme
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
-* `symlink` - Creates a convenient symlink from `<magento root>/tools` to `<magento root>/vendor/snowdog/frontools`
 * `watch` - Watch for style changes and run processing tasks
   * `--theme name` - Process single theme
   * `--maps` - Enable inline source maps generation
@@ -53,3 +54,6 @@ First of all check `config/themes.json.sample`
 - `area`, `vendor`, `name` - (required for default Magento LESS themes) self-descriptive
 - `files` - (required for default Magento LESS themes) Array of LESS files to process
 - `postcss` - (optional) PostCSS plugins config - have to be an array
+
+## Questions
+If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)

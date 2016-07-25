@@ -1,8 +1,9 @@
-module.exports = function() {
+'use strict';
+module.exports = function () {
   // Global variables
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
-      config  = this.opts.configs;
+  const gulp    = this.gulp,
+        plugins = this.opts.plugins,
+        config  = this.opts.configs;
 
   // Load ESLint config
   config.eslint = require('../helpers/config-loader')('eslint.json', plugins, config);
@@ -14,10 +15,10 @@ module.exports = function() {
     );
 
     // Check if filename can be found inside of the project
-    var files = plugins.globby.sync([
-          config.projectPath + '/**/' + plugins.util.env.file + '.js',
-          '!' + config.projectPath + '/**/node_modules/**'
-        ]);
+    const files = plugins.globby.sync([
+      config.projectPath + '/**/' + plugins.util.env.file + '.js',
+      '!' + config.projectPath + '/**/node_modules/**'
+    ]);
 
 
     if (files.length) {
@@ -26,7 +27,7 @@ module.exports = function() {
       );
 
       // Watch found files for changes. If they occur we rerun ESLint
-      gulp.watch(files, function(event) {
+      gulp.watch(files, function (event) {
         gulp.src(event.path)
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("ESLint found problems") }))
           .pipe(plugins.logger({ display: 'name' }))
