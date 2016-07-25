@@ -1,11 +1,11 @@
-module.exports = function() {
+'use strict';
+module.exports = function () {
   // Global variables
-  var plugins = this.opts.plugins,
-      config  = this.opts.configs;
-  // Load browsersync with config from browser-sync.json
-
-  config.browserSync = require('../helpers/config-loader')('browser-sync.json', plugins, config);
+  const plugins = this.opts.plugins,
+        config  = this.opts.configs;
 
   plugins.browserSync.create();
-  plugins.browserSync(config.browserSync);
+
+  // Load browsersync with config from browser-sync.json
+  plugins.browserSync(require('../helpers/config-loader')('browser-sync.json', plugins, config));
 };
