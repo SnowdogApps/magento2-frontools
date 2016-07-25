@@ -12,13 +12,10 @@ module.exports = function () {
     theme.locale.forEach(locale => {
       const themePath = theme.default ? theme.dest + '/' + locale : theme.src;
       if (theme.lang === 'less') {
-        let files                 = plugins.globby.sync(
-          [
-            config.projectPath + themePath + '/**/*.' + theme.lang,
-            '!' + config.projectPath + themePath + '/**/_*.' + theme.lang,
-            '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
-          ]
-            ),
+        let files = plugins.globby.sync([
+              config.projectPath + themePath + '/**/*.' + theme.lang,
+              '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
+            ], { ignore: '/**/node_modules/**' }),
             dependencyTreeBuilder = require('../helpers/dependency-tree-builder');
 
         files.forEach(file => {
@@ -29,11 +26,9 @@ module.exports = function () {
         });
       }
       else {
-        let files    = plugins.globby.sync(
-          [
-            config.projectPath + themePath + '/**/*.' + theme.lang,
-            '!' + config.projectPath + themePath + '/**/node_modules/**/*.' + theme.lang,
-          ]
+        let files = plugins.globby.sync(
+              config.projectPath + themePath + '/**/*.' + theme.lang,
+              { ignore: '/**/node_modules/**' }
             ),
             compiler = require('../helpers/' + theme.lang)(
               gulp, plugins, config, name, locale,
