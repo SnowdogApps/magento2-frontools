@@ -5,10 +5,9 @@ module.exports = function () {
         config  = this.opts.configs,
         themes  = plugins.getThemes();
 
-  // Don't panic, !! is no magic voodoo, it just converts an object to a boolean (true if it exists, false if not)
-  if (!!config.themes[themeName] && !config.themes[themeName].default) {
+  if (plugins.util.env.theme && !themes.default) {
     plugins.util.log(
-      plugins.util.colors.red.bold('[Warning] ')
+      plugins.util.colors.red.bold('[Warining] ')
       + plugins.util.colors.yellow('This tasks is designed only for LESS themes which use ')
       + plugins.util.colors.blue('@magento-import')
     );
