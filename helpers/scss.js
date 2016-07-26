@@ -4,7 +4,7 @@ module.exports = function (gulp, plugins, config, name, locale, file) {
   return () => {
     const theme      = config.themes[name],
           src        = file || config.projectPath + theme.src + '/**/*.scss',
-          dest       = config.projectPath + theme.dest + '/' + locale,
+          dest       = config.projectPath + theme.dest + '/' + locale + '/css',
           maps       = plugins.util.env.maps || false,
           production = plugins.util.env.prod || false,
           postcss    = [],
@@ -18,7 +18,7 @@ module.exports = function (gulp, plugins, config, name, locale, file) {
 
     return gulp.src([
       src, '!' + config.projectPath + theme.src + '/node_modules/**/*.scss'
-    ], { base: config.projectPath + theme.src + '/web' })
+    ], { base: config.projectPath + theme.src + '/styles' })
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.sass({ includePaths: parentPath }))
