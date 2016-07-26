@@ -2,15 +2,15 @@
 module.exports = function () {
   // Global variables
   const plugins  = this.opts.plugins,
-        execSync = require('child_process').execSync,
         config   = this.opts.configs,
         themes   = plugins.getThemes(),
-        prod     = plugins.util.env.prod || false;
+        prod     = plugins.util.env.prod || false,
+        execSync = require('child_process').execSync;
 
 
   themes.forEach(name => {
     const theme = config.themes[name];
-    if (theme.lang === 'scss') {
+    if (!theme.default) {
       const src       = config.projectPath + theme.src,
             dest      = config.projectPath + theme.dest,
             srcPaths  = plugins.globby.sync(src + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' }),
@@ -23,17 +23,29 @@ module.exports = function () {
               parentDestPaths = [];
 
         parentSrcPaths.forEach(srcPath => {
-          plugins.fs.symlinkSync(srcPath, srcPath.replace('/web', '').replace(parentSrc, dest));
+          const destPath = srcPath.replace('/web', '').replace(parentSrc, dest);
+          try {
+            plugins.fs.ensureFileSync(destPath);
+            plugins.fs.unlinkSync(destPath);
+          }
+          finally {
+            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.symlinkSync(srcPath, destPath);
+          }
         });
       }
 
       srcPaths.forEach(srcPath => {
         const destPath = srcPath.replace('/web', '').replace(src, dest);
-        plugins.fs.unlinkSync(destPath);
-        plugins.fs.symlinkSync(srcPath, destPath);
+        try {
+          plugins.fs.ensureFileSync(destPath);
+          plugins.fs.unlinkSync(destPath);
+        }
+        finally {
+          prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.symlinkSync(srcPath, destPath);
+        }
       });
     }
-    else if (theme.lang === 'less' && theme.default) {
+    else {
       // Loop through locales, because you are required to specify a locale
       theme.locale.forEach(locale => {
         // if it's default theme, create symlinks to styles files via Magento CLI
