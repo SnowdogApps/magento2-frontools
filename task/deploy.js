@@ -7,7 +7,6 @@ module.exports = function () {
         prod     = plugins.util.env.prod || false,
         execSync = require('child_process').execSync;
 
-
   themes.forEach(name => {
     const theme = config.themes[name];
     if (theme.default) {

@@ -11,19 +11,19 @@ const gulp    = require('gulp'),
         }
       });
 
-plugins.errorMessage = require('./helpers/error-message')(plugins);
+plugins.errorMessage = require('./helper/error-message')(plugins);
 
 // Global configuration
 const config = {
   'projectPath': plugins.fs.realpathSync('../../../') + '/'
 };
 
-config.themes = require('./helpers/config-loader')('themes.json', plugins, config, false);
-plugins.getThemes = require('./helpers/get-themes')(plugins, config);
+config.themes = require('./helper/config-loader')('themes.json', plugins, config, false);
+plugins.getThemes = require('./helper/get-themes')(plugins, config);
 
 // Tasks loading
 require('gulp-task-loader')({
-  dir    : 'tasks',
+  dir    : 'task',
   plugins: plugins,
   configs: config
 });
@@ -35,7 +35,7 @@ Object.keys(config.themes).forEach(name => {
   theme.locale.forEach(locale => {
     gulp.task(
       theme.lang + ':' + name + ':' + locale,
-      require('./helpers/' + theme.lang)(gulp, plugins, config, name, locale)
+      require('./helper/' + theme.lang)(gulp, plugins, config, name, locale)
     );
   });
 });

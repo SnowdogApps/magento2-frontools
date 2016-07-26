@@ -16,10 +16,10 @@ module.exports = function () {
               config.projectPath + themePath + '/**/*.' + theme.lang,
               '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
             ], { ignore: '/**/node_modules/**' }),
-            dependencyTreeBuilder = require('../helpers/dependency-tree-builder');
+            dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
         files.forEach(file => {
-          let compiler = require('../helpers/' + theme.lang)(gulp, plugins, config, name, locale, file);
+          let compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, locale, file);
           gulp.watch(dependencyTreeBuilder(theme, file, plugins), () => {
             compiler();
           });
@@ -30,7 +30,7 @@ module.exports = function () {
               config.projectPath + themePath + '/**/*.' + theme.lang,
               { ignore: '/**/node_modules/**' }
             ),
-            compiler = require('../helpers/' + theme.lang)(
+            compiler = require('../helper/' + theme.lang)(
               gulp, plugins, config, name, locale,
               config.projectPath + themePath + '/**/*.' + theme.lang
             );

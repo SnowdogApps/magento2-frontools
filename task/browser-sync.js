@@ -7,5 +7,5 @@ module.exports = function () {
   plugins.browserSync.create();
 
   // Load browsersync with config from browser-sync.json
-  plugins.browserSync(require('../helpers/config-loader')('browser-sync.json', plugins, config));
+  plugins.browserSync(require('../helper/config-loader')('browser-sync.json', plugins, config));
 };
