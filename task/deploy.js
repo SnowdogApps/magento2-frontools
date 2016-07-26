@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function () {
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const plugins  = this.opts.plugins,
         config   = this.opts.configs,
@@ -30,14 +30,12 @@ module.exports = function () {
       theme.locale.forEach(locale => {
         const src       = config.projectPath + theme.src,
               dest      = config.projectPath + theme.dest + '/' + locale,
-              srcPaths  = plugins.globby.sync(src + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' }),
-              destPaths = [];
+              srcPaths  = plugins.globby.sync(src + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' });
 
         if (theme.parent) {
           const parentTheme     = config.themes[theme.parent],
                 parentSrc       = config.projectPath + parentTheme.src,
-                parentSrcPaths  = plugins.globby.sync(parentSrc + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' }),
-                parentDestPaths = [];
+                parentSrcPaths  = plugins.globby.sync(parentSrc + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' });
 
           parentSrcPaths.forEach(srcPath => {
             const destPath = srcPath.replace('/web', '').replace(parentSrc, dest);

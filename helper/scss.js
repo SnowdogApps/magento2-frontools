@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (gulp, plugins, config, name, locale, file) {
+module.exports = function(gulp, plugins, config, name, locale, file) { // eslint-disable-line func-names
   // Return function that is executed inside of .pipe()
   return () => {
     const theme      = config.themes[name],
@@ -19,7 +19,7 @@ module.exports = function (gulp, plugins, config, name, locale, file) {
     return gulp.src([
       src, '!' + config.projectPath + theme.src + '/node_modules/**/*.scss'
     ], { base: config.projectPath + theme.src + '/styles' })
-      .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
+      .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.sass({ includePaths: parentPath }))
       .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))

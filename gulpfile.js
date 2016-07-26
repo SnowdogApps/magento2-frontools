@@ -9,17 +9,14 @@ const gulp    = require('gulp'),
           'marked-terminal': 'markedTerminal',
           'run-sequence'   : 'runSequence'
         }
-      });
+      }),
+      config = {
+        'projectPath': plugins.fs.realpathSync('../../../') + '/'
+      };
 
 plugins.errorMessage = require('./helper/error-message')(plugins);
-
-// Global configuration
-const config = {
-  'projectPath': plugins.fs.realpathSync('../../../') + '/'
-};
-
-config.themes = require('./helper/config-loader')('themes.json', plugins, config, false);
 plugins.getThemes = require('./helper/get-themes')(plugins, config);
+config.themes = require('./helper/config-loader')('themes.json', plugins, config, false);
 
 // Tasks loading
 require('gulp-task-loader')({

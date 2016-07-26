@@ -1,14 +1,17 @@
 'use strict';
-module.exports = function () {
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  const plugins = this.opts.plugins,
-        config  = this.opts.configs,
-        path    = require('path');
+  const plugins              = this.opts.plugins,
+        config               = this.opts.configs,
+        path                 = require('path'),
 
+        // Create a relative symlink from <magento root>/<symlinkDirectoryName> to <magento root>/vendor/snowdog/frontools
+        relativeDirectory    = path.relative(config.projectPath, plugins.fs.realpathSync('./')),
+        symlinkDirectoryName = plugins.util.env.symlink || 'tools',
 
-  // Create a relative symlink from <magento root>/<symlinkDirectoryName> to <magento root>/vendor/snowdog/frontools
-  const relativeDirectory    = path.relative(config.projectPath, plugins.fs.realpathSync('./')),
-        symlinkDirectoryName = plugins.util.env.symlink || 'tools';
+        // Set config files paths
+        configSamplesPath    = './config/',
+        configPath           = config.projectPath + 'dev/tools/frontools/configs/';
 
   try {
     plugins.fs.symlinkSync(relativeDirectory, config.projectPath + '/' + symlinkDirectoryName, 'dir');
@@ -22,10 +25,6 @@ module.exports = function () {
       plugins.util.colors.yellow('<magento root>/' + symlinkDirectoryName + ' already exists. Skipped it.')
     );
   }
-
-  // Set config files paths
-  const configSamplesPath = './config/',
-        configPath        = config.projectPath + 'dev/tools/frontools/configs/';
 
   // Copy all all non existent config files to <magento root>/dev/tools/frontools/configs/
   plugins.fs.readdirSync(configSamplesPath).forEach((fileName) => {

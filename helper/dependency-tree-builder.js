@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function (theme, file, plugins) {
-  function findDependencies (file, dependencyTree) {
+module.exports = function(theme, file, plugins) { // eslint-disable-line func-names
+  function findDependencies(file, dependencyTree) {
     const content = plugins.fs.readFileSync(file, 'utf8'),
           path    = file.replace(/(.*)\/.*/g, '$1'),
           regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
@@ -8,7 +8,8 @@ module.exports = function (theme, file, plugins) {
     let result,
         imports = [];
 
-    while (result = regex.exec(content)) {
+    while (regex.exec(content)) {
+      result = regex.exec(content);
       let fullPath = '';
       if (result[1].match(/\.\.\//g)) {
         let parentPath = path,

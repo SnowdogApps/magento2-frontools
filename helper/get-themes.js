@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function (plugins, config) {
-  return function () {
+module.exports = function(plugins, config) { // eslint-disable-line func-names
+  return function() { // eslint-disable-line func-names
     const themeName = plugins.util.env.theme || false,
           themes    = Object.keys(config.themes);
 

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(themeName, config, plugins) {
+module.exports = function(themeName, config, plugins) { // eslint-disable-line func-names
   function getParentThemeDir(themeName) {
     let theme = config.themes[themeName];
 

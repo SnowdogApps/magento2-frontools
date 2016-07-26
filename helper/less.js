@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (gulp, plugins, config, name, locale, file) {
+module.exports = function(gulp, plugins, config, name, locale, file) { // eslint-disable-line func-names
   // Return function that is executed inside of .pipe()
   return () => {
     const theme      = config.themes[name],
@@ -30,7 +30,7 @@ module.exports = function (gulp, plugins, config, name, locale, file) {
     }
 
     return gulp.src(lessFiles)
-      .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("Error: <%= error.message %>") }))
+      .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
       .pipe(plugins.if(maps, plugins.sourcemaps.init()))
       .pipe(plugins.less({ paths: parentPath.concat('.') }))
       .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))

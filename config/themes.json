@@ -1,0 +1,17 @@
+{
+  "blank": {
+    "src"    : "vendor/snowdog/theme-blank-sass",
+    "dest"   : "pub/static/frontend/snowdog/blank",
+    "locale" : ["en_US"],
+    "lang"   : "scss",
+    "postcss": ["plugins.autoprefixer()"]
+  },
+  "child": {
+    "src"    : "vendor/snowdog/theme-blank-sass-child",
+    "dest"   : "pub/static/frontend/snowdog/child",
+    "locale" : ["en_US"],
+    "lang"   : "scss",
+    "postcss": ["plugins.autoprefixer()"],
+    "parent" : "blank"
+  }
+}

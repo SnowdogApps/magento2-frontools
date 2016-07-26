@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (file, plugins, config, failOnError) {
+module.exports = function(file, plugins, config, failOnError) { // eslint-disable-line func-names
   if (typeof failOnError === 'undefined') {
     failOnError = true;
   }

@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function () {
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const gulp    = this.gulp,
         plugins = this.opts.plugins,
@@ -26,9 +26,9 @@ module.exports = function () {
       );
 
       // Watch found files for changes. If they occur we rerun ESLint
-      gulp.watch(files, function (event) {
+      gulp.watch(files, event => {
         gulp.src(event.path)
-          .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("ESLint found problems") }))
+          .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('ESLint found problems') }))
           .pipe(plugins.logger({ display: 'name' }))
           .pipe(plugins.eslint(config.eslint))
           .pipe(plugins.eslint.format());
