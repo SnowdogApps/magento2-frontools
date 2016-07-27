@@ -3,36 +3,46 @@
 # Magento 2 Frontools
 Set of front-end tools for Magento 2, based on Gulp.js
 
+## Questions
+If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
+
 ## Requirements
 * `node >= 4.0.0` - heavily recommend using current LTS (v4 branch), not a latest version.  
-Using [avn](https://github.com/wbyoung/avn)? Great! We've included a .node-version for you.
-* Gulp CLI global package. To install: `npm install gulp-cli -g`
+Using [avn](https://github.com/wbyoung/avn) or [nvm](https://github.com/creationix/nvm)? Great! We've included a `.node-version` file for you.
+* Gulp CLI global package - `npm install -g gulp-cli`
 * Magento 2 project :smile:
 
 ## Installation
 1. Run `composer require snowdog/frontools`
-2. Go to package directory `<magento root>/vendor/snowdog/frontools`
+2. Go to package directory `/vendor/snowdog/frontools`
 3. Run `npm install`
-4. Run `gulp setup` this creates a convenient symlink from `<magento root>/tools` to frontools.  
-It also copies all sample config files from the `config` directory to `<magento root>/dev/tools/frontools/configs`
-5. Add your own theme to `<magento root>/dev/tools/frontools/configs/themes.json`
-6. Add your local development url to `<magento root>/dev/tools/frontools/configs/browser-sync.json`
-7. Use one of the tasks listed below
+4. Decide where you want to keep your config files.
+You can store them in frontools `config` dir or `/dev/tools/frontools/configs`.
+There is a `gulp setup` task to copy all sample config files from the `config` to `/dev/tools/frontools/configs` and create a convenient symlink in project root.
+If you want to keep config files inside frontools `config` dir, you have to handle this manually.
+5. Define your themes in `themes.json`
+
+## Optional steps
+* Create [browserSync](https://www.browsersync.io/) configuration
+* Create [eslint](https://github.com/adametry/gulp-eslint) configuration
+* Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
+* Create [stylelint](https://github.com/stylelint/stylelint) configuration
 
 ## Tasks list
-* `browser-sync` - Run [BrowserSync](https://www.browsersync.io/) - it's a better alternative to "[LiveReload](http://livereload.com/)"
+* `browser-sync` - Run [browserSync](https://www.browsersync.io/)
 * `clean` - Removes `/pub/static` folder
 * `default` - type `gulp` to see this readme in console
-* `deploy` - Wrapper for `bin/magento dev:source-theme:deploy` - only for default themes
+* `deploy` - Resolve theme inheritance of static assets (i.e. fonts, images) symlinking them to `pub` dir. For default LESS themes it's just a wrapper of `bin/magento dev:source-theme:deploy`.
   * `--theme name` - Deploy single theme
+  * `--prod` - Copy files instead of making symlinks
 * `dev` - Runs `browser-sync` and `watch` tasks
   * `--theme name` - Process single theme
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
-* `eslint` - Watch and run eslint on specified JS file
+* `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
-* `setup` - Creates a convenient symlink from `<magento root>/tools` to `<magento root>/vendor/snowdog/frontools` and copies all sample files if no configuration exists
+* `setup` - Creates a convenient symlink from `/tools` to `/vendor/snowdog/frontools` and copies all sample files if no configuration exists
   * `--symlink name` - if you don't want to use `tools` as the symlink you can specify another name
 * `styles` - Use this task to manually trigger styles processing pipeline
   * `--theme name` - Process single theme
@@ -42,6 +52,12 @@ It also copies all sample config files from the `config` directory to `<magento 
   * `--theme name` - Process single theme
   * `--maps` - Enable inline source maps generation
   * `--prod` - Production output - minifies styles
+* `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests
+  * `--theme name` - Process single theme
+  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
+* `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
+  * `--theme name` - Process single theme
+  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
 
 ## `config/themes.json` structure
 First of all check `config/themes.json.sample`
@@ -54,6 +70,3 @@ First of all check `config/themes.json.sample`
 - `area`, `vendor`, `name` - (required for default Magento LESS themes) self-descriptive
 - `files` - (required for default Magento LESS themes) Array of LESS files to process
 - `postcss` - (optional) PostCSS plugins config - have to be an array
-
-## Questions
-If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
