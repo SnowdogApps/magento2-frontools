@@ -10,9 +10,6 @@
     "url": "https://github.com/SnowdogApps/magento2-frontools"
   },
   "license": "MIT",
-  "scripts": {
-    "test": "./node_modules/.bin/eslint './**/*.js'"
-  },
   "devDependencies": {
     "autoprefixer": "~6.3.7",
     "browser-sync": "~2.13.0",
