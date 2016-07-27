@@ -1,11 +1,12 @@
-module.exports = function() {
+'use strict';
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
-      config  = this.opts.configs;
+  const gulp    = this.gulp,
+        plugins = this.opts.plugins,
+        config  = this.opts.configs;
 
   // Load ESLint config
-  config.eslint = require('../helpers/config-loader')('eslint.json', plugins, config);
+  config.eslint = require('../helper/config-loader')('eslint.json', plugins, config);
 
   // Check if --file <filename> is specified
   if (plugins.util.env.file) {
@@ -14,11 +15,10 @@ module.exports = function() {
     );
 
     // Check if filename can be found inside of the project
-    var files = plugins.globby.sync([
-          config.projectPath + '/**/' + plugins.util.env.file + '.js',
-          '!' + config.projectPath + '/**/node_modules/**'
-        ]);
-
+    const files = plugins.globby.sync(
+            config.projectPath + '/**/' + plugins.util.env.file + '.js',
+            { ignore: '/**/node_modules/**' }
+          );
 
     if (files.length) {
       plugins.util.log(
@@ -26,9 +26,9 @@ module.exports = function() {
       );
 
       // Watch found files for changes. If they occur we rerun ESLint
-      gulp.watch(files, function(event) {
+      gulp.watch(files, event => {
         gulp.src(event.path)
-          .pipe(plugins.plumber({ errorHandler: plugins.notify.onError("ESLint found problems") }))
+          .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('ESLint found problems') }))
           .pipe(plugins.logger({ display: 'name' }))
           .pipe(plugins.eslint(config.eslint))
           .pipe(plugins.eslint.format());

@@ -1,12 +1,14 @@
-module.exports = function() {
+'use strict';
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  var gulp    = this.gulp,
-      plugins = this.opts.plugins,
-      config  = this.opts.configs;
+  const gulp    = this.gulp,
+        plugins = this.opts.plugins,
+        config  = this.opts.configs,
+        themes  = plugins.getThemes();
 
   // Loop through all themes
-  Object.keys(config.themes).forEach(name => {
-    var theme = config.themes[name];
+  themes.forEach(name => {
+    const theme = config.themes[name];
 
     // If current theme is a default Magento 2 frontend theme using less
     if (theme.default && theme.area === 'frontend' && theme.lang == 'less') {

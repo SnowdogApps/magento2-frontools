@@ -1,0 +1,18 @@
+rules:
+  color-no-invalid-hex: true
+  time-no-imperceptible: true
+  # declaration-block-no-duplicate-properties: true #to do - too many errors
+  declaration-block-no-ignored-properties: true
+  # declaration-block-no-shorthand-property-overrides: true #to do - too many errors
+  block-no-empty: true
+  # selector-no-attribute: true # to do - too many errors
+  selector-no-id: true
+  no-unknown-animations: true
+  no-browser-hacks:
+    - true
+    -
+      browsers: '> 1%, last 2 versions, not ie < 11, not OperaMini >= 5.0'
+  # no-unsupported-browser-features:
+  #   - true # to do - too many errors
+  #   -
+  #     browsers: '> 1%, last 2 versions, not ie < 11, not OperaMini >= 5.0'

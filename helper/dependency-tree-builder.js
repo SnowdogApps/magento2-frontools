@@ -1,17 +1,17 @@
-module.exports = function(theme, file) {
-  const fs = require('fs');
-  
+'use strict';
+module.exports = function(theme, file, plugins) { // eslint-disable-line func-names
   function findDependencies(file, dependencyTree) {
-    var content = fs.readFileSync(file, 'utf8'),
-        path    = file.replace(/(.*)\/.*/g, '$1'),
-        regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g,
-        result  = '',
+    const content = plugins.fs.readFileSync(file, 'utf8'),
+          path    = file.replace(/(.*)\/.*/g, '$1'),
+          regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
+
+    let result = regex.exec(content),
         imports = [];
 
-    while (result = regex.exec(content)) {
-      var fullPath = '';
+    while (result) {
+      let fullPath = '';
       if (result[1].match(/\.\.\//g)) {
-        var parentPath = path,
+        let parentPath = path,
             filePath   = result[1];
 
         while (filePath.match(/\.\.\//g)) {
@@ -24,7 +24,9 @@ module.exports = function(theme, file) {
         fullPath = path + '/' + result[1];
       }
       imports.push(fullPath);
+      result = regex.exec(content);
     }
+
     imports.forEach(el => {
       imports = imports.concat(findDependencies(el, dependencyTree));
     });

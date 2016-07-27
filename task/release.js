@@ -1,6 +1,7 @@
-module.exports = function() {
+'use strict';
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  var plugins = this.opts.plugins;
+  const plugins = this.opts.plugins;
 
   // Clean pub/static, run source-theme:deploy and then compile styles
   plugins.util.env.prod = true;
