@@ -5,9 +5,8 @@ module.exports = function() { // eslint-disable-line func-names
         plugins         = this.opts.plugins,
         config          = this.opts.configs,
         themes          = plugins.getThemes(),
-        stylelintConfig = require('../helper/config-loader')('stylelint.json', plugins, config);
+        stylelintConfig = require('../helper/config-loader')('stylelint.yml', plugins, config);
 
-  // Watch files for changes and run appropriate compiler when they change
   themes.forEach(name => {
     const theme = config.themes[name];
     theme.locale.forEach(locale => {

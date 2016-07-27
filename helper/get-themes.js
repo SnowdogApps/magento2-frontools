@@ -8,14 +8,14 @@ module.exports = function(plugins, config) { // eslint-disable-line func-names
     if (themes.length === 0) {
       throw new plugins.util.PluginError({
         'plugin' : 'config',
-        'message': plugins.errorMessage('You have to create <magento root>/dev/tools/frontools/configs/themes.json')
+        'message': plugins.errorMessage('You have to create themes.json')
       })
     }
 
     if (themeName && themes.indexOf(themeName) === -1) {
       throw new plugins.util.PluginError({
         plugin : 'config',
-        message: plugins.errorMessage('Theme provided using --theme <theme-name> is not available in <magento root>/dev/tools/frontools/configs/themes.json')
+        message: plugins.errorMessage('Theme provided using --theme <theme-name> is not available in themes.json')
       });
     }
 

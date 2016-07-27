@@ -4,12 +4,24 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
     failOnError = true;
   }
 
+  const externalPath = config.projectPath + 'dev/tools/frontools/configs/' + file;
+
   // Check if file exists inside of config directory
-  if (plugins.globby.sync(config.projectPath + 'dev/tools/frontools/configs/' + file).length) {
-    return require(config.projectPath + 'dev/tools/frontools/configs/' + file);
+  if (plugins.globby.sync(externalPath).length) {
+    if (file.includes('yml')) {
+      return plugins.yaml.safeLoad(plugins.fs.readFileSync(externalPath));
+    }
+    else {
+      return require(externalPath);
+    }
   }
   else if (plugins.globby.sync('./config/' + file).length) {
-    return require('../config/' + file);
+    if (file.includes('yml')) {
+      return plugins.yaml.safeLoad(plugins.fs.readFileSync('./config/' + file));
+    }
+    else {
+      return require('../config/' + file);
+    }
   }
   else {
     if (failOnError) {

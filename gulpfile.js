@@ -8,7 +8,8 @@ const gulp    = require('gulp'),
           'fs-extra'        : 'fs',
           'marked-terminal' : 'markedTerminal',
           'postcss-reporter': 'reporter',
-          'run-sequence'    : 'runSequence'
+          'run-sequence'    : 'runSequence',
+          'js-yaml'         : 'yaml'
         }
       }),
       config = {
