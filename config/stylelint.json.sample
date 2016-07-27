@@ -1,0 +1,16 @@
+{
+  "rules": {
+    "color-no-invalid-hex": true,
+    "time-no-imperceptible": true,
+    "declaration-block-no-ignored-properties": true,
+    "block-no-empty": true,
+    "selector-no-id": true,
+    "no-unknown-animations": true,
+    "no-browser-hacks": [
+      true,
+      {
+        "browsers": "> 1%, last 2 versions, not ie < 11, not OperaMini >= 5.0"
+      }
+    ]
+  }
+}

@@ -4,10 +4,11 @@ const gulp    = require('gulp'),
       plugins = require('gulp-load-plugins')({
         pattern: ['*', '!gulp', '!gulp-load-plugins'],
         rename : {
-          'browser-sync'   : 'browserSync',
-          'fs-extra'       : 'fs',
-          'marked-terminal': 'markedTerminal',
-          'run-sequence'   : 'runSequence'
+          'browser-sync'    : 'browserSync',
+          'fs-extra'        : 'fs',
+          'marked-terminal' : 'markedTerminal',
+          'postcss-reporter': 'reporter',
+          'run-sequence'    : 'runSequence'
         }
       }),
       config = {

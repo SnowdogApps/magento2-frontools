@@ -15,7 +15,7 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
     if (failOnError) {
       throw new plugins.util.PluginError({
         'plugin' : 'config',
-        'message': plugins.errorMessage('You have to create <magento root>/dev/frontools/configs/' + file)
+        'message': plugins.errorMessage('You have to create ' + file)
       })
     }
 
