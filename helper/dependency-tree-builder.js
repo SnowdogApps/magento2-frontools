@@ -5,11 +5,10 @@ module.exports = function(theme, file, plugins) { // eslint-disable-line func-na
           path    = file.replace(/(.*)\/.*/g, '$1'),
           regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
 
-    let result,
+    let result = regex.exec(content),
         imports = [];
 
-    while (regex.exec(content)) {
-      result = regex.exec(content);
+    while (result) {
       let fullPath = '';
       if (result[1].match(/\.\.\//g)) {
         let parentPath = path,
@@ -25,6 +24,7 @@ module.exports = function(theme, file, plugins) { // eslint-disable-line func-na
         fullPath = path + '/' + result[1];
       }
       imports.push(fullPath);
+      result = regex.exec(content);
     }
 
     imports.forEach(el => {
