@@ -15,14 +15,16 @@ module.exports = function() { // eslint-disable-line func-names
         const files = plugins.globby.sync([
                 config.projectPath + themePath + '/**/*.' + theme.lang,
                 '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
-            ], { ignore: ['**/node_modules/**', '_*.' + theme.lang] }),
+              ], { ignore: ['**/node_modules/**', '_*.' + theme.lang] }),
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
         files.forEach(file => {
           const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, locale, file);
           gulp.watch(
             Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
-            () => { compiler(); }
+            () => {
+              compiler();
+            }
           );
         });
       }
@@ -30,10 +32,6 @@ module.exports = function() { // eslint-disable-line func-names
         const files = plugins.globby.sync(
                 config.projectPath + themePath + '/**/*.' + theme.lang,
                 { ignore: '/**/node_modules/**' }
-              ),
-              compiler = require('../helper/' + theme.lang)(
-                gulp, plugins, config, name, locale,
-                config.projectPath + themePath + '/**/*.' + theme.lang
               );
 
         gulp.watch(files, () => {
