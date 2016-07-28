@@ -2,7 +2,7 @@
 module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const plugins = this.opts.plugins,
-        config  = this.opts.configs,
+        config  = this.opts.config,
         themes  = plugins.getThemes();
 
   // Loop through themes to compile scss or less depending on your config.json
