@@ -27,11 +27,11 @@ module.exports = function() { // eslint-disable-line func-names
   }
 
   // Copy all all non existent config files to /dev/tools/frontools/config/
-  plugins.fs.readdirSync(configamplesPath).forEach((fileName) => {
+  plugins.fs.readdirSync(configSamplesPath).forEach((fileName) => {
     const newFileName = fileName.replace('.sample', '');
 
     try {
-      plugins.fs.copySync(configamplesPath + fileName, configPath + newFileName, {
+      plugins.fs.copySync(configSamplesPath + fileName, configPath + newFileName, {
         clobber: false
       });
 
