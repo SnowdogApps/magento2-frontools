@@ -4,7 +4,7 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
     failOnError = true;
   }
 
-  const externalPath = config.projectPath + 'dev/tools/frontools/configs/' + file;
+  const externalPath = config.projectPath + 'dev/tools/frontools/config/' + file;
 
   // Check if file exists inside of config directory
   if (plugins.globby.sync(externalPath).length) {

@@ -17,8 +17,8 @@ Using [avn](https://github.com/wbyoung/avn) or [nvm](https://github.com/creation
 2. Go to package directory `/vendor/snowdog/frontools`
 3. Run `npm install`
 4. Decide where you want to keep your config files.
-You can store them in frontools `config` dir or `/dev/tools/frontools/configs`.
-There is a `gulp setup` task to copy all sample config files from the `config` to `/dev/tools/frontools/configs` and create a convenient symlink in project root.
+You can store them in frontools `config` dir or `/dev/tools/frontools/config`.
+There is a `gulp setup` task to copy all sample config files from the `config` to `/dev/tools/frontools/config` and create a convenient symlink in project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
 5. Define your themes in `themes.json`
 
