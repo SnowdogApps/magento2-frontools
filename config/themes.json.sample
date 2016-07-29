@@ -45,14 +45,14 @@
   },
   "sass-blank": {
     "src"    : "vendor/snowdog/theme-blank-sass",
-    "dest"   : "pub/static/frontend/snowdog/blank",
+    "dest"   : "pub/static/frontend/Snowdog/blank",
     "locale" : ["en_US", "pl_PL"],
     "lang"   : "scss",
     "postcss": ["plugins.autoprefixer()"]
   },
   "sass-custom": {
     "src"    : "vendor/snowdog/theme-custom",
-    "dest"   : "pub/static/frontend/snowdog/custom",
+    "dest"   : "pub/static/frontend/Snowdog/custom",
     "parent" : "sass-blank",
     "locale" : ["en_US", "pl_PL"],
     "lang"   : "scss",
