@@ -3,7 +3,7 @@ module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const gulp    = this.gulp,
         plugins = this.opts.plugins,
-        config  = this.opts.config;
+        config  = this.opts.configs;
 
   // Load ESLint config
   config.eslint = require('../helper/config-loader')('eslint.json', plugins, config);

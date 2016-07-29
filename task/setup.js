@@ -2,7 +2,7 @@
 module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const plugins              = this.opts.plugins,
-        config               = this.opts.config,
+        config               = this.opts.configs,
         path                 = require('path'),
 
         // Create a relative symlink in project root to /vendor/snowdog/frontools
