@@ -2,7 +2,7 @@
 module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const plugins  = this.opts.plugins,
-        config   = this.opts.config,
+        config   = this.opts.configs,
         themes   = plugins.getThemes(),
         prod     = plugins.util.env.prod || false,
         execSync = require('child_process').execSync;
