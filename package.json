@@ -38,6 +38,6 @@
     "marked-terminal": "~1.6.1",
     "postcss-reporter": "~1.4.1",
     "run-sequence": "~1.2.2",
-    "stylelint": "~7.0.3"
+    "stylelint": "~7.1.0"
   }
 }
