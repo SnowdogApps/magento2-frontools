@@ -41,6 +41,11 @@ Object.keys(config.themes).forEach(name => {
       'flatten:' + name + ':' + locale,
       require('./helper/flatten').bind(null, gulp, plugins, config, name, locale)
     );
+
+    gulp.task(
+      ['copy', name, locale].join(':'),
+      require('./helper/static')(gulp, plugins, config, name, locale)
+    );
   });
 
 });
