@@ -36,5 +36,11 @@ Object.keys(config.themes).forEach(name => {
       theme.lang + ':' + name + ':' + locale,
       require('./helper/' + theme.lang)(gulp, plugins, config, name, locale)
     );
+
+    gulp.task(
+      'flatten:' + name + ':' + locale,
+      require('./helper/flatten').bind(null, gulp, plugins, config, name, locale)
+    );
   });
+
 });
