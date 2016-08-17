@@ -17,6 +17,7 @@
     "fs-extra": "~0.30.0",
     "globby": "~6.0.0",
     "gulp": "~3.9.1",
+    "gulp-compass": "^2.1.0",
     "gulp-concat": "~2.6.0",
     "gulp-eslint": "~3.0.1",
     "gulp-if": "~2.0.1",
