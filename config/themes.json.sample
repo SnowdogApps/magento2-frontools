@@ -57,5 +57,15 @@
     "locale" : ["en_US", "pl_PL"],
     "lang"   : "scss",
     "postcss": ["plugins.autoprefixer()"]
+  },
+  "sass-compass": {
+    "src"    : "app/design/frontend/[package]/[theme]",
+    "dest"   : "pub/static/frontend/[package]/[theme]",
+    "compass": {
+      "sass_dir": "web/scss"
+    },
+    "locale" : ["en_US"],
+    "lang"   : "scss",
+    "postcss": ["plugins.autoprefixer()"]
   }
 }
