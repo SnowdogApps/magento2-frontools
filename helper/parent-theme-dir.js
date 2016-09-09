@@ -1,20 +1,18 @@
 'use strict';
-module.exports = function(themeName, config, plugins) { // eslint-disable-line func-names
-  function getParentThemeDir(themeName) {
-    let theme = config.themes[themeName];
+module.exports = function (themeName, config) { // eslint-disable-line func-names
+  const paths = [];
 
-    if (theme.parent) {
-      let src   = config.themes[theme.parent].src,
-          paths = plugins.globby.sync(
-            config.projectPath + src + '/**/',
-            { ignore: '/**/node_modules/**' }
-          );
+  function getThemePath(themeName) {
+    const theme = config.themes[themeName];
 
-      return paths.concat(getParentThemeDir(theme.parent));
-    }
-    else {
-      return [];
+    paths.push(config.projectPath + theme.src);
+
+    if(theme.parent) {
+      getThemePath(theme.parent);
     }
   }
-  return getParentThemeDir(themeName);
+
+  getThemePath(themeName);
+
+  return paths;
 };
