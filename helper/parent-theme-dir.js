@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (themeName, config) { // eslint-disable-line func-names
+module.exports = function(themeName, config) { // eslint-disable-line func-names
   const paths = [];
 
   function getThemePath(themeName) {
@@ -7,7 +7,7 @@ module.exports = function (themeName, config) { // eslint-disable-line func-name
 
     paths.push(config.projectPath + theme.src);
 
-    if(theme.parent) {
+    if (theme.parent) {
       getThemePath(theme.parent);
     }
   }
