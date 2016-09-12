@@ -29,7 +29,7 @@ If you want to keep config files inside frontools `config` dir, you have to hand
 * Create [stylelint](https://github.com/stylelint/stylelint) configuration
 
 ## Tasks list
-* `browser-sync` - Run [browserSync](https://www.browsersync.io/)
+* `browser-sync` - run [browserSync](https://www.browsersync.io/)- do not run this task separately, it's just a part of `dev` task
 * `clean` - Removes `/pub/static` folder
 * `default` - type `gulp` to see this readme in console
 * `deploy` - Resolve theme inheritance of static assets (i.e. fonts, images) symlinking them to `pub` dir. For default LESS themes it's just a wrapper of `bin/magento dev:source-theme:deploy`.
