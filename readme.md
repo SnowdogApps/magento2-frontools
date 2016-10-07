@@ -62,7 +62,7 @@ If you want to keep config files inside frontools `config` dir, you have to hand
 ## `config/themes.json` structure
 First of all check `config/themes.json.sample`
 - `src` - full path to theme
-- `dest` - full path to `pub/static/[theme]`
+- `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `parent` - name of parent theme - not available in themes with `default` flag
 - `locale` - array of available locales
 - `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports `less` and `scss`
