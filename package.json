@@ -29,7 +29,7 @@
     "gulp-rimraf": "~0.2.0",
     "gulp-sass": "~2.3.2",
     "gulp-sass-lint": "~1.2.0",
-    "gulp-sourcemaps": "~1.6.0",
+    "gulp-sourcemaps": "~1.7.2",
     "gulp-task-loader": "~1.4.4",
     "gulp-uglify": "~2.0.0",
     "gulp-util": "~3.0.7",
