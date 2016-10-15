@@ -25,7 +25,7 @@
     "gulp-logger": "~0.0.2",
     "gulp-notify": "~2.2.0",
     "gulp-plumber": "~1.1.0",
-    "gulp-postcss": "~6.1.1",
+    "gulp-postcss": "~6.2.0",
     "gulp-rimraf": "~0.2.0",
     "gulp-sass": "~2.3.2",
     "gulp-sass-lint": "~1.2.0",
