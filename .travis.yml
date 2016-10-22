@@ -1,7 +1,11 @@
 language: node_js
 node_js: 4
-script:
+cache:
+  directories:
+  - test/node_modules
+install:
   - cd test
-  - npm install
   - npm install -g gulp-cli
+  - npm install
+script:
   - gulp eslint
