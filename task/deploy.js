@@ -9,24 +9,6 @@ module.exports = function() { // eslint-disable-line func-names
 
   themes.forEach(name => {
     const theme = config.themes[name];
-    if (theme.default) {
-      // Loop through locales, because you are required to specify a locale
-      theme.locale.forEach(locale => {
-        // if it's default theme, create symlinks to styles files via Magento CLI
-        // porting "@magento-import" to node.js might be time consuming
-        // and it's not so useful for front-end developers
-        // execSync to keep process synchronous and wait till CLI do the job
-        execSync(
-          config.projectPath + 'bin/magento dev:source-theme:deploy'
-          + ' --type=' + theme.lang
-          + ' --locale=' + locale
-          + ' --area=' + theme.area
-          + ' --theme=' + theme.vendor + '/' + theme.name
-          + ' ' + theme.files.join(' ')
-        );
-      });
-    }
-    else {
       theme.locale.forEach(locale => {
         const src       = config.projectPath + theme.src,
               dest      = config.projectPath + theme.dest + '/' + locale,
@@ -48,7 +30,7 @@ module.exports = function() { // eslint-disable-line func-names
             }
           });
         }
-
+        
         srcPaths.forEach(srcPath => {
           const destPath = srcPath.replace('/web', '').replace(src, dest);
           try {
@@ -60,6 +42,5 @@ module.exports = function() { // eslint-disable-line func-names
           }
         });
       });
-    }
   });
 };

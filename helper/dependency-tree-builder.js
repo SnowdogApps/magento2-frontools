@@ -10,18 +10,25 @@ module.exports = function(theme, file, plugins) { // eslint-disable-line func-na
 
     while (result) {
       let fullPath = '';
-      if (result[1].match(/\.\.\//g)) {
+      if (result[1].includes('../')) {
         let parentPath = path,
             filePath   = result[1];
 
-        while (filePath.match(/\.\.\//g)) {
+        while (filePath.includes('../')) {
           parentPath = parentPath.replace(/\/[^\/]+$/g, '');
           filePath = filePath.replace(/\.\.\//, '');
-          fullPath = parentPath + '/' + filePath;
+          const filePathParts = /(.*)\/(.*)/g.exec(filePath);
+          fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.' + theme.lang;
         }
       }
       else {
-        fullPath = path + '/' + result[1];
+        if (result[1].includes('/')) {
+          const filePath = /(.*)\/(.*)/g.exec(result[1]);
+          fullPath = path + '/' + filePath[1] + '/_' + filePath[filePath.length - 1] + '.' + theme.lang;
+        }
+        else {
+          fullPath = path + '/_' + result[1] + '.' + theme.lang;
+        }
       }
       imports.push(fullPath);
       result = regex.exec(content);
