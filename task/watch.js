@@ -12,10 +12,9 @@ module.exports = function() { // eslint-disable-line func-names
     theme.locale.forEach(locale => {
       const themePath = theme.default ? theme.dest + '/' + locale : theme.src,
             files = plugins.globby.sync([
-                      config.projectPath + themePath + '/**/*.' + theme.lang,
-                      '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
-                      ], { nodir: true, ignore: ['**/node_modules/**'] }
-                    ),
+              config.projectPath + themePath + '/**/*.' + theme.lang,
+              '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
+            ], { nodir: true, ignore: ['**/node_modules/**'] }),
             dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
       files.forEach(file => {
