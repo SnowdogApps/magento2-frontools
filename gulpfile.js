@@ -6,10 +6,11 @@ const gulp    = require('gulp'),
         rename : {
           'browser-sync'    : 'browserSync',
           'fs-extra'        : 'fs',
+          'gulp-multi-dest' : 'multiDest',
+          'js-yaml'         : 'yaml',
           'marked-terminal' : 'markedTerminal',
           'postcss-reporter': 'reporter',
-          'run-sequence'    : 'runSequence',
-          'js-yaml'         : 'yaml'
+          'run-sequence'    : 'runSequence'
         }
       }),
       config = {
@@ -27,14 +28,12 @@ require('gulp-task-loader')({
   configs: config
 });
 
-// Define task for each theme, locale, lang, processing type etc.
+// Define task for each theme
 // Gulp can't run same task in parallel, so we need different names
 Object.keys(config.themes).forEach(name => {
   const theme = config.themes[name];
-  theme.locale.forEach(locale => {
-    gulp.task(
-      theme.lang + ':' + name + ':' + locale,
-      require('./helper/' + theme.lang)(gulp, plugins, config, name, locale)
-    );
-  });
+  gulp.task(
+    theme.lang + ':' + name,
+    require('./helper/' + theme.lang)(gulp, plugins, config, name)
+  );
 });

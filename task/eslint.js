@@ -15,10 +15,10 @@ module.exports = function() { // eslint-disable-line func-names
     );
 
     // Check if filename can be found inside of the project
-    const files = plugins.globby.sync(
-            config.projectPath + '/**/' + plugins.util.env.file + '.js',
-            { ignore: '/**/node_modules/**' }
-          );
+    const files = plugins.globby.sync([
+      config.projectPath + '/**/' + plugins.util.env.file + '.js',
+      '!/**/node_modules/**'
+    ]);
 
     if (files.length) {
       plugins.util.log(
