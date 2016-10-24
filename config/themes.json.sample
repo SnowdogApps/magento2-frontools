@@ -7,11 +7,12 @@
     "postcss": ["plugins.autoprefixer()"]
   },
   "custom": {
-    "src"    : "vendor/snowdog/theme-custom",
-    "dest"   : "pub/static/frontend/Snowdog/custom",
-    "parent" : "blank",
-    "locale" : ["en_US", "pl_PL"],
-    "lang"   : "scss",
-    "postcss": ["plugins.autoprefixer()"]
+    "src"             : "vendor/snowdog/theme-custom",
+    "dest"            : "pub/static/frontend/Snowdog/custom",
+    "parent"          : "blank",
+    "locale"          : ["en_US", "pl_PL"],
+    "localeOverwrites": true,
+    "lang"            : "scss",
+    "postcss"         : ["plugins.autoprefixer()"]
   }
 }

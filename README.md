@@ -33,6 +33,7 @@ First of all check `config/themes.json.sample`
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `parent` - name of parent theme
 - `locale` - array of available locales
+- `localeOverwrites` - set to `true` only if your theme have per locale customizations
 - `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports only `scss`
 - `postcss` - (optional) PostCSS plugins config - have to be an array
 
