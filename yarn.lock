@@ -777,9 +777,9 @@ css@2.X:
     source-map-resolve "^0.3.0"
     urix "^0.1.0"
 
-cssnano@~3.7.3:
-  version "3.7.7"
-  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-3.7.7.tgz#27fac611380c6a49d6f722c0537e5a988a785010"
+cssnano@~3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/cssnano/-/cssnano-3.8.0.tgz#bb90ac5292f42b679d9a05f6da0e9697556bb80d"
   dependencies:
     autoprefixer "^6.3.1"
     decamelize "^1.1.2"
@@ -1868,9 +1868,9 @@ gulp-sass@~2.3.2:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-sourcemaps@~2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.1.1.tgz#ddfeabc285b7b6eb82fd13cb1cfb5b50e14797ae"
+gulp-sourcemaps@~2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/gulp-sourcemaps/-/gulp-sourcemaps-2.2.0.tgz#dea8a4dc9aa74630a04ae9cf1871a7a08bc1310d"
   dependencies:
     acorn "4.X"
     convert-source-map "1.X"
