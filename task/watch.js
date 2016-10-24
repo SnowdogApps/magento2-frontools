@@ -35,7 +35,7 @@ module.exports = function() { // eslint-disable-line func-names
           event => {
             plugins.util.log(
               plugins.util.colors.green('File') + ' '
-              + plugins.util.colors.blue(event.path.replace(config.projectPath, '')) + ' '
+              + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
               + plugins.util.colors.green('changed.')
             );
             compiler();
@@ -61,7 +61,7 @@ module.exports = function() { // eslint-disable-line func-names
         ]), event => {
           plugins.util.log(
             plugins.util.colors.green('File') + ' '
-            + plugins.util.colors.blue(event.path.replace(config.projectPath, '')) + ' '
+            + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
             + plugins.util.colors.green('changed.')
           );
           compiler();

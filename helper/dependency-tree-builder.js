@@ -4,7 +4,7 @@ module.exports = function(theme, file, plugins) { // eslint-disable-line func-na
     if (plugins.fs.existsSync(file)) {
       const content = plugins.fs.readFileSync(file, 'utf8'),
             path    = file.replace(/(.*)\/.*/g, '$1'),
-            regex   = /(?: \n@import )(?: '|")(.*)(?:'|")/g;
+            regex   = /(?:\n@import )(?:'|")(.*)(?:'|")/g;
 
       let result  = regex.exec(content),
           imports = [];
