@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(gulp, plugins, config, name, locale, file) { // eslint-disable-line func-names
+module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
   // Return function that is executed inside of .pipe()
   return () => {
     const theme      = config.themes[name],
