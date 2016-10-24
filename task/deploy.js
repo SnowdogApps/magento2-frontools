@@ -19,7 +19,7 @@ module.exports = function() { // eslint-disable-line func-names
               parentSrcPaths  = plugins.globby.sync(parentSrc + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' });
 
         parentSrcPaths.forEach(srcPath => {
-          const destPath = srcPath.replace('/web', '').replace(parentSrc, dest);
+          const destPath = dest + srcPath.replace(parentSrc, '').replace('/web', '');
           try {
             plugins.fs.ensureFileSync(destPath);
             plugins.fs.unlinkSync(destPath);
@@ -31,7 +31,7 @@ module.exports = function() { // eslint-disable-line func-names
       }
 
       srcPaths.forEach(srcPath => {
-        const destPath = srcPath.replace('/web', '').replace(src, dest);
+        const destPath = dest + srcPath.replace(src, '').replace('/web', '');
         try {
           plugins.fs.ensureFileSync(destPath);
           plugins.fs.unlinkSync(destPath);
