@@ -18,7 +18,7 @@ module.exports = function(gulp, plugins, config, name, locale, file) { // eslint
       theme.locale.forEach(locale => {
         return gulp.src(
             file || srcBase + '/' + locale + '/**/*.scss',
-            { base: srcBase + '/' + locale + '/styles'}
+            { base: srcBase + '/' + locale + '/styles' }
           )
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
           .pipe(plugins.if(maps, plugins.sourcemaps.init()))
@@ -42,7 +42,7 @@ module.exports = function(gulp, plugins, config, name, locale, file) { // eslint
       });
       return gulp.src(
           file || srcBase + '/**/*.scss',
-          { base: srcBase + '/styles'}
+          { base: srcBase + '/styles' }
         )
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
         .pipe(plugins.if(maps, plugins.sourcemaps.init()))
