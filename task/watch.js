@@ -15,8 +15,9 @@ module.exports = function() { // eslint-disable-line func-names
       const themePath = theme.default ? theme.dest + '/' + locale : theme.src,
             files = plugins.globby.sync([
               config.projectPath + themePath + '/**/*.' + theme.lang,
-              '!' + config.projectPath + themePath + '/**/_*.' + theme.lang
-            ], { nodir: true, ignore: ['**/node_modules/**'] }),
+              '!/**/_*.' + theme.lang,
+              '!**/node_modules/**'
+            ]),
             dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
       files.forEach(file => {
@@ -45,7 +46,7 @@ module.exports = function() { // eslint-disable-line func-names
       // I'm usng globby manually, b/c it's a loooot faster
       plugins.globby.sync([
         config.projectPath + theme.src + '/**/*.{html,phtml,xml,csv,js}',
-        '!' + config.projectPath + theme.src + '/**/node_modules/**'
+        '!/**/node_modules/**'
       ]),
       event => {
         plugins.util.log(

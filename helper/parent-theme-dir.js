@@ -5,10 +5,10 @@ module.exports = function(themeName, config, plugins) { // eslint-disable-line f
 
     if (theme.parent) {
       let src   = config.themes[theme.parent].src,
-          paths = plugins.globby.sync(
+          paths = plugins.globby.sync([
             config.projectPath + src + '/**/',
-            { ignore: '/**/node_modules/**' }
-          );
+            '!/**/node_modules/**'
+          ]);
 
       return paths.concat(getParentThemeDir(theme.parent));
     }
