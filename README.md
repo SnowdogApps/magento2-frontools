@@ -50,7 +50,7 @@ First of all check `config/themes.json.sample`
 * `deploy` - Resolve theme inheritance of static assets (i.e. fonts, images) symlinking them to `pub` dir.
   * `--theme name` - Deploy single theme
   * `--prod` - Copy files instead of making symlinks
-* `dev` - Runs `browser-sync` and `watch` tasks
+* `dev` - Runs `browser-sync`, `inheritance` and `watch`  tasks
   * `--theme name` - Process single theme
   * `--maps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
@@ -73,3 +73,4 @@ First of all check `config/themes.json.sample`
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
   * `--theme name` - Process single theme
   * `--ci - Enable throwing errors, useful in CI/CD pipelines`
+* `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make base for styles processing. You have to run in before sytles compilation and after adding new files.
