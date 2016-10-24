@@ -54,7 +54,7 @@ module.exports = function() { // eslint-disable-line func-names
           + plugins.util.colors.green('and dependencies...')
         );
 
-        const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, locale);
+        const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name);
         gulp.watch(plugins.globby.sync([
           srcBase + '/' + locale + '/**/*.' + theme.lang,
           '!**/node_modules/**'
