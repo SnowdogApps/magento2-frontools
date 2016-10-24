@@ -13,7 +13,7 @@ LESS support was droped in version 1.0.0. Fell free to use older version (0.11.4
 Up from version 1.0.0 we are supporting both Node.js packages managers. We are using `npm-shrinkwrap.json` and `yarn.lock` to keep modules in safe versions all the time.
 
 ## Requirements
-* Node.js LTS version (v6 branch). We are recommend to use [nvm](https://github.com/creationix/nvm), you can find `.nvmrc` file inside repositiory to simplify switching beetwen projects.
+* Node.js LTS version (v6 branch). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
 * Gulp CLI global package - `npm install -g gulp-cli` or `yarn global add gulp-cli`
 * Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
 
