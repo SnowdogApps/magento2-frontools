@@ -46,31 +46,33 @@ First of all check `config/themes.json.sample`
 ## Tasks list
 * `browser-sync` - run [browserSync](https://www.browsersync.io/)- do not run this task separately, it's just a part of `dev` task
 * `clean` - Removes `/pub/static` folder
+* `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests
+  * `--theme name` - Process single theme
+  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
 * `default` - type `gulp` to see this readme in console
 * `deploy` - Resolve theme inheritance of static assets (i.e. fonts, images) symlinking them to `pub` dir.
   * `--theme name` - Deploy single theme
   * `--prod` - Copy files instead of making symlinks
 * `dev` - Runs `browser-sync`, `inheritance` and `watch`  tasks
   * `--theme name` - Process single theme
-  * `--maps` - Toggles source maps generation
+  * `--disableLinting` - Disable SASS and CSS linting
+  * `--disableMaps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js
+* `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make base for styles processing. You have to run in before sytles compilation and after adding new files.
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
+* `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
+  * `--theme name` - Process single theme
+  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
 * `setup` - Creates a convenient symlink from `/tools` to `/vendor/snowdog/frontools` and copies all sample files if no configuration exists
   * `--symlink name` - if you don't want to use `tools` as the symlink you can specify another name
 * `styles` - Use this task to manually trigger styles processing pipeline
   * `--theme name` - Process single theme
-  * `--maps` - Toggles source maps generation
+  * `--disableMaps` - Toggles source maps generation
   * `--prod` - Production output - minifies styles
 * `watch` - Watch for style changes and run processing tasks
   * `--theme name` - Process single theme
-  * `--maps` - Enable inline source maps generation
+  * `--disableLinting` - Disable SASS and CSS linting
+  * `--disableMaps` - Enable inline source maps generation
   * `--prod` - Production output - minifies styles
-* `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests
-  * `--theme name` - Process single theme
-  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
-* `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
-  * `--theme name` - Process single theme
-  * `--ci - Enable throwing errors, useful in CI/CD pipelines`
-* `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make base for styles processing. You have to run in before sytles compilation and after adding new files.

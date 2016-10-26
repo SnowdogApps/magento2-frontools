@@ -11,20 +11,6 @@ accepts@~1.3.3, accepts@1.3.3:
     mime-types "~2.1.11"
     negotiator "0.6.1"
 
-accord@^0.23.0:
-  version "0.23.0"
-  resolved "https://registry.yarnpkg.com/accord/-/accord-0.23.0.tgz#2468c78e56412dba9311d383fb873450d2867caf"
-  dependencies:
-    convert-source-map "1.x"
-    fobject "0.0.4"
-    glob "7.0.3"
-    indx "0.2.x"
-    lodash "4.11.2"
-    resolve "1.x"
-    semver "^5.1.0"
-    uglify-js "^2.6.0"
-    when "3.x"
-
 acorn-jsx@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-3.0.1.tgz#afdf9488fb1ecefc8348f6fb22f464e32a58b36b"
@@ -169,10 +155,6 @@ arrify@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-asap@~2.0.3:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.5.tgz#522765b50c3510490e52d7dcfe085ef9ba96958f"
-
 asn1@~0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/asn1/-/asn1-0.2.3.tgz#dac8787713c9966849fc8180777ebe9c1ddf3b86"
@@ -204,6 +186,10 @@ async-each@^1.0.0:
 async-foreach@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
+
+async@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
 async@^2.0.1:
   version "2.1.2"
@@ -711,7 +697,7 @@ console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
-convert-source-map@1.x, convert-source-map@1.X:
+convert-source-map@1.X:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.3.0.tgz#e9f3e9c6e2728efc2676696a70eb382f73106a67"
 
@@ -1058,12 +1044,6 @@ engine.io@1.7.0:
     debug "2.2.0"
     engine.io-parser "1.3.0"
     ws "1.1.1"
-
-errno@^0.1.1:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/errno/-/errno-0.1.4.tgz#b896e23a9e5e8ba33871fc996abd3635fc9a1c7d"
-  dependencies:
-    prr "~0.0.0"
 
 error-ex@^1.2.0:
   version "1.3.0"
@@ -1421,14 +1401,6 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-fobject@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/fobject/-/fobject-0.0.4.tgz#8399e6b9105d2eb8e6df9dcc41123a171688adfe"
-  dependencies:
-    graceful-fs "^4.1.3"
-    semver "^5.1.0"
-    when "^3.7.7"
-
 for-in@^0.1.5:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.6.tgz#c9f96e89bfad18a545af5ec3ed352a1d9e5b4dc8"
@@ -1644,16 +1616,6 @@ glob@~7.0.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@7.0.3:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-7.0.3.tgz#0aa235931a4a96ac13d60ffac2fb877bd6ed4f58"
-  dependencies:
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "2 || 3"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
 glob2base@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/glob2base/-/glob2base-0.0.12.tgz#9d419b3e28f12e83a362164a277055922c9c0d56"
@@ -1739,7 +1701,7 @@ graceful-fs@^3.0.0:
   dependencies:
     natives "^1.1.0"
 
-graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6, graceful-fs@4.X:
+graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@4.X:
   version "4.1.9"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.9.tgz#baacba37d19d11f9d146d3578bc99958c3787e29"
 
@@ -1779,17 +1741,6 @@ gulp-if@~2.0.1:
     ternary-stream "^2.0.0"
     through2 "^2.0.1"
 
-gulp-less@~3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-less/-/gulp-less-3.1.0.tgz#c54c2ee014ebe6e135bfcb0169db4ddb93506de6"
-  dependencies:
-    accord "^0.23.0"
-    gulp-util "^3.0.7"
-    less "^2.6.0"
-    object-assign "^4.0.1"
-    through2 "^2.0.0"
-    vinyl-sourcemaps-apply "^0.2.0"
-
 gulp-load-plugins@~1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/gulp-load-plugins/-/gulp-load-plugins-1.3.0.tgz#beacf53f77012eeba0fcd3a263816407cb4ada0c"
@@ -1816,6 +1767,13 @@ gulp-match@^1.0.2:
   resolved "https://registry.yarnpkg.com/gulp-match/-/gulp-match-1.0.2.tgz#f94c88e946f9faf8a50cb5a6e1b95cb5eeb33632"
   dependencies:
     minimatch "^3.0.0"
+
+gulp-multi-dest@~0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/gulp-multi-dest/-/gulp-multi-dest-0.0.4.tgz#d68a0b12785be81e8b2f4ed2b59404011a18f233"
+  dependencies:
+    async "^1.5.2"
+    through2 "^2.0.1"
 
 gulp-notify@~2.2.0:
   version "2.2.0"
@@ -2070,10 +2028,6 @@ ignore@^3.1.2, ignore@^3.1.5, ignore@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.2.0.tgz#8d88f03c3002a0ac52114db25d2c673b0bf1e435"
 
-image-size@~0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.0.tgz#be7aed1c37b5ac3d9ba1d66a24b4c47ff8397651"
-
 immutable@^3.7.6, immutable@3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
@@ -2099,10 +2053,6 @@ indexes-of@^1.0.1:
 indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
-
-indx@0.2.x:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/indx/-/indx-0.2.3.tgz#15dcf56ee9cf65c0234c513c27fbd580e70fbc50"
 
 inflight@^1.0.4:
   version "1.0.6"
@@ -2465,18 +2415,6 @@ ldjson-stream@^1.2.1:
     split2 "^0.2.1"
     through2 "^0.6.1"
 
-less@^2.6.0:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/less/-/less-2.7.1.tgz#6cbfea22b3b830304e9a5fb371d54fa480c9d7cf"
-  optionalDependencies:
-    errno "^0.1.1"
-    graceful-fs "^4.1.2"
-    image-size "~0.5.0"
-    mime "^1.2.11"
-    mkdirp "^0.5.0"
-    promise "^7.1.1"
-    source-map "^0.5.3"
-
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -2705,10 +2643,6 @@ lodash@~4.9.0:
   version "4.9.0"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.9.0.tgz#4c20d742f03ce85dc700e0dd7ab9bcab85e6fc14"
 
-lodash@4.11.2:
-  version "4.11.2"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.11.2.tgz#d6b4338b110a58e21dae5cebcfdbbfd2bc4cdb3b"
-
 log-symbols@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/log-symbols/-/log-symbols-1.0.2.tgz#376ff7b58ea3086a0f09facc74617eca501e1a18"
@@ -2759,7 +2693,7 @@ map-obj@^1.0.0, map-obj@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-1.0.1.tgz#d933ceb9205d82bdcf4886f6742bdc2b4dea146d"
 
-marked-terminal@^1.6.2, marked-terminal@~1.6.1:
+marked-terminal@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/marked-terminal/-/marked-terminal-1.6.2.tgz#44c128d69b5d9776c848314cdf69d4ec96322973"
   dependencies:
@@ -2768,6 +2702,16 @@ marked-terminal@^1.6.2, marked-terminal@~1.6.1:
     cli-table "^0.3.1"
     lodash.assign "^4.2.0"
     node-emoji "^1.3.1"
+
+marked-terminal@~1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/marked-terminal/-/marked-terminal-1.7.0.tgz#c8c460881c772c7604b64367007ee5f77f125904"
+  dependencies:
+    cardinal "^1.0.0"
+    chalk "^1.1.3"
+    cli-table "^0.3.1"
+    lodash.assign "^4.2.0"
+    node-emoji "^1.4.1"
 
 marked@^0.3.6, marked@~0.3.5:
   version "0.3.6"
@@ -2832,7 +2776,7 @@ mime-types@^2.1.11, mime-types@~2.1.11, mime-types@~2.1.7:
   dependencies:
     mime-db "~1.24.0"
 
-mime@^1.2.11, "mime@>= 0.0.1", mime@1.3.4:
+"mime@>= 0.0.1", mime@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
 
@@ -2846,7 +2790,7 @@ minimatch@^2.0.1:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimatch@^3.0.0, minimatch@^3.0.2, minimatch@~3.0.0, "minimatch@2 || 3":
+minimatch@^3.0.0, minimatch@^3.0.2, minimatch@~3.0.0:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
@@ -2920,7 +2864,7 @@ negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-node-emoji@^1.3.1:
+node-emoji@^1.3.1, node-emoji@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.4.1.tgz#c9fa0cf91094335bcb967a6f42b2305c15af2ebc"
   dependencies:
@@ -3554,16 +3498,6 @@ progress@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
-promise@^7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/promise/-/promise-7.1.1.tgz#489654c692616b8aa55b0724fa809bb7db49c5bf"
-  dependencies:
-    asap "~2.0.3"
-
-prr@~0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/prr/-/prr-0.0.0.tgz#1a84b85908325501411853d0081ee3fa86e2926a"
-
 pseudomap@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
@@ -3848,7 +3782,7 @@ resolve-url@~0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@1.x:
+resolve@^1.1.6, resolve@^1.1.7:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
@@ -4483,15 +4417,6 @@ ua-parser-js@0.7.10:
   version "0.7.10"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.10.tgz#917559ddcce07cbc09ece7d80495e4c268f4ef9f"
 
-uglify-js@^2.6.0:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.3.tgz#39b3a7329b89f5ec507e344c6e22568698ef4868"
-  dependencies:
-    async "~0.2.6"
-    source-map "~0.5.1"
-    uglify-to-browserify "~1.0.0"
-    yargs "~3.10.0"
-
 uglify-js@2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.7.0.tgz#f021e38ba2ca740860f5bd5c695c2a817345f0ec"
@@ -4647,10 +4572,6 @@ weinre@^2.0.0-pre-I0Z7U9OV:
     express "2.5.x"
     nopt "3.0.x"
     underscore "1.7.x"
-
-when@^3.7.7, when@3.x:
-  version "3.7.7"
-  resolved "https://registry.yarnpkg.com/when/-/when-3.7.7.tgz#aba03fc3bb736d6c88b091d013d8a8e590d84718"
 
 whet.extend@~0.9.9:
   version "0.9.9"

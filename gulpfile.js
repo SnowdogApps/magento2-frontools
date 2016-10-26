@@ -1,7 +1,6 @@
 'use strict';
 // Plugins / Functions / Modules
-const gulp    = require('gulp'),
-      plugins = require('gulp-load-plugins')({
+const plugins = require('gulp-load-plugins')({
         pattern: ['*', '!gulp', '!gulp-load-plugins'],
         rename : {
           'browser-sync'    : 'browserSync',
@@ -26,14 +25,4 @@ require('gulp-task-loader')({
   dir    : 'task',
   plugins: plugins,
   configs: config
-});
-
-// Define task for each theme
-// Gulp can't run same task in parallel, so we need different names
-Object.keys(config.themes).forEach(name => {
-  const theme = config.themes[name];
-  gulp.task(
-    theme.lang + ':' + name,
-    require('./helper/' + theme.lang)(gulp, plugins, config, name)
-  );
 });
