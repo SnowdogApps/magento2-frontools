@@ -1,17 +1,17 @@
 'use strict';
 module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  const gulp           = this.gulp,
-        plugins        = this.opts.plugins,
-        config         = this.opts.configs,
-        themes         = plugins.getThemes(),
-        sassLintConfig = require('../helper/config-loader')('sass-lint.yml', plugins, config);
+  const gulp    = this.gulp,
+        plugins = this.opts.plugins,
+        config  = this.opts.configs,
+        themes  = plugins.getThemes();
 
   themes.forEach(name => {
-    const theme = config.themes[name];
-    gulp.src([config.projectPath + theme.src + '/**/*.scss', '!/**/node_modules/**'])
-      .pipe(plugins.sassLint(sassLintConfig))
-      .pipe(plugins.sassLint.format())
-      .pipe(plugins.if(plugins.util.env.ci, plugins.sassLint.failOnError()));
+    plugins.util.log(
+      plugins.util.colors.green('Runing SASS Lint on') + ' '
+      + plugins.util.colors.blue(name) + ' '
+      + plugins.util.colors.green('theme...')
+    );
+    require('../helper/sass-lint')(gulp, plugins, config, name)();
   });
 };

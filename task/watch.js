@@ -69,6 +69,19 @@ module.exports = function() { // eslint-disable-line func-names
       });
     }
 
+    if (!plugins.util.env.disableLinting) {
+      // SASS Lint
+      if (theme.lang === 'scss') {
+        gulp.watch(srcBase + '/**/*.scss', event => {
+            require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
+        });
+      }
+      // CSS Lint
+      gulp.watch(config.projectPath + theme.dest + '/**/*.css', event => {
+        require('../helper/css-lint')(gulp, plugins, config, name, event.path)();
+      });
+    }
+
     // Watching files that require reload after save
     gulp.watch(
       // I'm usng globby manually, b/c it's a loooot faster
