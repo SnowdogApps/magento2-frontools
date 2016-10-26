@@ -2,9 +2,9 @@ language: node_js
 node_js: 6
 cache:
   directories:
-  - test/node_modules
+  - __test__/node_modules
 install:
-  - cd test
+  - cd __test__
   - npm install -g gulp-cli
   - npm install
 script:
