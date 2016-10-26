@@ -54,17 +54,26 @@ module.exports = function() { // eslint-disable-line func-names
           + plugins.util.colors.green('and dependencies...')
         );
 
-        const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name);
-        gulp.watch(plugins.globby.sync([
-          srcBase + '/' + locale + '/**/*.' + theme.lang,
-          '!**/node_modules/**'
-        ]), event => {
-          plugins.util.log(
-            plugins.util.colors.green('File') + ' '
-            + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
-            + plugins.util.colors.green('changed.')
+        const files = plugins.globby.sync([
+                srcBase + '/' + locale + '/**/*.' + theme.lang,
+                '!/**/_*.' + theme.lang,
+                '!**/node_modules/**'
+              ]),
+              dependencyTreeBuilder = require('../helper/dependency-tree-builder');
+
+        files.forEach(file => {
+          const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, file, locale);
+          gulp.watch(
+            Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
+            event => {
+              plugins.util.log(
+                plugins.util.colors.green('File') + ' '
+                + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
+                + plugins.util.colors.green('changed.')
+              );
+              compiler();
+            }
           );
-          compiler();
         });
       });
     }
@@ -73,7 +82,7 @@ module.exports = function() { // eslint-disable-line func-names
       // SASS Lint
       if (theme.lang === 'scss') {
         gulp.watch(srcBase + '/**/*.scss', event => {
-            require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
+          require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
         });
       }
       // CSS Lint

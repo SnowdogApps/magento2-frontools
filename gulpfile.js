@@ -1,7 +1,6 @@
 'use strict';
 // Plugins / Functions / Modules
-const gulp    = require('gulp'),
-      plugins = require('gulp-load-plugins')({
+const plugins = require('gulp-load-plugins')({
         pattern: ['*', '!gulp', '!gulp-load-plugins'],
         rename : {
           'browser-sync'    : 'browserSync',
