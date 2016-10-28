@@ -68,7 +68,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
             .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
             .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale + '/css'))
             .pipe(plugins.logger({
-              // display   : 'name',
+              display   : 'name',
               beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
               afterEach : ' Compiled!'
             }))

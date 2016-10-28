@@ -9,5 +9,5 @@ module.exports = function() { // eslint-disable-line func-names
   });
 
   // eslint-disable-next-line no-console
-  console.log(plugins.marked(plugins.fs.readFileSync('./readme.md', 'UTF-8')));
+  console.log(plugins.marked(plugins.fs.readFileSync('./README.md', 'UTF-8')));
 };
