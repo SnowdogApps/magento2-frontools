@@ -7,7 +7,7 @@ Set of front-end tools for Magento 2, based on Gulp.js
 If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
 
 ## LESS themes support
-LESS support was droped in version 1.0.0. Fell free to use older version (0.11.4 and lower) or create fork and customize newer versions to fit your needs.
+LESS support was droped in version 1.0.0. Feel free to use older version (0.11.4 and lower) or create fork and customize newer versions to fit your needs.
 
 ## NPM and Yarn support
 Up from version 1.0.0 we are supporting both Node.js packages managers. We are using `npm-shrinkwrap.json` and `yarn.lock` to keep modules in safe versions all the time.
