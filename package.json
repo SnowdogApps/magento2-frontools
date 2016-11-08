@@ -36,7 +36,7 @@
     "js-yaml": "~3.6.1",
     "marked": "~0.3.5",
     "marked-terminal": "~1.7.0",
-    "postcss-reporter": "~1.4.1",
+    "postcss-reporter": "~2.0.0",
     "run-sequence": "~1.2.2",
     "stylelint": "~7.5.0"
   }
