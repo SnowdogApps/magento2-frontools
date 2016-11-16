@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "~6.5.1",
-    "browser-sync": "~2.17.3",
+    "browser-sync": "~2.18.1",
     "cssnano": "~3.8.0",
     "fs-extra": "~1.0.0",
     "globby": "~6.1.0",
