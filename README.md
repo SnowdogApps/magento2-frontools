@@ -10,7 +10,7 @@ If you have any questions about this project let's go to offical Magento forum -
 LESS support was droped in version 1.0.0. Feel free to use older version (0.11.4 and lower) or create fork and customize newer versions to fit your needs.
 
 ## NPM and Yarn support
-Up from version 1.0.0 we are supporting both Node.js packages managers. We are using `npm-shrinkwrap.json` and `yarn.lock` to keep modules in safe versions all the time.
+Up from version 1.0.0 we are supporting both Node.js packages managers. If you want to keep modules in safe versions all the time, use Yarn, `yarn.lock` is already added to repository.
 
 ## Requirements
 * Node.js LTS version (v6 branch). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
