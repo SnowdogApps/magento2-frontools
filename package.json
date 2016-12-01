@@ -39,5 +39,8 @@
     "postcss-reporter": "~2.0.0",
     "run-sequence": "~1.2.2",
     "stylelint": "~7.5.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "*"
   }
 }
