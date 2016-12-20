@@ -19,18 +19,20 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
   // Create symlinks for themes without any per locale modifcations
   if (!theme.localeOverwrites) {
-    // If theme have parent, create symlinks to all avaliabe files and then overwite only neccessary
+    // If theme have (multiple) parent(s), create symlinks to all avaliabe files and then overwite only neccessary
     if (theme.parent) {
-      const parentSrc = config.projectPath + config.themes[theme.parent].src;
-      plugins.globby.sync([
-        parentSrc + '/**/*.' + theme.lang,
-        '!/**/node_modules/**'
-      ]).forEach(srcPath => {
-        createSymlink(
-          srcPath,
-          themeDest + srcPath.replace(parentSrc, '').replace('/web', '')
-        );
-      });
+      theme.parent.forEach(parent => {
+	    const parentSrc = config.projectPath + config.themes[parent].src;
+	    plugins.globby.sync([
+	      parentSrc + '/**/*.' + theme.lang,
+	      '!/**/node_modules/**'
+	    ]).forEach(srcPath => {
+	      createSymlink(
+	        srcPath,
+	        themeDest + srcPath.replace(parentSrc, '').replace('/web', '')
+	      );
+	    });
+	  });
     }
 
     // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
@@ -48,19 +50,20 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   else {
     // We have to handle every locale independly, b/c of possible overwrites
     theme.locale.forEach(locale => {
-      // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
+      // If theme have (multiple) parent(s), create symlinks to all avaliabe files and then overwitte only neccessary
       if (theme.parent) {
-        const parentSrc = config.projectPath + config.themes[theme.parent].src;
-        plugins.globby.sync([
-          parentSrc + '/**/*.' + theme.lang,
-          '!/**/i18n/**',
-          '!/**/node_modules/**'
-        ]).forEach(srcPath => {
-          createSymlink(
-            srcPath,
-            themeDest + '/' + locale + srcPath.replace(parentSrc, '').replace('/web', '')
-          );
-        });
+        theme.parent.forEach(parent => {
+	      const parentSrc = config.projectPath + config.themes[parent].src;
+	      plugins.globby.sync([
+	        parentSrc + '/**/*.' + theme.lang,
+	        '!/**/node_modules/**'
+	      ]).forEach(srcPath => {
+	        createSymlink(
+	          srcPath,
+	          themeDest + srcPath.replace(parentSrc, '').replace('/web', '')
+	        );
+	      });
+	    });
       }
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.

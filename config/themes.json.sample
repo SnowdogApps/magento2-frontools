@@ -9,7 +9,7 @@
   "custom": {
     "src"             : "vendor/snowdog/theme-custom",
     "dest"            : "pub/static/frontend/Snowdog/custom",
-    "parent"          : "blank",
+    "parent"          : ["blank"],
     "locale"          : ["en_US", "pl_PL"],
     "localeOverwrites": true,
     "lang"            : "scss",
