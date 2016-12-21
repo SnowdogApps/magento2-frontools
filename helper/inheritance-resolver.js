@@ -13,7 +13,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   function themeDependencyTree(themeName, dependencyTree) {
     dependencyTree = dependencyTree ? dependencyTree : [];
     dependencyTree.push(themeName);
-    if(config.themes[themeName].parent) {
+    if (config.themes[themeName].parent) {
       return themeDependencyTree(config.themes[themeName].parent, dependencyTree);
     }
     else {
