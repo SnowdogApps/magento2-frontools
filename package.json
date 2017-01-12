@@ -11,9 +11,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "~6.5.3",
+    "autoprefixer": "~6.6.1",
     "browser-sync": "~2.18.2",
-    "cssnano": "~3.8.1",
+    "cssnano": "~3.10.0",
     "fs-extra": "~1.0.0",
     "globby": "~6.1.0",
     "gulp": "~3.9.1",
@@ -36,8 +36,8 @@
     "js-yaml": "~3.7.0",
     "marked": "~0.3.6",
     "marked-terminal": "~2.0.0",
-    "postcss-reporter": "~2.0.0",
+    "postcss-reporter": "~3.0.0",
     "run-sequence": "~1.2.2",
-    "stylelint": "~7.6.0"
+    "stylelint": "~7.7.1"
   }
 }
