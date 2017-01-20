@@ -29,101 +29,74 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     // Clean destination dir before generating new symlinks
     plugins.fs.removeSync(themeDest);
 
-    if (theme.parent) {
-      const parentSrc = config.projectPath + 'var/view_preprocessed/frontools' + config.themes[theme.parent].dest.replace('pub/static', '');
+    // Create symlinks for themes without any per locale modifcations (default)
+    if (!theme.localeOverwrites) {
+      if (theme.parent) {
+        const parentSrc = config.projectPath + 'var/view_preprocessed/frontools' + config.themes[theme.parent].dest.replace('pub/static', '');
+        plugins.globby.sync([
+          parentSrc + '/**/*.' + theme.lang,
+          '!/**/node_modules/**'
+        ]).forEach(srcPath => {
+          createSymlink(
+            srcPath,
+            themeDest + srcPath.replace(parentSrc, '')
+          );
+        });
+      }
+
+      // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
       plugins.globby.sync([
-        parentSrc + '/**/*.' + theme.lang,
+        themeSrc + '/**/*.' + theme.lang,
         '!/**/node_modules/**'
       ]).forEach(srcPath => {
         createSymlink(
           srcPath,
-          themeDest + srcPath.replace(parentSrc, '')
+          themeDest + srcPath.replace(themeSrc, '')
         );
       });
     }
+    // Create symlinks for themes with per locale modifcations
+    else {
+      // We have to handle every locale independly, b/c of possible overwrites
+      theme.locale.forEach(locale => {
+        // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
+        if (theme.parent) {
+          const parentSrc = config.projectPath + 'var/view_preprocessed/frontools' + config.themes[theme.parent].dest.replace('pub/static', '');
+          plugins.globby.sync([
+            parentSrc + '/**/*.' + theme.lang,
+            '!/**/i18n/**',
+            '!/**/node_modules/**'
+          ]).forEach(srcPath => {
+            createSymlink(
+              srcPath,
+              themeDest + '/' + locale + srcPath.replace(parentSrc, '')
+            );
+          });
+        }
 
-    // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-    plugins.globby.sync([
-      themeSrc + '/**/*.' + theme.lang,
-      '!/**/node_modules/**'
-    ]).forEach(srcPath => {
-      createSymlink(
-        srcPath,
-        themeDest + srcPath.replace(themeSrc, '')
-      );
-    });
+        // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
+        plugins.globby.sync([
+          themeSrc + '/**/*.' + theme.lang,
+          '!/**/i18n/**',
+          '!/**/node_modules/**'
+        ]).forEach(srcPath => {
+          createSymlink(
+            srcPath,
+            themeDest + '/' + locale + srcPath.replace(themeSrc, '')
+          );
+        });
+
+        // Overwritte parent/current theme symlinks with locale specific files
+        plugins.globby.sync([
+          themeSrc + '/**/i18n/' + locale + '/**/*.' + theme.lang,
+          '!/**/node_modules/**'
+        ]).forEach(srcPath => {
+          createSymlink(
+            srcPath,
+            themeDest + '/' + locale + srcPath.replace(themeSrc, '').replace('/i18n/' + locale, '')
+          );
+        });
+      });
+    }
   });
-
-
-  // // Create symlinks for themes without any per locale modifcations
-  // if (!theme.localeOverwrites) {
-  //   // If theme have parent, create symlinks to all avaliabe files and then overwite only neccessary
-  //   if (theme.parent) {
-  //     const parentSrc = config.projectPath + config.themes[theme.parent].src;
-  //     plugins.globby.sync([
-  //       parentSrc + '/**/*.' + theme.lang,
-  //       '!/**/node_modules/**'
-  //     ]).forEach(srcPath => {
-  //       console.log(srcPath);
-  //       createSymlink(
-  //         srcPath,
-  //         themeDest + srcPath.replace(parentSrc, '').replace('/web', '')
-  //       );
-  //     });
-  //   }
-
-  //   // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-  //   plugins.globby.sync([
-  //     themeSrc + '/**/*.' + theme.lang,
-  //     '!/**/node_modules/**'
-  //   ]).forEach(srcPath => {
-  //     createSymlink(
-  //       srcPath,
-  //       themeDest + srcPath.replace(themeSrc, '')
-  //     );
-  //   });
-  // }
-  // // Create symlinks for themes with per locale modifcations
-  // else {
-  //   // We have to handle every locale independly, b/c of possible overwrites
-  //   theme.locale.forEach(locale => {
-  //     // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
-  //     if (theme.parent) {
-  //       const parentSrc = config.projectPath + config.themes[theme.parent].src;
-  //       plugins.globby.sync([
-  //         parentSrc + '/**/*.' + theme.lang,
-  //         '!/**/i18n/**',
-  //         '!/**/node_modules/**'
-  //       ]).forEach(srcPath => {
-  //         createSymlink(
-  //           srcPath,
-  //           themeDest + '/' + locale + srcPath.replace(parentSrc, '').replace('/web', '')
-  //         );
-  //       });
-  //     }
-
-  //     // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-  //     plugins.globby.sync([
-  //       themeSrc + '/**/*.' + theme.lang,
-  //       '!/**/i18n/**',
-  //       '!/**/node_modules/**'
-  //     ]).forEach(srcPath => {
-  //       createSymlink(
-  //         srcPath,
-  //         themeDest + '/' + locale + srcPath.replace(themeSrc, '')
-  //       );
-  //     });
-
-  //     // Overwritte parent/current theme symlinks with locale specific files
-  //     plugins.globby.sync([
-  //       themeSrc + '/**/i18n/' + locale + '/**/*.' + theme.lang,
-  //       '!/**/node_modules/**'
-  //     ]).forEach(srcPath => {
-  //       createSymlink(
-  //         srcPath,
-  //         themeDest + '/' + locale + srcPath.replace(themeSrc, '').replace('/i18n/' + locale, '')
-  //       );
-  //     });
-  //   });
-  // }
 };
