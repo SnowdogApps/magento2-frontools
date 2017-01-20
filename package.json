@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "~6.5.3",
+    "autoprefixer": "~6.6.0",
     "browser-sync": "~2.18.2",
     "cssnano": "~3.8.1",
     "fs-extra": "~2.0.0",
