@@ -4,6 +4,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
   return () => {
     const theme       = config.themes[name],
           srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
+          stylesDir   = theme.stylesDir ? '/' + theme.stylesDir : '/styles',
           disableMaps = plugins.util.env.disableMaps || false,
           production  = plugins.util.env.prod || false,
           postcss     = [];
@@ -19,9 +20,10 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
       theme.locale.forEach(locale => {
         dest.push(config.projectPath + theme.dest + '/' + locale + '/css');
       });
+
       return gulp.src(
           file || srcBase + '/**/*.scss',
-          { base: srcBase + '/styles' }
+          { base: srcBase + stylesDir }
         )
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
@@ -39,7 +41,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
     }
     else {
       if (file) {
-        return gulp.src(file, { base: srcBase + '/' + locale + '/styles' })
+        return gulp.src(file, { base: srcBase + '/' + locale + stylesDir })
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
           .pipe(plugins.sass())
@@ -58,7 +60,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
         theme.locale.forEach(locale => {
           return gulp.src(
               file || srcBase + '/' + locale + '/**/*.scss',
-              { base: srcBase + '/' + locale + '/styles' }
+              { base: srcBase + '/' + locale + stylesDir }
             )
             .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
             .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
