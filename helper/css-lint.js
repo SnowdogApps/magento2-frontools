@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           srcBase         = config.projectPath + theme.dest,
           stylelintConfig = require('../helper/config-loader')('stylelint.yml', plugins, config);
 
-    return gulp.src(file || srcBase + '/**/*.css')
+    return gulp.src(file || plugins.globby.sync(srcBase + '/**/*.css'))
       .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
       .pipe(plugins.postcss([
         plugins.stylelint({
