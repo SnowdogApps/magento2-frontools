@@ -14,6 +14,9 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
         postcss.push(eval(el));
       });
     }
+    else {
+      postcss.push(plugins.autoprefixer());
+    }
 
     if (!theme.localeOverwrites) {
       let dest = [];
