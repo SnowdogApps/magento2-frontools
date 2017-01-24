@@ -1,18 +1,29 @@
 {
   "blank": {
-    "src"    : "vendor/snowdog/theme-blank-sass",
-    "dest"   : "pub/static/frontend/Snowdog/blank",
-    "locale" : ["en_US"],
-    "lang"   : "scss",
-    "postcss": ["plugins.autoprefixer()"]
+    "src": "vendor/snowdog/theme-blank-sass",
+    "dest": "pub/static/frontend/Snowdog/blank",
+    "locale": ["en_US"]
   },
-  "custom": {
-    "src"             : "vendor/snowdog/theme-custom",
-    "dest"            : "pub/static/frontend/Snowdog/custom",
-    "parent"          : "blank",
-    "locale"          : ["en_US", "pl_PL"],
+  "basc-child": {
+    "src": "vendor/snowdog/theme-basic-child",
+    "dest": "pub/static/frontend/Snowdog/basic-child",
+    "locale": ["en_US"],
+    "parent": "blank"
+  },
+  "child-with-locale-overwrites": {
+    "src": "vendor/snowdog/custom",
+    "dest": "pub/static/frontend/Snowdog/child-with-locale-overwrites",
+    "locale": ["en_US", "pl_PL"],
     "localeOverwrites": true,
-    "lang"            : "scss",
-    "postcss"         : ["plugins.autoprefixer()"]
+    "parent": "blank"
+  },
+  "all-possible-options": {
+    "src": "vendor/snowdog/theme-all-possible-options",
+    "dest": "pub/static/frontend/Snowdog/all-possible-options",
+    "locale": ["en_US", "pl_PL"],
+    "localeOverwrites": true,
+    "parent": "blank",
+    "stylesDir": "web/css",
+    "postcss": ["plugins.autoprefixer()"]
   }
 }
