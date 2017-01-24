@@ -7,10 +7,10 @@ module.exports = function() { // eslint-disable-line func-names
         themes  = plugins.getThemes();
 
   // Generate all necessary symlinks before styles compilation
-  this.opts.plugins.runSequence('inheritance');
+  plugins.runSequence('inheritance');
 
   // Loop through themes to compile scss or less depending on your config.json
   themes.forEach(name => {
-    require('../helper/' + config.themes[name].lang)(gulp, plugins, config, name)();
+    require('../helper/scss')(gulp, plugins, config, name)();
   });
 };

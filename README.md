@@ -28,14 +28,14 @@ If you want to keep config files inside frontools `config` dir, you have to hand
 5. Define your themes in `themes.json`
 
 ## `themes.json` structure
-First of all check `config/themes.json.sample`
+Check `config/themes.json.sample` to get samples
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
-- `parent` - name of parent theme
 - `locale` - array of available locales
-- `localeOverwrites` - set to `true` only if your theme have per locale customizations
-- `lang` - define styles lang want to use for processing, should be same as files extension. Out of the box Frontools supports only `scss`
-- `postcss` - (optional) PostCSS plugins config - have to be an array
+- `localeOverwrites` - (default `false`) set to `true` if you want to overwrite some styles for specifilc language. You can follow default Magento 2 docs or just rememer that path to overwriting file has to be same as base file after removing `/i18n/{lang_code}`.
+- `parent` - name of parent theme
+- `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
+- `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
 
 ## Optional configurations for 3rd party plugins
 * Create [browserSync](https://www.browsersync.io/) configuration

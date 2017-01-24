@@ -19,16 +19,16 @@ module.exports = function(theme, file, plugins) { // eslint-disable-line func-na
             parentPath = parentPath.replace(/\/[^\/]+$/g, '');
             filePath = filePath.replace(/\.\.\//, '');
             const filePathParts = /(.*)\/(.*)/g.exec(filePath);
-            fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.' + theme.lang;
+            fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.scss';
           }
         }
         else {
           if (result[1].includes('/')) {
             const filePath = /(.*)\/(.*)/g.exec(result[1]);
-            fullPath = path + '/' + filePath[1] + '/_' + filePath[filePath.length - 1] + '.' + theme.lang;
+            fullPath = path + '/' + filePath[1] + '/_' + filePath[filePath.length - 1] + '.scss';
           }
           else {
-            fullPath = path + '/_' + result[1] + '.' + theme.lang;
+            fullPath = path + '/_' + result[1] + '.scss';
           }
         }
         imports.push(fullPath);
