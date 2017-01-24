@@ -34,7 +34,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       if (theme.parent) {
         const parentSrc = config.projectPath + 'var/view_preprocessed/frontools' + config.themes[theme.parent].dest.replace('pub/static', '');
         plugins.globby.sync([
-          parentSrc + '/**/*.' + theme.lang,
+          parentSrc + '/**/*.scss',
           '!/**/node_modules/**'
         ]).forEach(srcPath => {
           createSymlink(
@@ -46,7 +46,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
       plugins.globby.sync([
-        themeSrc + '/**/*.' + theme.lang,
+        themeSrc + '/**/*.scss',
         '!/**/node_modules/**'
       ]).forEach(srcPath => {
         createSymlink(
@@ -63,7 +63,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
         if (theme.parent) {
           const parentSrc = config.projectPath + 'var/view_preprocessed/frontools' + config.themes[theme.parent].dest.replace('pub/static', '');
           plugins.globby.sync([
-            parentSrc + '/**/*.' + theme.lang,
+            parentSrc + '/**/*.scss',
             '!/**/i18n/**',
             '!/**/node_modules/**'
           ]).forEach(srcPath => {
@@ -76,7 +76,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
         // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
         plugins.globby.sync([
-          themeSrc + '/**/*.' + theme.lang,
+          themeSrc + '/**/*.scss',
           '!/**/i18n/**',
           '!/**/node_modules/**'
         ]).forEach(srcPath => {
@@ -88,7 +88,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
         // Overwritte parent/current theme symlinks with locale specific files
         plugins.globby.sync([
-          themeSrc + '/**/i18n/' + locale + '/**/*.' + theme.lang,
+          themeSrc + '/**/i18n/' + locale + '/**/*.scss',
           '!/**/node_modules/**'
         ]).forEach(srcPath => {
           createSymlink(
