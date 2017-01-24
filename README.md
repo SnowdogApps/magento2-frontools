@@ -33,7 +33,8 @@ First of all check `config/themes.json.sample`
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `parent` - name of parent theme
 - `locale` - array of available locales
-- `localeOverwrites` - set to `true` only if your theme have per locale customizations
+- `localeOverwrites` - (default `false`) set to `true` if you want to overwrite some styles for specifilc language. You can follow default Magento 2 docs or just rememer that path to overwriting file has to be same as base file after removing `/i18n/{lang_code}`.
+- `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
 - `postcss` - (optional) PostCSS plugins config - have to be an array
 
 ## Optional configurations for 3rd party plugins
