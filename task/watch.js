@@ -62,7 +62,7 @@ module.exports = function() { // eslint-disable-line func-names
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
         files.forEach(file => {
-          const compiler = require('../helper/scss')(gulp, plugins, config, name, file, locale);
+          const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
           gulp.watch(
             Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
             event => {
