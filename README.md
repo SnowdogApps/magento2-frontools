@@ -57,7 +57,7 @@ Check `config/themes.json.sample` to get samples
   * `--theme name` - Process single theme
   * `--disableLinting` - Disable SASS and CSS linting
   * `--disableMaps` - Toggles source maps generation
-  * `--prod` - Production output - minifies styles
+  * `--prod` - Production output - minifies styles and add `.min` sufix
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make base for styles processing. You have to run in before sytles compilation and after adding new files.
@@ -70,9 +70,9 @@ Check `config/themes.json.sample` to get samples
 * `styles` - Use this task to manually trigger styles processing pipeline
   * `--theme name` - Process single theme
   * `--disableMaps` - Toggles source maps generation
-  * `--prod` - Production output - minifies styles
+  * `--prod` - Production output - minifies styles and add `.min` sufix
 * `watch` - Watch for style changes and run processing tasks
   * `--theme name` - Process single theme
   * `--disableLinting` - Disable SASS and CSS linting
   * `--disableMaps` - Enable inline source maps generation
-  * `--prod` - Production output - minifies styles
+  * `--prod` - Production output - minifies styles and add `.min` sufix
