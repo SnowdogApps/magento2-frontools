@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function(gulp, plugins, config, name, file, locale) { // eslint-disable-line func-names
+module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
   // Return function that is executed inside of .pipe()
   return () => {
     const theme       = config.themes[name],
@@ -34,7 +34,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
         .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
         .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
-        .pipe(plugins.if(production, plugins.rename({suffix: '.min'})))
+        .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
         .pipe(plugins.multiDest(dest))
         .pipe(plugins.logger({
           display   : 'name',
@@ -55,7 +55,7 @@ module.exports = function(gulp, plugins, config, name, file, locale) { // eslint
           .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
           .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
-          .pipe(plugins.if(production, plugins.rename({suffix: '.min'})))
+          .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
           .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale + '/css'))
           .pipe(plugins.logger({
             display   : 'name',
