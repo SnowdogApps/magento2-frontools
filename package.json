@@ -23,7 +23,7 @@
     "gulp-load-plugins": "~1.4.0",
     "gulp-logger": "~0.0.2",
     "gulp-multi-dest": "~0.0.4",
-    "gulp-notify": "~2.2.0",
+    "gulp-notify": "~3.0.0",
     "gulp-plumber": "~1.1.0",
     "gulp-postcss": "~6.3.0",
     "gulp-rename": "~1.2.2",
