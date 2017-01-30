@@ -1,7 +1,21 @@
 {
-    "name": "snowdog/frontools",
+    "name": "ampersand/magento2-frontools",
     "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-    "version": "1.2.2",
-    "license": "MIT",
-    "type": "magento2-component"
+    "repositories": {
+        "magento": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        "ampersand-m2": {
+            "type": "composer",
+            "url": "https://composer.ampersandweb.co.uk/m2"
+        }
+    },
+    "require": {
+        "magento/framework": "^100.0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.5"
+    },
+    "type": "magento2-module"
 }
