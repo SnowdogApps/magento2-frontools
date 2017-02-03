@@ -20,7 +20,7 @@
     "gulp-concat": "~2.6.1",
     "gulp-eslint": "~3.0.1",
     "gulp-if": "~2.0.2",
-    "gulp-load-plugins": "~1.4.0",
+    "gulp-load-plugins": "~1.5.0",
     "gulp-logger": "~0.0.2",
     "gulp-multi-dest": "~0.0.4",
     "gulp-notify": "~2.2.0",
