@@ -34,7 +34,7 @@
     "gulp-task-loader": "~1.4.4",
     "gulp-uglify": "~2.0.0",
     "gulp-util": "~3.0.8",
-    "js-yaml": "~3.7.0",
+    "js-yaml": "~3.8.0",
     "marked": "~0.3.6",
     "marked-terminal": "~2.0.0",
     "postcss-reporter": "~3.0.0",
