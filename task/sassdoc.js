@@ -19,7 +19,6 @@ module.exports = function() { // eslint-disable-line func-names
 			  };
 
 	    theme.locale.forEach(locale => {
-	      
 	     	gulp.src(config.projectPath + theme.src + '/styles/**/*.scss')
 	      	.pipe(sassdoc(options));
 	    });
