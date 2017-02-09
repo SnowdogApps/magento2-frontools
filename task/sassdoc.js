@@ -11,10 +11,10 @@ module.exports = function() { // eslint-disable-line func-names
 
     const theme = config.themes[name],
           options = {
-      dest: config.projectPath + theme.src + '/docs',
-      verbose: true,
-      descriptionPath: config.projectPath + theme.src + '/README.md'
-    };
+            dest: config.projectPath + theme.src + '/docs',
+            verbose: true,
+            descriptionPath: config.projectPath + theme.src + '/README.md'
+          };
 
     gulp.src(config.projectPath + theme.src + '/styles/**/*.scss')
     .pipe(sassdoc(options));
