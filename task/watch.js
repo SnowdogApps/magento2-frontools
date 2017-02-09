@@ -22,14 +22,14 @@ module.exports = function() { // eslint-disable-line func-names
       );
 
       const files = plugins.globby.sync([
-              srcBase + '/**/*.' + theme.lang,
-              '!/**/_*.' + theme.lang,
+              srcBase + '/**/*.scss',
+              '!/**/_*.scss',
               '!**/node_modules/**'
             ]),
             dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
       files.forEach(file => {
-        const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, file);
+        const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
         gulp.watch(
           Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
           event => {
@@ -55,14 +55,14 @@ module.exports = function() { // eslint-disable-line func-names
         );
 
         const files = plugins.globby.sync([
-                srcBase + '/' + locale + '/**/*.' + theme.lang,
-                '!/**/_*.' + theme.lang,
+                srcBase + '/' + locale + '/**/*.scss',
+                '!/**/_*.scss',
                 '!**/node_modules/**'
               ]),
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
         files.forEach(file => {
-          const compiler = require('../helper/' + theme.lang)(gulp, plugins, config, name, file, locale);
+          const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
           gulp.watch(
             Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
             event => {
@@ -80,13 +80,11 @@ module.exports = function() { // eslint-disable-line func-names
 
     if (!plugins.util.env.disableLinting) {
       // SASS Lint
-      if (theme.lang === 'scss') {
-        gulp.watch(srcBase + '/**/*.scss', event => {
-          require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
-        });
-      }
+      gulp.watch(plugins.globby.sync(srcBase + '/**/*.scss'), event => {
+        require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
+      });
       // CSS Lint
-      gulp.watch(config.projectPath + theme.dest + '/**/*.css', event => {
+      gulp.watch(plugins.globby.sync(config.projectPath + theme.dest + '/**/*.css'), event => {
         require('../helper/css-lint')(gulp, plugins, config, name, event.path)();
       });
     }
