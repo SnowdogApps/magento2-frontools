@@ -4,7 +4,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   return () => {
     const theme       = config.themes[name],
           srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-          stylesDir   = theme.stylesDir ? '/' + theme.stylesDir : '/styles',
+          stylesDir   = theme.stylesDir ? theme.stylesDir : 'styles',
           disableMaps = plugins.util.env.disableMaps || false,
           production  = plugins.util.env.prod || false,
           postcss     = [];
@@ -16,6 +16,16 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     }
     else {
       postcss.push(plugins.autoprefixer());
+    }
+
+    function adjustDestinationDirectory(file) {
+      if (file.dirname.startsWith(stylesDir)) {
+        file.dirname = file.dirname.replace(stylesDir, 'css');
+      }
+      else {
+        file.dirname = file.dirname.replace('/' + stylesDir, '');
+      }
+      return file;
     }
 
     if (!theme.localeOverwrites) {
@@ -35,14 +45,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
         .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
-        .pipe(plugins.rename(path => {
-          if ('/' + path.dirname === stylesDir) {
-            path.dirname = 'css';
-          }
-          else {
-            path.dirname = path.dirname.replace(stylesDir, '');
-          }
-        }))
+        .pipe(plugins.rename(adjustDestinationDirectory))
         .pipe(plugins.multiDest(dest))
         .pipe(plugins.logger({
           display   : 'name',
@@ -64,14 +67,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
           .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
-          .pipe(plugins.rename(path => {
-            if ('/' + path.dirname === stylesDir) {
-              path.dirname = 'css';
-            }
-            else {
-              path.dirname = path.dirname.replace(stylesDir, '');
-            }
-          }))
+          .pipe(plugins.rename(adjustDestinationDirectory))
           .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
           .pipe(plugins.logger({
             display   : 'name',
