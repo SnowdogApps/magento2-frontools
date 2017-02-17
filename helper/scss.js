@@ -35,6 +35,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
         .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
+        .pipe(plugins.rename(path => {
+          if (path.dirname !== '.') {
+            path.dirname = path.dirname.replace(stylesDir, '');
+          }
+        }))
         .pipe(plugins.multiDest(dest))
         .pipe(plugins.logger({
           display   : 'name',
@@ -56,6 +61,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
           .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
+          .pipe(plugins.rename(path => {
+            if (path.dirname !== '.') {
+              path.dirname = path.dirname.replace(stylesDir, '');
+            }
+          }))
           .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale + '/css'))
           .pipe(plugins.logger({
             display   : 'name',

@@ -16,10 +16,14 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     ).forEach(srcPath => {
       let destPath = dest + srcPath;
       // Iterate through all replace patterns and apply them
-      replacePattern.forEach(replace => {
-        destPath = destPath.replace(replace, '')
-      });
-
+      if (Array.isArray(replacePattern)) {
+        replacePattern.forEach(replace => {
+          destPath = destPath.replace(replace[0], replace[1]);
+        });
+      }
+      else {
+        destPath = destPath.replace(replacePattern, '');
+      }
       createSymlink(srcPath, destPath);
     });
   }
@@ -48,6 +52,20 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     // Clean destination dir before generating new symlinks
     plugins.fs.removeSync(themeDest);
 
+    // Create symlinks for theme modules
+    if (theme.modules) {
+      Object.keys(theme.modules).forEach(name => {
+        const moduleSrc = config.projectPath + theme.modules[name];
+        generateSymlinks(
+          moduleSrc,
+          themeDest,
+          [
+            [moduleSrc, '/' + name]
+          ]
+        );
+      });
+    }
+
     // Create symlinks for themes without any per locale modifcations (default)
     if (!theme.localeOverwrites) {
       if (theme.parent) {
@@ -55,11 +73,11 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
           + 'var/view_preprocessed/frontools'
           + config.themes[theme.parent].dest.replace('pub/static', '');
 
-        generateSymlinks(parentSrc, themeDest, [parentSrc]);
+        generateSymlinks(parentSrc, themeDest, parentSrc);
       }
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-      generateSymlinks(themeSrc, themeDest, [themeSrc]);
+      generateSymlinks(themeSrc, themeDest, themeSrc);
     }
     // Create symlinks for themes with per locale modifcations
     else {
@@ -74,7 +92,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
           generateSymlinks(
             parentSrc,
             themeDest + '/' + locale,
-            [parentSrc],
+            parentSrc,
             ['!/**/i18n/**']
           );
         }
@@ -83,7 +101,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
         generateSymlinks(
           themeSrc,
           themeDest + '/' + locale,
-          [themeSrc],
+          themeSrc,
           ['!/**/i18n/**']
         );
 
@@ -91,7 +109,10 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
         generateSymlinks(
           themeSrc + '/**/i18n/' + locale,
           themeDest + '/' + locale,
-          [themeSrc, '/i18n/' + locale]
+          [
+            [themeSrc, ''],
+            ['/i18n/' + locale, '']
+          ]
         );
       });
     }

@@ -1192,7 +1192,7 @@ eslint@^2.7.0:
     text-table "~0.2.0"
     user-home "^2.0.0"
 
-eslint@^3.0.0, eslint@~3.15.0:
+eslint@^3.0.0:
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.15.0.tgz#bdcc6a6c5ffe08160e7b93c066695362a91e30f2"
   dependencies:
