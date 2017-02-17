@@ -1,7 +1,9 @@
 {
-  "devDependencies": {
-    "eslint-config-idiomatic": "~2.1.0",
-    "gulp": "~3.9.1",
-    "gulp-eslint": "~3.0.1"
+  "scripts": {
+    "eslint": "./node_modules/eslint/bin/eslint.js ../*.js ../helper/*.js ../task/*.js --config .eslintrc"
+  },
+  "dependencies": {
+    "eslint": "~3.15.0",
+    "eslint-config-idiomatic": "~3.1.0"
   }
 }

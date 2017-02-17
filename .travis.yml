@@ -1,11 +1,11 @@
 language: node_js
 node_js: 6
 cache:
+  yarn: true
   directories:
   - __test__/node_modules
 install:
   - cd __test__
-  - npm install -g gulp-cli
-  - npm install
+  - yarn
 script:
-  - gulp eslint
+  - yarn run eslint
