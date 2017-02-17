@@ -21,12 +21,12 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     if (!theme.localeOverwrites) {
       let dest = [];
       theme.locale.forEach(locale => {
-        dest.push(config.projectPath + theme.dest + '/' + locale + '/css');
+        dest.push(config.projectPath + theme.dest + '/' + locale);
       });
 
       return gulp.src(
           file || srcBase + '/**/*.scss',
-          { base: srcBase + stylesDir }
+          { base: srcBase }
         )
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
@@ -36,7 +36,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
         .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
         .pipe(plugins.rename(path => {
-          if (path.dirname !== '.') {
+          if ('/' + path.dirname === stylesDir) {
+            path.dirname = 'css';
+          }
+          else {
             path.dirname = path.dirname.replace(stylesDir, '');
           }
         }))
@@ -52,7 +55,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       theme.locale.forEach(locale => {
         return gulp.src(
             file || srcBase + '/' + locale + '/**/*.scss',
-            { base: srcBase + '/' + locale + stylesDir }
+            { base: srcBase + '/' + locale }
           )
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
@@ -62,11 +65,14 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
           .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
           .pipe(plugins.rename(path => {
-            if (path.dirname !== '.') {
+            if ('/' + path.dirname === stylesDir) {
+              path.dirname = 'css';
+            }
+            else {
               path.dirname = path.dirname.replace(stylesDir, '');
             }
           }))
-          .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale + '/css'))
+          .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
           .pipe(plugins.logger({
             display   : 'name',
             beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
