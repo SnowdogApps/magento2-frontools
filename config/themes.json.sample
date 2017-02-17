@@ -4,14 +4,14 @@
     "dest": "pub/static/frontend/Snowdog/blank",
     "locale": ["en_US"]
   },
-  "basc-child": {
+  "basic-child": {
     "src": "vendor/snowdog/theme-basic-child",
     "dest": "pub/static/frontend/Snowdog/basic-child",
     "locale": ["en_US"],
     "parent": "blank"
   },
   "child-with-locale-overwrites": {
-    "src": "vendor/snowdog/custom",
+    "src": "vendor/snowdog/theme-custom",
     "dest": "pub/static/frontend/Snowdog/child-with-locale-overwrites",
     "locale": ["en_US", "pl_PL"],
     "localeOverwrites": true,
