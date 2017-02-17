@@ -24,6 +24,9 @@
     "localeOverwrites": true,
     "parent": "blank",
     "stylesDir": "web/css",
-    "postcss": ["plugins.autoprefixer()"]
+    "postcss": ["plugins.autoprefixer()"],
+    "modules": {
+      "Snowdog_Sample: "vendor/snowdog/module-sample"
+    }
   }
 }
