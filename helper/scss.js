@@ -4,7 +4,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   return () => {
     const theme       = config.themes[name],
           srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-          stylesDir   = theme.stylesDir ? '/' + theme.stylesDir : '/styles',
+          stylesDir   = theme.stylesDir ? theme.stylesDir : 'styles',
           disableMaps = plugins.util.env.disableMaps || false,
           production  = plugins.util.env.prod || false,
           postcss     = [];
@@ -18,15 +18,25 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       postcss.push(plugins.autoprefixer());
     }
 
+    function adjustDestinationDirectory(file) {
+      if (file.dirname.startsWith(stylesDir)) {
+        file.dirname = file.dirname.replace(stylesDir, 'css');
+      }
+      else {
+        file.dirname = file.dirname.replace('/' + stylesDir, '');
+      }
+      return file;
+    }
+
     if (!theme.localeOverwrites) {
       let dest = [];
       theme.locale.forEach(locale => {
-        dest.push(config.projectPath + theme.dest + '/' + locale + '/css');
+        dest.push(config.projectPath + theme.dest + '/' + locale);
       });
 
       return gulp.src(
           file || srcBase + '/**/*.scss',
-          { base: srcBase + stylesDir }
+          { base: srcBase }
         )
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
@@ -35,6 +45,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
         .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
+        .pipe(plugins.rename(adjustDestinationDirectory))
         .pipe(plugins.multiDest(dest))
         .pipe(plugins.logger({
           display   : 'name',
@@ -47,7 +58,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       theme.locale.forEach(locale => {
         return gulp.src(
             file || srcBase + '/' + locale + '/**/*.scss',
-            { base: srcBase + '/' + locale + stylesDir }
+            { base: srcBase + '/' + locale }
           )
           .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
@@ -56,7 +67,8 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
           .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
           .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
-          .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale + '/css'))
+          .pipe(plugins.rename(adjustDestinationDirectory))
+          .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
           .pipe(plugins.logger({
             display   : 'name',
             beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
