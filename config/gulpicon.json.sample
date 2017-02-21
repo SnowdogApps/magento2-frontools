@@ -1,0 +1,17 @@
+{
+  "datasvgcss": "_components.icons-data-svg.scss",
+  "datapngcss": "_components.icons-data-png.scss",
+  "urlpngcss": "_components.icons-url-png.scss",
+
+  "pngfolder": "png",
+  "cssprefix": ".icon-",
+  "defaultWidth": "28px",
+  "defaultHeight": "28px",
+  "compressPNG": true,
+  "enhanceSVG": true,
+
+  "themeSrc": "/web/icons/svg/",
+  "themeDest": "/web/css/",
+  "themeTemplate": "/web/icons/templates/default-css.hbs",
+  "themePreviewTemplate": "/web/icons/templates/preview-custom.hbs"
+}
