@@ -5,7 +5,7 @@
 
   "pngfolder": "png",
   "cssprefix": ".icon-",
-  "defaultWidth": "328px",
+  "defaultWidth": "28px",
   "defaultHeight": "28px",
   "compressPNG": true,
   "enhanceSVG": true,
