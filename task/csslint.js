@@ -13,7 +13,7 @@ module.exports = function() { // eslint-disable-line func-names
       + plugins.util.colors.blue(name) + ' '
       + plugins.util.colors.green('theme...')
     );
-    streams.add('../helper/css-lint')(gulp, plugins, config, name);
+    streams.add(require('../helper/css-lint')(gulp, plugins, config, name));
   });
 
   return streams;
