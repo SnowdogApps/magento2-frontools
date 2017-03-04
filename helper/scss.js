@@ -33,12 +33,22 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     });
 
     return gulp.src(
-        file || srcBase + '/**/*.scss',
-        { base: srcBase }
+      file || srcBase + '/**/*.scss',
+      { base: srcBase }
+    )
+      .pipe(
+        plugins.if(
+          !plugins.util.env.ci,
+          plugins.plumber({
+            errorHandler: plugins.notify.onError('Error: <%= error.message %>')
+          })
+        )
       )
-      .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
       .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
-      .pipe(plugins.sass())
+      .pipe(
+        plugins.sass()
+          .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
+      )
       .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
       .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
       .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
@@ -60,21 +70,31 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           file || srcBase + '/' + locale + '/**/*.scss',
           { base: srcBase + '/' + locale }
         )
-        .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
-        .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
-        .pipe(plugins.sass())
-        .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
-        .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
-        .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
-        .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
-        .pipe(plugins.rename(adjustDestinationDirectory))
-        .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
-        .pipe(plugins.logger({
-          display   : 'name',
-          beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
-          afterEach : ' Compiled!'
-        }))
-        .pipe(plugins.browserSync.stream())
+        .pipe(
+            plugins.if(
+              !plugins.util.env.ci,
+              plugins.plumber({
+                errorHandler: plugins.notify.onError('Error: <%= error.message %>')
+              })
+            )
+          )
+          .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
+          .pipe(
+            plugins.sass()
+              .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
+          )
+          .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
+          .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
+          .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write()))
+          .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
+          .pipe(plugins.rename(adjustDestinationDirectory))
+          .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
+          .pipe(plugins.logger({
+            display   : 'name',
+            beforeEach: 'Theme: ' + name + ' Locale: ' + locale + ' ',
+            afterEach : ' Compiled!'
+          }))
+          .pipe(plugins.browserSync.stream())
       );
     });
     return streams;
