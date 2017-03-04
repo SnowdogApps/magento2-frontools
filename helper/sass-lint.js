@@ -14,9 +14,9 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     .pipe(plugins.sassLint(sassLintConfig))
     .pipe(plugins.sassLint.format())
     .pipe(plugins.if(plugins.util.env.ci, plugins.sassLint.failOnError()))
-    .pipe(plugins.if(file, plugins.logger({
+    .pipe(plugins.logger({
       display   : 'name',
       beforeEach: 'Theme: ' + name + ' ' + 'File: ',
       afterEach : ' - SASS Lint finished.'
-    })));
+    }));
 };
