@@ -1841,6 +1841,12 @@ gulp-rimraf@~0.2.1:
     rimraf "^2.5.4"
     through2 "^2.0.1"
 
+gulp-sass-error@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/gulp-sass-error/-/gulp-sass-error-1.0.4.tgz#5a959a4e9cd1ce1f7a7d645bdb24be35e1e0f541"
+  dependencies:
+    gulp-util "^3.0.7"
+
 gulp-sass-lint@~1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/gulp-sass-lint/-/gulp-sass-lint-1.3.2.tgz#642094c5fe9b9196872f33a0d1f75ccf51cb8361"
@@ -2756,7 +2762,7 @@ meow@^3.3.0, meow@^3.7.0:
     redent "^1.0.0"
     trim-newlines "^1.0.0"
 
-merge-stream@^1.0.0, merge-stream@^1.0.1:
+merge-stream@^1.0.0, merge-stream@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
   dependencies:
