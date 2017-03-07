@@ -1,8 +1,6 @@
 'use strict';
-
-const path = require('path');
-
 module.exports = function(plugins, config, name) { // eslint-disable-line func-names
+  const path = require('path');
   function createSymlink(srcPath, destPath) {
     try {
       plugins.fs.ensureFileSync(destPath);
