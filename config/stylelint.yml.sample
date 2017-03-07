@@ -1,18 +1,14 @@
+extends: stylelint-config-standard
 rules:
-  color-no-invalid-hex: true
-  time-no-imperceptible: true
-  # declaration-block-no-duplicate-properties: true #to do - too many errors
-  declaration-block-no-ignored-properties: true
-  # declaration-block-no-shorthand-property-overrides: true #to do - too many errors
-  block-no-empty: true
-  # selector-no-attribute: true # to do - too many errors
-  selector-no-id: true
-  no-unknown-animations: true
-  no-browser-hacks:
-    - true
-    -
-      browsers: '> 1%, last 2 versions, not ie < 11, not OperaMini >= 5.0'
-  # no-unsupported-browser-features:
-  #   - true # to do - too many errors
-  #   -
-  #     browsers: '> 1%, last 2 versions, not ie < 11, not OperaMini >= 5.0'
+  at-rule-empty-line-before: null
+  block-closing-brace-newline-before: null
+  indentation: null
+  rule-empty-line-before: null
+  selector-list-comma-newline-after: null
+  selector-pseudo-element-colon-notation: null
+  selector-descendant-combinator-no-non-space: null
+  shorthand-property-no-redundant-values: null
+  declaration-block-no-shorthand-property-overrides: null
+  declaration-block-no-duplicate-properties: null
+  comment-empty-line-before: null
+  color-hex-length: null

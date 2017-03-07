@@ -8,6 +8,7 @@ const plugins = require('gulp-load-plugins')({
           'gulp-multi-dest' : 'multiDest',
           'js-yaml'         : 'yaml',
           'marked-terminal' : 'markedTerminal',
+          'merge-stream'    : 'mergeStream',
           'postcss-reporter': 'reporter',
           'run-sequence'    : 'runSequence'
         }
