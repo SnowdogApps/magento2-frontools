@@ -1,5 +1,6 @@
 'use strict';
 module.exports = function(plugins, config, name) { // eslint-disable-line func-names
+  const path = require('path');
   function createSymlink(srcPath, destPath) {
     try {
       plugins.fs.ensureFileSync(destPath);
@@ -11,10 +12,19 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   }
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
+    src = path.normalize(src);
+    dest = path.normalize(dest);
+    if (Array.isArray(replacePattern)) {
+      replacePattern = replacePattern.map(path.normalize);
+    }
+    else {
+      replacePattern = path.normalize(replacePattern);
+    }
+
     plugins.globby.sync(
       [src + '/**/*.scss', '!/.test'].concat(ignore)
     ).forEach(srcPath => {
-      let destPath = dest + srcPath;
+      let destPath = path.join(dest, srcPath);
       // Iterate through all replace patterns and apply them
       if (Array.isArray(replacePattern)) {
         replacePattern.forEach(replace => {
