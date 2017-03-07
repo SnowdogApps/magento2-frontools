@@ -18,8 +18,8 @@ Up from version 1.0.0 we are supporting both Node.js packages managers. If you w
 * Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
 
 ## Installation
-1. Run `composer require snowdog/frontools`
-2. Go to package directory `/vendor/snowdog/frontools`
+1. Run `composer require ampersand/magento2-frontools`
+2. Go to package directory `/vendor/ampersand/magento2-frontools`
 3. Run `npm install` or `yarn`
 4. Decide where you want to keep your config files.
 You can store them in frontools `config` dir or `/dev/tools/frontools/config`.
@@ -65,7 +65,7 @@ Check `config/themes.json.sample` to get samples
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
   * `--theme name` - Process single theme
   * `--ci - Enable throwing errors, useful in CI/CD pipelines`
-* `setup` - Creates a convenient symlink from `/tools` to `/vendor/snowdog/frontools` and copies all sample files if no configuration exists
+* `setup` - Creates a convenient symlink from `/tools` to `/vendor/ampersand/magento2-frontools` and copies all sample files if no configuration exists
   * `--symlink name` - if you don't want to use `tools` as the symlink you can specify another name
 * `styles` - Use this task to manually trigger styles processing pipeline
   * `--theme name` - Process single theme
