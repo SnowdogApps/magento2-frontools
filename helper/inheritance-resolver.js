@@ -1,6 +1,6 @@
 'use strict';
 
-let path = require('path');
+const path = require('path');
 
 module.exports = function(plugins, config, name) { // eslint-disable-line func-names
   function createSymlink(srcPath, destPath) {
