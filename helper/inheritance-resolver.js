@@ -11,8 +11,17 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   }
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
+    var themeIgnoreFiles = [];
+    // Iterate through the config.themes to grab any ignored paths that
+    // themers want to be excluded from the gulp.src() and sass compilation
+    Object.keys(config.themes).forEach(name => {
+      var ignored = config.themes[name].ignore ? config.themes[name].ignore : [];
+      themeIgnoreFiles = themeIgnoreFiles.concat(ignored);
+    });
+
     plugins.globby.sync(
-      [src + '/**/*.scss', '!/.test'].concat(ignore)
+      // Create an array of paths to symlink or ignore/exclude
+      [src + '/**/*.scss', '!/.test'].concat(ignore).concat(themeIgnoreFiles)
     ).forEach(srcPath => {
       let destPath = dest + srcPath;
       // Iterate through all replace patterns and apply them
