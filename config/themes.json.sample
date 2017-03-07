@@ -27,6 +27,7 @@
     "postcss": ["plugins.autoprefixer()"],
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"
-    }
+    },
+    "ignore": [ "!**/docs/**/*.scss" ]
   }
 }
