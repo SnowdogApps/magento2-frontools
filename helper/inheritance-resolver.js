@@ -18,7 +18,8 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     dest = path.normalize(dest);
     if (Array.isArray(replacePattern)) {
       replacePattern = replacePattern.map(path.normalize);
-    } else {
+    }
+    else {
       replacePattern = path.normalize(replacePattern);
     }
 
