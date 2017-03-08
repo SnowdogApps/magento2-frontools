@@ -23,7 +23,3 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
         .pipe(gulp.dest(minnedImageDir));
   }
 };
-Put imageMin config into external file
-
-Adds a try-catch so that if the user doesn't have a config file set up
-then they will get some default config options.

@@ -60,6 +60,7 @@ Check `config/themes.json.sample` to get samples
   * `--prod` - Production output - minifies styles and add `.min` sufix
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js
+* `imageMin` - minifies images within the `app/design/frontend/<Vendor>/<theme>/web/images` directory in place
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make base for styles processing. You have to run in before sytles compilation and after adding new files.
 * `release` - Clean `pub/static`, deploy all necessary files and compiles everything with `--prod` flag. Makes code production ready.
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests
