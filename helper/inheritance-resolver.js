@@ -14,8 +14,15 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
     src = path.normalize(src);
     dest = path.normalize(dest);
+
     if (Array.isArray(replacePattern)) {
-      replacePattern = replacePattern.map(path.normalize);
+      replacePattern = replacePattern.map(pattern => {
+        pattern[0] = path.normalize(pattern[0]);
+        if (pattern[1] !== '') {
+          pattern[1] = path.normalize(pattern[1]);
+        }
+        return pattern;
+      });
     }
     else {
       replacePattern = path.normalize(replacePattern);
@@ -61,7 +68,6 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
     // Clean destination dir before generating new symlinks
     plugins.fs.removeSync(themeDest);
-
 
     // Create symlinks for themes without any per locale modifcations (default)
     if (!theme.localeOverwrites) {
