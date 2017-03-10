@@ -13,6 +13,11 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
 
     return gulp.src(imageDir)
         .pipe(plugins.imagemin(imageMinConfig))
-        .pipe(gulp.dest(minnedImageDir));
+        .pipe(gulp.dest(minnedImageDir))
+        .pipe(plugins.logger({
+          display   : 'name',
+          beforeEach: 'Theme: ' + name + ', ' + 'File: ',
+          afterEach : ' - Imagemin finished.'
+        }));
   }
 };
