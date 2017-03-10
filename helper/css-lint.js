@@ -19,7 +19,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       ]))
       .pipe(plugins.logger({
         display   : 'name',
-        beforeEach: 'Theme: ' + name + ' ' + 'File: ',
+        beforeEach: 'Theme: ' + name + ', ' + 'File: ',
         afterEach : ' - CSS Lint finished.'
       }));
   }
