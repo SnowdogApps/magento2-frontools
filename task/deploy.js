@@ -1,45 +1,48 @@
 'use strict';
 module.exports = function() { // eslint-disable-line func-names
   // Global variables
-  const plugins  = this.opts.plugins,
-        config   = this.opts.configs,
-        themes   = plugins.getThemes(),
-        prod     = plugins.util.env.prod || false;
+  const plugins = this.opts.plugins,
+        config  = this.opts.configs,
+        themes  = plugins.getThemes(),
+        prod    = plugins.util.env.prod || false;
 
-  themes.forEach(name => {
-    const theme = config.themes[name];
-    theme.locale.forEach(locale => {
-      const src       = config.projectPath + theme.src,
-            dest      = config.projectPath + theme.dest + '/' + locale,
-            srcPaths  = plugins.globby.sync(src + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' });
+  plugins.runSequence('inheritance', 'clean', () => {
+    themes.forEach(name => {
+      const theme = config.themes[name];
+      if (!theme.localeOverwrites) {
+        const src  = config.tempPath + theme.dest.replace('pub/static', ''),
+              dest = config.projectPath + theme.dest;
 
-      if (theme.parent) {
-        const parentTheme     = config.themes[theme.parent],
-              parentSrc       = config.projectPath + parentTheme.src,
-              parentSrcPaths  = plugins.globby.sync(parentSrc + '/**/web/**', { nodir: true, ignore: '/**/node_modules/**' });
+        plugins.globby.sync(
+          src + '/**/web/**',
+          { nodir: true }
+        ).forEach(srcPath => {
+          theme.locale.forEach(locale => {
+            const destPath = dest + '/' + locale + srcPath
+              .replace(src, '')
+              .replace('web/', '');
 
-        parentSrcPaths.forEach(srcPath => {
-          const destPath = dest + srcPath.replace(parentSrc, '').replace('/web', '');
-          try {
-            plugins.fs.ensureFileSync(destPath);
-            plugins.fs.unlinkSync(destPath);
-          }
-          finally {
-            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.symlinkSync(srcPath, destPath);
-          }
+            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.ensureSymlinkSync(srcPath, destPath);
+          });
         });
       }
+      else {
+        theme.locale.forEach(locale => {
+          const src  = config.tempPath + theme.dest.replace('pub/static', '') + '/' + locale,
+                dest = config.projectPath + theme.dest;
 
-      srcPaths.forEach(srcPath => {
-        const destPath = dest + srcPath.replace(src, '').replace('/web', '');
-        try {
-          plugins.fs.ensureFileSync(destPath);
-          plugins.fs.unlinkSync(destPath);
-        }
-        finally {
-          prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.symlinkSync(srcPath, destPath);
-        }
-      });
+          plugins.globby.sync(
+            src + '/**/web/**',
+            { nodir: true }
+          ).forEach(srcPath => {
+            const destPath = dest + '/' + locale + srcPath
+              .replace(src, '')
+              .replace('web/', '');
+
+            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.ensureSymlinkSync(srcPath, destPath);
+          });
+        });
+      }
     });
   });
 };

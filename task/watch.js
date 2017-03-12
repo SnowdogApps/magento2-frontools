@@ -6,7 +6,6 @@ module.exports = function() { // eslint-disable-line func-names
         config  = this.opts.configs,
         themes  = plugins.getThemes();
 
-
   themes.forEach(name => {
     const theme = config.themes[name],
           srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', '');

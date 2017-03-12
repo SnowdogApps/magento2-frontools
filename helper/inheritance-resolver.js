@@ -57,9 +57,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   themeDependencyTree(name).forEach(themeName => {
     const theme = config.themes[themeName],
           themeSrc = config.projectPath + theme.src,
-          themeDest = config.projectPath
-            + 'var/view_preprocessed/frontools'
-            + theme.dest.replace('pub/static', '');
+          themeDest = config.tempPath + theme.dest.replace('pub/static', '');
 
     // Clean destination dir before generating new symlinks
     plugins.fs.removeSync(themeDest);
@@ -81,10 +79,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       }
 
       if (theme.parent) {
-        const parentSrc = config.projectPath
-          + 'var/view_preprocessed/frontools'
-          + config.themes[theme.parent].dest.replace('pub/static', '');
-
+        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
         generateSymlinks(parentSrc, themeDest, parentSrc);
       }
 
@@ -112,10 +107,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
         // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
         if (theme.parent) {
-          const parentSrc = config.projectPath
-            + 'var/view_preprocessed/frontools'
-            + config.themes[theme.parent].dest.replace('pub/static', '');
-
+          const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
           generateSymlinks(
             parentSrc,
             themeDest + '/' + locale,
