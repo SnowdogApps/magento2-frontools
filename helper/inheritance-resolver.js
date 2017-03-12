@@ -1,15 +1,7 @@
 'use strict';
 module.exports = function(plugins, config, name) { // eslint-disable-line func-names
-  const path = require('path');
-  function createSymlink(srcPath, destPath) {
-    try {
-      plugins.fs.ensureFileSync(destPath);
-      plugins.fs.unlinkSync(destPath);
-    }
-    finally {
-      plugins.fs.symlinkSync(srcPath, destPath);
-    }
-  }
+  const path        = require('path'),
+        ignorePaths = config.themes[name].ignore || [];
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
     src = path.normalize(src);
@@ -29,7 +21,10 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     }
 
     plugins.globby.sync(
-      [src + '/**/*.scss', '!/.test'].concat(ignore)
+      [src + '/**']
+        .concat(ignorePaths.map(pattern => '!/**/' + pattern))
+        .concat(ignore.map(pattern => '!/**/' + pattern + '/**')),
+      { nodir: true }
     ).forEach(srcPath => {
       let destPath = path.join(dest, srcPath);
       // Iterate through all replace patterns and apply them
@@ -41,7 +36,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       else {
         destPath = destPath.replace(replacePattern, '');
       }
-      createSymlink(srcPath, destPath);
+      plugins.fs.ensureSymlinkSync(srcPath, destPath);
     });
   }
 
@@ -71,7 +66,6 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
 
     // Create symlinks for themes without any per locale modifcations (default)
     if (!theme.localeOverwrites) {
-
       // Create symlinks for theme modules
       if (theme.modules) {
         Object.keys(theme.modules).forEach(name => {
@@ -111,7 +105,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
               [
                 [moduleSrc, '/' + name]
               ],
-              ['!/**/i18n/**']
+              ['i18n']
             );
           });
         }
@@ -126,7 +120,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
             parentSrc,
             themeDest + '/' + locale,
             parentSrc,
-            ['!/**/i18n/**']
+            ['i18n']
           );
         }
 
@@ -135,7 +129,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
           themeSrc,
           themeDest + '/' + locale,
           themeSrc,
-          ['!/**/i18n/**']
+          ['i18n']
         );
 
         // Overwritte parent/current modules symlinks with locale specific files

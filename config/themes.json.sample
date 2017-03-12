@@ -2,7 +2,8 @@
   "blank": {
     "src": "vendor/snowdog/theme-blank-sass",
     "dest": "pub/static/frontend/Snowdog/blank",
-    "locale": ["en_US"]
+    "locale": ["en_US"],
+    "ignore": [".test"]
   },
   "basic-child": {
     "src": "vendor/snowdog/theme-basic-child",
@@ -27,6 +28,10 @@
     "postcss": ["plugins.autoprefixer()"],
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"
+    },
+    "ignore"" {
+      "vendor/snowdog/module-sample/{docs,dist}/**",
+      "*.xml"
     }
   }
 }
