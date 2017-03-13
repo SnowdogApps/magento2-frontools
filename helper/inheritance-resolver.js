@@ -1,15 +1,7 @@
 'use strict';
 module.exports = function(plugins, config, name) { // eslint-disable-line func-names
-  const path = require('path');
-  function createSymlink(srcPath, destPath) {
-    try {
-      plugins.fs.ensureFileSync(destPath);
-      plugins.fs.unlinkSync(destPath);
-    }
-    finally {
-      plugins.fs.symlinkSync(srcPath, destPath);
-    }
-  }
+  const path        = require('path'),
+        ignorePaths = config.themes[name].ignore || [];
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
     src = path.normalize(src);
@@ -29,7 +21,10 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     }
 
     plugins.globby.sync(
-      [src + '/**/*.scss', '!/.test'].concat(ignore)
+      [src + '/**']
+        .concat(ignorePaths.map(pattern => '!/**/' + pattern))
+        .concat(ignore.map(pattern => '!/**/' + pattern + '/**')),
+      { nodir: true }
     ).forEach(srcPath => {
       let destPath = path.join(dest, srcPath);
       // Iterate through all replace patterns and apply them
@@ -41,7 +36,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       else {
         destPath = destPath.replace(replacePattern, '');
       }
-      createSymlink(srcPath, destPath);
+      plugins.fs.ensureSymlinkSync(srcPath, destPath);
     });
   }
 
@@ -62,16 +57,13 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   themeDependencyTree(name).forEach(themeName => {
     const theme = config.themes[themeName],
           themeSrc = config.projectPath + theme.src,
-          themeDest = config.projectPath
-            + 'var/view_preprocessed/frontools'
-            + theme.dest.replace('pub/static', '');
+          themeDest = config.tempPath + theme.dest.replace('pub/static', '');
 
     // Clean destination dir before generating new symlinks
     plugins.fs.removeSync(themeDest);
 
     // Create symlinks for themes without any per locale modifcations (default)
     if (!theme.localeOverwrites) {
-
       // Create symlinks for theme modules
       if (theme.modules) {
         Object.keys(theme.modules).forEach(name => {
@@ -87,10 +79,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       }
 
       if (theme.parent) {
-        const parentSrc = config.projectPath
-          + 'var/view_preprocessed/frontools'
-          + config.themes[theme.parent].dest.replace('pub/static', '');
-
+        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
         generateSymlinks(parentSrc, themeDest, parentSrc);
       }
 
@@ -111,22 +100,19 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
               [
                 [moduleSrc, '/' + name]
               ],
-              ['!/**/i18n/**']
+              ['i18n']
             );
           });
         }
 
         // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
         if (theme.parent) {
-          const parentSrc = config.projectPath
-            + 'var/view_preprocessed/frontools'
-            + config.themes[theme.parent].dest.replace('pub/static', '');
-
+          const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
           generateSymlinks(
             parentSrc,
             themeDest + '/' + locale,
             parentSrc,
-            ['!/**/i18n/**']
+            ['i18n']
           );
         }
 
@@ -135,7 +121,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
           themeSrc,
           themeDest + '/' + locale,
           themeSrc,
-          ['!/**/i18n/**']
+          ['i18n']
         );
 
         // Overwritte parent/current modules symlinks with locale specific files
