@@ -20,7 +20,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
-    return gulp.src(file || srcBase + '/**/*.babel.js')
+    return gulp.src(
+      file || srcBase + '/**/*.babel.js',
+      { base: srcBase }
+    )
       .pipe(
         plugins.if(
           !plugins.util.env.ci,
@@ -46,7 +49,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     const streams = plugins.mergeStream();
     theme.locale.forEach(locale => {
       streams.add(
-        gulp.src(file || srcBase + '/' + locale + '/**/*.babel.js')
+        gulp.src(
+          file || srcBase + '/' + locale + '/**/*.babel.js',
+          { base: srcBase + '/' + locale }
+        )
           .pipe(
             plugins.if(
               !plugins.util.env.ci,
