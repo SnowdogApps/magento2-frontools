@@ -27,15 +27,12 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   }
 
   if (!theme.localeOverwrites) {
-    let dest = [];
+    const dest = [];
     theme.locale.forEach(locale => {
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
-    return gulp.src(
-      file || srcBase + '/**/*.scss',
-      { base: srcBase }
-    )
+    return gulp.src(file || srcBase + '/**/*.scss')
       .pipe(
         plugins.if(
           !plugins.util.env.ci,
@@ -66,11 +63,8 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     const streams = plugins.mergeStream();
     theme.locale.forEach(locale => {
       streams.add(
-        gulp.src(
-          file || srcBase + '/' + locale + '/**/*.scss',
-          { base: srcBase + '/' + locale }
-        )
-        .pipe(
+        gulp.src(file || srcBase + '/' + locale + '/**/*.scss')
+          .pipe(
             plugins.if(
               !plugins.util.env.ci,
               plugins.plumber({
