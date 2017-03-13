@@ -32,7 +32,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
-    return gulp.src(file || srcBase + '/**/*.scss')
+    return gulp.src(
+      file || srcBase + '/**/*.scss',
+      { base: srcBase }
+    )
       .pipe(
         plugins.if(
           !plugins.util.env.ci,
@@ -63,7 +66,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     const streams = plugins.mergeStream();
     theme.locale.forEach(locale => {
       streams.add(
-        gulp.src(file || srcBase + '/' + locale + '/**/*.scss')
+        gulp.src(
+          file || srcBase + '/' + locale + '/**/*.scss',
+          { base: srcBase + '/' + locale }
+        )
           .pipe(
             plugins.if(
               !plugins.util.env.ci,
