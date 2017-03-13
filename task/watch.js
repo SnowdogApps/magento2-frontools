@@ -86,12 +86,22 @@ module.exports = function() { // eslint-disable-line func-names
       });
     }
 
+    // Babel
+    gulp.watch(plugins.globby.sync(srcBase + '/**/*.babel.js'), event => {
+      plugins.util.log(
+        plugins.util.colors.green('File') + ' '
+        + plugins.util.colors.blue(event.path.replace(config.tempPath, '')) + ' '
+        + plugins.util.colors.green('changed.')
+      );
+      require('../helper/babel')(gulp, plugins, config, name, event.path);
+    });
+
     // Watching files that require reload after save
     gulp.watch(
       // I'm usng globby manually, b/c it's a loooot faster
       plugins.globby.sync([
         config.projectPath + theme.src + '/**/*.{html,phtml,xml,csv,js}',
-        '!/**/node_modules/**'
+        '!/**/*.babel.js'
       ]),
       event => {
         plugins.util.log(
