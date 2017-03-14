@@ -3,6 +3,11 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   const path        = require('path'),
         ignorePaths = config.themes[name].ignore || [];
 
+  function createSymlink(srcPath, destPath) {
+    plugins.fs.removeSync(destPath);
+    plugins.fs.ensureSymlinkSync(srcPath, destPath);
+  }
+
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
     src = path.normalize(src);
     dest = path.normalize(dest);
@@ -36,7 +41,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
       else {
         destPath = destPath.replace(replacePattern, '');
       }
-      plugins.fs.ensureSymlinkSync(srcPath, destPath);
+      createSymlink(srcPath, destPath);
     });
   }
 
