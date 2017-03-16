@@ -29,9 +29,9 @@
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"
     },
-    "ignore"" {
+    "ignore": [
       "vendor/snowdog/module-sample/{docs,dist}/**",
       "*.xml"
-    }
+    ]
   }
 }
