@@ -30,6 +30,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         )
         .pipe(plugins.plumber({ errorHandler: plugins.notify.onError('Error: <%= error.message %>') }))
         .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
+        .pipe(plugins.sassGlob())
         .pipe(plugins.sass())
         .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
         .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
