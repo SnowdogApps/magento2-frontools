@@ -24,6 +24,8 @@ module.exports = function() { // eslint-disable-line func-names
       const files = plugins.globby.sync([
               srcBase + '/**/*.scss',
               '!/**/_*.scss',
+              srcBase + '/**/*.extend.scss', // Included here as we can't run sassGlob
+              srcBase + '/**/*.theme.scss', // Included here as we can't run sassGlob
               '!**/node_modules/**'
             ]),
             dependencyTreeBuilder = require('../helper/dependency-tree-builder');
@@ -57,6 +59,8 @@ module.exports = function() { // eslint-disable-line func-names
         const files = plugins.globby.sync([
                 srcBase + '/' + locale + '/**/*.scss',
                 '!/**/_*.scss',
+                srcBase + '/' + locale + '/**/*.extend.scss', // Included here as we can't run sassGlob
+                srcBase + '/' + locale + '/**/*.theme.scss', // Included here as we can't run sassGlob
                 '!**/node_modules/**'
               ]),
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
