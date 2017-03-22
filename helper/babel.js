@@ -7,6 +7,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         production  = plugins.util.env.prod || false,
         babelConfig = {
           presets: require('babel-preset-env')
+          plugins: [
+            'babel-plugin-add-return-default-exports',
+            'babel-plugin-transform-es2015-modules-amd'
+          ].map(require.resolve)
         };
 
   function adjustDestinationDirectory(file) {

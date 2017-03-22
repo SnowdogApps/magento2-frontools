@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "~6.7.7",
+    "babel-plugin-add-return-default-exports": "^0.1.0",
     "babel-preset-env": "~1.2.1",
     "browser-sync": "~2.18.8",
     "cssnano": "~3.10.0",
