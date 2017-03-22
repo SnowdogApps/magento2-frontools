@@ -30,8 +30,21 @@ module.exports = function() { // eslint-disable-line func-names
 
       files.forEach(file => {
         const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
+
+        let dependencies = new Set(dependencyTreeBuilder(theme, file, plugins));
+
+        // Find our SCSS extend & theme paths, add them to our watch task.
+        let SCSSGlobPaths = plugins.globby.sync([
+          srcBase + '/**/*.extend.scss',
+          srcBase + '/**/*.theme.scss'
+        ]);
+
+        SCSSGlobPaths.forEach(file => {
+          dependencies.add(file);
+        });
+
         gulp.watch(
-          Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
+          Array.from(dependencies),
           event => {
             plugins.util.log(
               plugins.util.colors.green('File') + ' '
@@ -57,14 +70,28 @@ module.exports = function() { // eslint-disable-line func-names
         const files = plugins.globby.sync([
                 srcBase + '/' + locale + '/**/*.scss',
                 '!/**/_*.scss',
+                srcBase + '/' + locale + '/**/*.extend.scss', // Included here as we can't run sassGlob
+                srcBase + '/' + locale + '/**/*.theme.scss', // Included here as we can't run sassGlob
                 '!**/node_modules/**'
               ]),
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
+        let dependencies = new Set(dependencyTreeBuilder(theme, file, plugins));
+
+        // Find our SCSS extend & theme paths, add them to our watch task.
+        let SCSSGlobPaths = plugins.globby.sync([
+          srcBase + '/' + locale + '/**/*.extend.scss',
+          srcBase + '/' + locale + '/**/*.theme.scss'
+        ]);
+
+        SCSSGlobPaths.forEach(file => {
+          dependencies.add(file);
+        });
+
         files.forEach(file => {
           const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
           gulp.watch(
-            Array.from(new Set(dependencyTreeBuilder(theme, file, plugins))),
+            Array.from(dependencies),
             event => {
               plugins.util.log(
                 plugins.util.colors.green('File') + ' '
