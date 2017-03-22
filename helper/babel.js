@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         disableMaps = plugins.util.env.disableMaps || false,
         production  = plugins.util.env.prod || false,
         babelConfig = {
-          presets: require('babel-preset-env')
+          presets: require('babel-preset-env'),
           plugins: [
             'babel-plugin-add-return-default-exports',
             'babel-plugin-transform-es2015-modules-amd'
