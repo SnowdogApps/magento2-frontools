@@ -10,6 +10,10 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     gulpiconConfig.template        = config.projectPath + theme.src + gulpiconConfig.themeTemplate;
     gulpiconConfig.previewTemplate = config.projectPath + theme.src + gulpiconConfig.themePreviewTemplate;
 
-    return plugins.gulpicon(plugins.globby.sync(srcBase + gulpiconConfig.themeSrc + '*.svg'), gulpiconConfig)();
+    const iconFiles = plugins.globby.sync(srcBase + gulpiconConfig.themeSrc + '*.svg');
+
+    if(iconFiles.length) {
+        return plugins.gulpicon(iconFiles, gulpiconConfig)();
+    }
   }
 };
