@@ -33,16 +33,6 @@ module.exports = function() { // eslint-disable-line func-names
 
         let dependencies = new Set(dependencyTreeBuilder(theme, file, plugins));
 
-        // Find our SCSS extend & theme paths, add them to our watch task.
-        let SCSSGlobPaths = plugins.globby.sync([
-          srcBase + '/**/*.extend.scss',
-          srcBase + '/**/*.theme.scss'
-        ]);
-
-        SCSSGlobPaths.forEach(file => {
-          dependencies.add(file);
-        });
-
         gulp.watch(
           Array.from(dependencies),
           event => {
@@ -77,16 +67,6 @@ module.exports = function() { // eslint-disable-line func-names
               dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
         let dependencies = new Set(dependencyTreeBuilder(theme, file, plugins));
-
-        // Find our SCSS extend & theme paths, add them to our watch task.
-        let SCSSGlobPaths = plugins.globby.sync([
-          srcBase + '/' + locale + '/**/*.extend.scss',
-          srcBase + '/' + locale + '/**/*.theme.scss'
-        ]);
-
-        SCSSGlobPaths.forEach(file => {
-          dependencies.add(file);
-        });
 
         files.forEach(file => {
           const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
