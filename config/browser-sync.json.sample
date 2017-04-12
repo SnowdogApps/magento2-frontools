@@ -1,3 +1,9 @@
 {
-  "proxy": "m2test.dev"
+  "proxy": "m2test.dev",
+  "rewriteRules": [
+        {
+            "match": ".m2test.dev",
+            "replace": ""
+        }
+    ]
 }
