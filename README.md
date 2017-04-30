@@ -40,6 +40,7 @@ Check `config/themes.json.sample` to get samples
 - `ignore` - array of ignore patterns
 
 ## Optional configurations for 3rd party plugins
+You will find config files for theses plugins in your `config` directory (the location of this will depend on how you installed frontools). e.g. `frontools/config/browser-sync.json`.
 * Create [browserSync](https://www.browsersync.io/) configuration
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
