@@ -19,16 +19,16 @@ Up from version 1.0.0 we are supporting both Node.js packages managers. If you w
 
 ## Installation
 1. Run `composer require snowdog/frontools`
-2. Go to package directory `/vendor/snowdog/frontools`
+2. Go to package directory `cd vendor/snowdog/frontools`
 3. Run `yarn` or `npm install`
 4. Decide where you want to keep your config files.
-You can store them in frontools `config` dir or `/dev/tools/frontools/config`.
-There is a `gulp setup` task to copy all sample config files from the `config` to `/dev/tools/frontools/config` and create a convenient symlink in the project root.
+You can store them in Frontools `config` directory or in `dev/tools/frontools/config`.
+There is a `gulp setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
-5. Define your themes in `themes.json`
+5. Define your themes in `themes.json`.
 
 ## `themes.json` structure
-Check `config/themes.json.sample` to get samples
+Check `config/themes.json.sample` to get samples.
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `locale` - array of available locales
@@ -40,6 +40,7 @@ Check `config/themes.json.sample` to get samples
 - `ignore` - array of ignore patterns
 
 ## Optional configurations for 3rd party plugins
+You will find sample config files for theses plugins in `vendor/snowdog/frontools/config` directory.
 * Create [browserSync](https://www.browsersync.io/) configuration
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
