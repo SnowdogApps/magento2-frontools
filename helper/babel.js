@@ -36,6 +36,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       .pipe(plugins.babel(babelConfig))
       .pipe(plugins.if(production, plugins.uglify()))
       .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.write()))
+      .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
       .pipe(plugins.rename(adjustDestinationDirectory))
       .pipe(plugins.multiDest(dest))
       .pipe(plugins.logger({
@@ -64,6 +65,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.init()))
           .pipe(plugins.babel(babelConfig))
           .pipe(plugins.if(production, plugins.uglify()))
+          .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
           .pipe(plugins.rename(adjustDestinationDirectory))
           .pipe(gulp.dest(config.projectPath + theme.dest + '/' + locale))
           .pipe(plugins.logger({
