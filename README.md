@@ -36,7 +36,7 @@ Check `config/themes.json.sample` to get samples
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
 - `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
-- `modules` - list of modules witch you want to map inside your theme
+- `modules` - list of modules witch you want to map inside your theme. The modules contents will then be available to `@import` in your theme Sass. e.g. `@import "../[vendor-name]_[module-name]/styles/styles.scss";`. Run `gulp inheritance`, then open `var/view_preprocessed/frontools` to view the directory structure.
 - `ignore` - array of ignore patterns
 
 ## Optional configurations for 3rd party plugins
