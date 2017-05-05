@@ -42,8 +42,13 @@ Check `config/themes.json.sample` to get samples
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
 * Create [stylelint](https://github.com/stylelint/stylelint) configuration
+* Create [BackstopJs](https://github.com/garris/BackstopJS/) configuration
 
 ## Tasks list
+* `backstop` - Run visual regression tests against a styleguide
+  * `--reference` - Create reference screenshots
+  * `--test` - Take new screenshots and compare against reference ones, launch the results report in the browser
+  * `--approve` - If there are new changes that are OK, update the reference screenshots with the test ones
 * `browser-sync` - run [browserSync](https://www.browsersync.io/)- do not run this task separately, it's just a part of `dev` task
 * `clean` - Removes `/pub/static` folder
 * `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests
