@@ -20,22 +20,19 @@
       "removeSelectors": [],
       "selectorExpansion": true,
       "selectors": [
-        ".ndpl-component__colors",
-        ".ndpl-component__sample"
+        "document"
       ],
       "readyEvent": null,
       "delay": 5000,
-      "misMatchThreshold" : 0.1,
-      "onBeforeScript": "onBefore.js",
-      "onReadyScript": "onReady.js"
+      "misMatchThreshold" : 0.1
     }
   ],
   "paths": {
-    "bitmaps_reference": "dev/tests/backstop_data/bitmaps_reference",
-    "bitmaps_test": "dev/tests/backstop_data/bitmaps_test",
-    "casper_scripts": "dev/tests/backstop_data/casper_scripts",
-    "html_report": "dev/tests/backstop_data/html_report",
-    "ci_report": "dev/tests/backstop_data/ci_report"
+    "bitmaps_reference": "../../../dev/tests/backstop_data/bitmaps_reference",
+    "bitmaps_test": "../../../dev/tests/backstop_data/bitmaps_test",
+    "casper_scripts": "../../../dev/tests/backstop_data/casper_scripts",
+    "html_report": "../../../dev/tests/backstop_data/html_report",
+    "ci_report": "../../../dev/tests/backstop_data/ci_report"
   },
   "casperFlags": [],
   "engine": "phantomjs",
