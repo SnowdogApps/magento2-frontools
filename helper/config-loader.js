@@ -15,12 +15,12 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
       return JSON.parse(plugins.fs.readFileSync(externalPath));
     }
   }
-  else if (plugins.globby.sync('./config/' + file).length) {
+  else if (plugins.globby.sync('config/' + file).length) {
     if (file.includes('yml')) {
-      return plugins.yaml.safeLoad(plugins.fs.readFileSync('./config/' + file));
+      return plugins.yaml.safeLoad(plugins.fs.readFileSync('config/' + file));
     }
     else {
-      return JSON.parse(plugins.fs.readFileSync('../config/' + file));
+      return JSON.parse(plugins.fs.readFileSync('config/' + file));
     }
   }
   else {
