@@ -14,7 +14,11 @@ module.exports = function() { // eslint-disable-line func-names
               dest = config.projectPath + theme.dest;
 
         plugins.globby.sync(
-          src + '/**/web/**',
+          [
+            src + '/**/web/**',
+            // temporaily remove babel files from this task
+            '!/**/*.babel.js'
+          ],
           { nodir: true }
         ).forEach(srcPath => {
           theme.locale.forEach(locale => {
@@ -32,7 +36,11 @@ module.exports = function() { // eslint-disable-line func-names
                 dest = config.projectPath + theme.dest;
 
           plugins.globby.sync(
-            src + '/**/web/**',
+            [
+              src + '/**/web/**',
+              // temporaily remove babel files from this task
+              '!/**/*.babel.js'
+            ],
             { nodir: true }
           ).forEach(srcPath => {
             const destPath = dest + '/' + locale + srcPath
