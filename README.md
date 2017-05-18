@@ -25,17 +25,21 @@ Up from version 1.0.0 we are supporting both Node.js packages managers. If you w
 You can store them in Frontools `config` directory or in `dev/tools/frontools/config`.
 There is a `gulp setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
-5. Define your themes in `themes.json`.
+5. Define your themes in `themes.js`.
 
-## `themes.json` structure
-Check `config/themes.json.sample` to get samples.
+## `themes.js` structure
+Check `config/themes.js.sample` to get samples.
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `locale` - array of available locales
 - `localeOverwrites` - (default `false`) set to `true` if you want to overwrite some styles for specifilc language. Remember that path to overwriting file has to be same as base file after removing `/i18n/{lang_code}`.
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
-- `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
+- `postcss` - (default `plugins => [plugins.autoprefixer()]`) PostCSS plugins config.
+    A callback that receives the `plugins` object as a parameter and returns an
+    array of plugins.
+    You can also inject plugins from a local package.json, e.g.:
+    `plugins => [plugins.autoprefixer(), require('postcss-inline-svg')]`
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
