@@ -1,4 +1,4 @@
-{
+module.exports = {
   "blank": {
     "src": "vendor/snowdog/theme-blank-sass",
     "dest": "pub/static/frontend/Snowdog/blank",
@@ -25,7 +25,7 @@
     "localeOverwrites": true,
     "parent": "blank",
     "stylesDir": "web/css",
-    "postcss": ["plugins.autoprefixer()"],
+    "postcss": plugins => plugins.autoprefixer(),
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"
     },

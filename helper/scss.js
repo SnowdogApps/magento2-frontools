@@ -4,13 +4,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
         stylesDir   = theme.stylesDir ? theme.stylesDir : 'styles',
         disableMaps = plugins.util.env.disableMaps || false,
-        production  = plugins.util.env.prod || false,
-        postcss     = [];
+        production  = plugins.util.env.prod || false;
+  let postcss = [];
 
   if (theme.postcss) {
-    theme.postcss.forEach(el => {
-      postcss.push(eval(el));
-    });
+    postcss = theme.postcss(plugins);
   }
   else {
     postcss.push(plugins.autoprefixer());

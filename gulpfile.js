@@ -17,7 +17,7 @@ const plugins = require('gulp-load-plugins')({
 
 config.projectPath = plugins.fs.realpathSync('../../../') + '/';
 config.tempPath = config.projectPath + 'var/view_preprocessed/frontools';
-config.themes = require('./helper/config-loader')('themes.json', plugins, config, false);
+config.themes = require('./helper/config-loader')('themes.js', plugins, config, false);
 
 plugins.errorMessage = require('./helper/error-message')(plugins);
 plugins.getThemes = require('./helper/get-themes')(plugins, config);

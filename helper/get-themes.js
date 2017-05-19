@@ -8,14 +8,14 @@ module.exports = function(plugins, config) { // eslint-disable-line func-names
     if (themes.length === 0) {
       throw new plugins.util.PluginError({
         'plugin' : 'config',
-        'message': plugins.errorMessage('You have to create themes.json')
+        'message': plugins.errorMessage('You have to create themes.js')
       })
     }
 
     if (themeName && themes.indexOf(themeName) === -1) {
       throw new plugins.util.PluginError({
         plugin : 'config',
-        message: plugins.errorMessage(themeName + ' theme is not defined in themes.json')
+        message: plugins.errorMessage(themeName + ' theme is not defined in themes.js')
       });
     }
 

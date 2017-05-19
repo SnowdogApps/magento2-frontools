@@ -12,7 +12,7 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
       return plugins.yaml.safeLoad(plugins.fs.readFileSync(externalPath));
     }
     else {
-      return JSON.parse(plugins.fs.readFileSync(externalPath));
+      return require(externalPath);
     }
   }
   else if (plugins.globby.sync('config/' + file).length) {
