@@ -26,6 +26,7 @@
     "parent": "blank",
     "stylesDir": "web/css",
     "postcss": ["plugins.autoprefixer()"],
+    "disableSuffix": true,
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"
     },
