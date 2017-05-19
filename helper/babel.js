@@ -2,7 +2,6 @@
 module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
   const theme       = config.themes[name],
         srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-        stylesDir   = theme.stylesDir ? theme.stylesDir : 'styles',
         disableMaps = plugins.util.env.disableMaps || false,
         production  = plugins.util.env.prod || false,
         babelConfig = {
