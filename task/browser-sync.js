@@ -7,5 +7,7 @@ module.exports = function() { // eslint-disable-line func-names
   plugins.browserSync.create();
 
   // Load browsersync with config from browser-sync.json
-  plugins.browserSync(require('../helper/config-loader')('browser-sync.json', plugins, config));
+  plugins.browserSync(
+    require('../helper/config-loader')('browser-sync.json', plugins, config)
+  );
 };

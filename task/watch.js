@@ -6,10 +6,9 @@ module.exports = function() { // eslint-disable-line func-names
         config  = this.opts.configs,
         themes  = plugins.getThemes();
 
-
   themes.forEach(name => {
     const theme = config.themes[name],
-          srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', '');
+          srcBase = config.tempPath + theme.dest.replace('pub/static', '');
 
     // For theme without per locale overwrites  - most of cases
     if (!theme.localeOverwrites) {
@@ -23,8 +22,7 @@ module.exports = function() { // eslint-disable-line func-names
 
       const files = plugins.globby.sync([
               srcBase + '/**/*.scss',
-              '!/**/_*.scss',
-              '!**/node_modules/**'
+              '!/**/_*.scss'
             ]),
             dependencyTreeBuilder = require('../helper/dependency-tree-builder');
 
@@ -38,10 +36,10 @@ module.exports = function() { // eslint-disable-line func-names
           event => {
             plugins.util.log(
               plugins.util.colors.green('File') + ' '
-              + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
+              + plugins.util.colors.blue(event.path.replace(config.tempPath, '')) + ' '
               + plugins.util.colors.green('changed.')
             );
-            compiler();
+            require('../helper/scss')(gulp, plugins, config, name, file);
           }
         );
       });
@@ -69,16 +67,15 @@ module.exports = function() { // eslint-disable-line func-names
         let dependencies = new Set(dependencyTreeBuilder(theme, file, plugins));
 
         files.forEach(file => {
-          const compiler = require('../helper/scss')(gulp, plugins, config, name, file);
           gulp.watch(
             Array.from(dependencies),
             event => {
               plugins.util.log(
                 plugins.util.colors.green('File') + ' '
-                + plugins.util.colors.blue(event.path.replace(config.projectPath + 'var/view_preprocessed/frontools', '')) + ' '
+                + plugins.util.colors.blue(event.path.replace(config.tempPath, '')) + ' '
                 + plugins.util.colors.green('changed.')
               );
-              compiler();
+              require('../helper/scss')(gulp, plugins, config, name, file)
             }
           );
         });
@@ -88,25 +85,35 @@ module.exports = function() { // eslint-disable-line func-names
     if (!plugins.util.env.disableLinting) {
       // SASS Lint
       gulp.watch(plugins.globby.sync(srcBase + '/**/*.scss'), event => {
-        require('../helper/sass-lint')(gulp, plugins, config, name, event.path)();
+        require('../helper/sass-lint')(gulp, plugins, config, name, event.path);
       });
       // CSS Lint
       gulp.watch(plugins.globby.sync(config.projectPath + theme.dest + '/**/*.css'), event => {
-        require('../helper/css-lint')(gulp, plugins, config, name, event.path)();
+        require('../helper/css-lint')(gulp, plugins, config, name, event.path);
       });
     }
+
+    // Babel
+    gulp.watch(plugins.globby.sync(srcBase + '/**/*.babel.js'), event => {
+      plugins.util.log(
+        plugins.util.colors.green('File') + ' '
+        + plugins.util.colors.blue(event.path.replace(config.tempPath, '')) + ' '
+        + plugins.util.colors.green('changed.')
+      );
+      require('../helper/babel')(gulp, plugins, config, name, event.path);
+    });
 
     // Watching files that require reload after save
     gulp.watch(
       // I'm usng globby manually, b/c it's a loooot faster
       plugins.globby.sync([
         config.projectPath + theme.src + '/**/*.{html,phtml,xml,csv,js}',
-        '!/**/node_modules/**'
+        '!/**/*.babel.js'
       ]),
       event => {
         plugins.util.log(
           plugins.util.colors.green('File') + ' '
-          + plugins.util.colors.blue(event.path.replace(config.projectPath, '')) + ' '
+          + plugins.util.colors.blue(event.path.replace(config.tempPath, '')) + ' '
           + plugins.util.colors.green('changed.')
         );
         plugins.browserSync.reload();
