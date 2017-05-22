@@ -7,7 +7,7 @@ module.exports = function() { // eslint-disable-line func-names
         themes  = plugins.getThemes(),
         streams = plugins.mergeStream();
 
-  plugins.runSequence('inheritance', 'webpack', 'webpackdist');
+  plugins.runSequence('inheritance', 'webpack-build', 'webpack-dist');
 
   return streams;
 };
