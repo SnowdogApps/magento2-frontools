@@ -24,21 +24,13 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     return path;
   }
 
-    var debug = require('gulp-debug');
     var webpack = require('webpack-stream');
-    var tap = require('gulp-tap');
-    var util = require('gulp-util');
-    var map = require('map');
     var vinylPaths = require('vinyl-paths');
 
     const dest = [];
     theme.locale.forEach(locale => {
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
-
-    var mylog = function(file, cb) {
-      cb(null, file);
-    };
 
     return gulp.src(
       file || srcBase + '/**/*.babel.js',
