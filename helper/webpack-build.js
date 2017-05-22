@@ -15,20 +15,18 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   }
 
   function getModuleDir(file) {
-    var path = file.replace(/view\/frontend\/web\/js\/(.*)\.babel\.js/, '');
-    return path;
+      return file.replace(/view\/frontend\/web\/js\/(.*)\.babel\.js/, '');
   }
 
   function getJsDir(file) {
-    var path = file.path.replace(/'(.*).babel.js'/, '');
-    return path;
+      return file.path.replace(/'(.*).babel.js'/, '');
   }
 
     var webpack = require('webpack-stream');
     var vinylPaths = require('vinyl-paths');
 
     const dest = [];
-    theme.locale.forEach(locale => {
+    theme.locale.forEach(function(locale) {
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
@@ -50,7 +48,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
 
         return new Promise(function(resolve, reject) {
             webpack(require(webpackfile))
-                .pipe(gulp.dest(moduleDir + 'view/frontend/web/js/dist/'))
+                .pipe(gulp.dest(moduleDir + 'view/front/js/dist/'))
                 .on('end', resolve)
         });
     }))
