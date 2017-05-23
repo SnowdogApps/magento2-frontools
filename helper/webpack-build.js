@@ -43,7 +43,7 @@ module.exports = function (gulp, plugins, config, name, file) { // eslint-disabl
 
             return new Promise(function (resolve, reject) {
                 webpack(require(webpackfile))
-                    .pipe(gulp.dest(moduleDir + 'view/front/js/dist/'))
+                    .pipe(gulp.dest(moduleDir + 'view/frontend/web/js/dist/'))
                     .on('end', resolve)
             });
         }))
