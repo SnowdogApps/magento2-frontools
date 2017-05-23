@@ -15,7 +15,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   }
 
     const dest = [];
-    theme.locale.forEach(locale => {
+    theme.locale.forEach(function(locale) {
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
