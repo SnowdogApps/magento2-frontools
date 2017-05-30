@@ -9,13 +9,13 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
           presets: require('babel-preset-env')
         };
 
-  function adjustDestinationDirectory(file) {
-    file.dirname = file.dirname.replace('web/', '');
-    return file;
-  }
+    function adjustDestinationDirectory(file) {
+        file.dirname = file.dirname.replace('view/frontend/web/', '');
+        return file;
+    }
 
     const dest = [];
-    theme.locale.forEach(locale => {
+    theme.locale.forEach(function(locale) {
       dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
@@ -35,10 +35,5 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         )
       ).pipe(plugins.rename(adjustDestinationDirectory))
         .pipe(plugins.multiDest(dest))
-        .pipe(plugins.logger({
-            display   : 'name',
-            beforeEach: 'Theme: ' + name + ' ',
-            afterEach : ' Compiled!'
-        }))
         .pipe(plugins.browserSync.stream());
 };
