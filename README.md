@@ -37,6 +37,19 @@ Check `config/themes.json.sample` to get samples
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
+## Webpack building
+The `webpack` task will compile both local and vendor based webpack bundles (the specific module needs to be specified in `/dev/tools/frontools/config/themes.json` for the module to be compiled).
+
+```json
+    ...
+    "modules": {
+        "Ampersand_Local": "app/code/Ampersand/Local",
+        "Ampersand_Vendor": "vendor/ampersand/magento2-vendor"
+    }
+```
+
+The bundle also needs to have a entry file in the format `*.babel.js` for the compilation to work.
+
 ## Optional configurations for 3rd party plugins
 * Create [browserSync](https://www.browsersync.io/) configuration
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
