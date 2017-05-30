@@ -47,6 +47,8 @@ Check `config/themes.json.sample` to get samples
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
+* `build` - Run inheritance, styles task and webpack building.
+  * `--prod` - Production output - minifies styles and add `.min` sufix.
 * `browser-sync` - Run [browserSync](https://www.browsersync.io/).
 * `clean` - Removes `/pub/static` directory content.
 * `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests.
