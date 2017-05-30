@@ -39,7 +39,7 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
         });
       }
       else {
-        destPath = destPath.replace(replacePattern, '');
+        destPath = destPath.replace(replacePattern+'/', '/');
       }
       createSymlink(srcPath, destPath);
     });
