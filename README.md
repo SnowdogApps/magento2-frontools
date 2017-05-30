@@ -37,6 +37,21 @@ Check `config/themes.json.sample` to get samples
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
+## Webpack building
+The `webpack` task will compile both local and vendor based webpack bundles (the specific module needs to be specified in `/dev/tools/frontools/config/themes.json` for the module to be compiled).
+
+```json
+    ...
+    "modules": {
+        "Ampersand_Local": "app/code/Ampersand/Local",
+        "Ampersand_Vendor": "vendor/ampersand/magento2-vendor"
+    }
+```
+
+See [this PR](https://github.com/AmpersandHQ/m2-ee/pull/3/files#diff-585600f4e9c5485604262df0af1adf9a) for a full example.
+
+The bundle also needs to have a entry file in the format `*.babel.js` for the compilation to work.
+
 ## Optional configurations for 3rd party plugins
 * Create [browserSync](https://www.browsersync.io/) configuration
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
@@ -47,6 +62,8 @@ Check `config/themes.json.sample` to get samples
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
+* `build` - Run inheritance, styles task and webpack building.
+  * `--prod` - Production output - minifies styles and add `.min` sufix.
 * `browser-sync` - Run [browserSync](https://www.browsersync.io/).
 * `clean` - Removes `/pub/static` directory content.
 * `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests.
@@ -77,3 +94,4 @@ Check `config/themes.json.sample` to get samples
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Enable inline source maps generation.
+* `webpack` - Run webpack and compiles bundles if any.
