@@ -79,3 +79,4 @@ Check `config/themes.json.sample` to get samples
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Enable inline source maps generation.
+* `webpack` - Run webpack and compiles bundles if any.
