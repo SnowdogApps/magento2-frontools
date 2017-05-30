@@ -48,6 +48,8 @@ The `webpack` task will compile both local and vendor based webpack bundles (the
     }
 ```
 
+See [this PR](https://github.com/AmpersandHQ/m2-ee/pull/3/files#diff-585600f4e9c5485604262df0af1adf9a) for a full example.
+
 The bundle also needs to have a entry file in the format `*.babel.js` for the compilation to work.
 
 ## Optional configurations for 3rd party plugins
