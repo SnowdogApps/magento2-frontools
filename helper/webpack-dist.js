@@ -21,7 +21,6 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
 
     return gulp.src(
       [
-        file || srcBase + '/**/*.js', 
         file || srcBase + '/**/*.min.js', 
         '!' + srcBase + '/**/node_modules/**/*.js'
       ],
