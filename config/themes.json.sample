@@ -1,4 +1,4 @@
-}
+{
     "base": {
         "src"      : "vendor/ampersand/magento2-base-theme",
         "dest"     : "pub/static/frontend/Ampersand/base",
