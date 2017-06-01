@@ -1,5 +1,5 @@
 {
-  "id": "",
+  "id": "project-name",
   "viewports": [
     {
       "name": "mobile",
@@ -15,7 +15,7 @@
   "scenarios": [
     {
       "label": "styleguide",
-      "url": "",
+      "url": "http://project-url.dev",
       "hideSelectors": [],
       "removeSelectors": [],
       "selectorExpansion": true,
