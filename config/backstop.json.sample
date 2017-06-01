@@ -1,5 +1,5 @@
 {
-  "id": "demon-tweeks",
+  "id": "",
   "viewports": [
     {
       "name": "mobile",
@@ -15,7 +15,7 @@
   "scenarios": [
     {
       "label": "styleguide",
-      "url": "http://demon-tweeks.dev/styleguide/#group-branding-component-logo",
+      "url": "",
       "hideSelectors": [],
       "removeSelectors": [],
       "selectorExpansion": true,
