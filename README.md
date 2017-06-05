@@ -57,8 +57,13 @@ The bundle also needs to have a entry file in the format `*.babel.js` for the co
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
 * Create [stylelint](https://github.com/stylelint/stylelint) configuration
+* Create [BackstopJs](https://github.com/garris/BackstopJS/) configuration
 
 ## Tasks list
+* `backstop` - Run visual regression tests against a styleguide
+  * `--reference` - Create reference screenshots
+  * `--test` - Take new screenshots and compare against reference ones, launch the results report in the browser
+  * `--approve` - If there are new changes that are OK, update the reference screenshots with the test ones
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
