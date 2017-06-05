@@ -34,7 +34,8 @@ module.exports = function() { // eslint-disable-line func-names
 
     try {
       plugins.fs.copySync(configSamplesPath + fileName, configPath + newFileName, {
-        clobber: false
+        overwrite: false,
+        errorOnExist: true
       });
 
       plugins.util.log('File ' + fileName + ' copied to /dev/tools/frontools/config/' + newFileName);

@@ -7,14 +7,7 @@ module.exports = function() { // eslint-disable-line func-names
         themes  = plugins.getThemes(),
         streams = plugins.mergeStream();
 
-  themes.forEach(name => {
-    plugins.util.log(
-      plugins.util.colors.green('Runing CSS Lint on') + ' '
-      + plugins.util.colors.blue(name) + ' '
-      + plugins.util.colors.green('theme...')
-    );
-    streams.add(require('../helper/css-lint')(gulp, plugins, config, name));
-  });
+  plugins.runSequence('inheritance', 'webpack-build', 'webpack-dist');
 
   return streams;
 };

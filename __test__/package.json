@@ -1,7 +1,0 @@
-{
-  "devDependencies": {
-    "eslint-config-idiomatic": "~2.1.0",
-    "gulp": "~3.9.1",
-    "gulp-eslint": "~3.0.1"
-  }
-}

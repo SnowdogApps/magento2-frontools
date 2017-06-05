@@ -5,15 +5,12 @@ module.exports = function() { // eslint-disable-line func-names
         plugins = this.opts.plugins,
         config  = this.opts.configs,
         themes  = plugins.getThemes(),
-        streams = plugins.mergeStream();
+        streams = plugins.mergeStream(),
+        webpack = this.webpack;
 
+  // Loop through themes to compile scss or less depending on your config.json
   themes.forEach(name => {
-    plugins.util.log(
-      plugins.util.colors.green('Runing CSS Lint on') + ' '
-      + plugins.util.colors.blue(name) + ' '
-      + plugins.util.colors.green('theme...')
-    );
-    streams.add(require('../helper/css-lint')(gulp, plugins, config, name));
+    streams.add(require('../helper/webpack-build')(gulp, plugins, config, name));
   });
 
   return streams;
