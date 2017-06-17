@@ -8,49 +8,26 @@ module.exports = function() { // eslint-disable-line func-names
 
   plugins.runSequence('inheritance', 'clean', () => {
     themes.forEach(name => {
-      const theme = config.themes[name];
-      if (!theme.localeOverwrites) {
-        const src  = config.tempPath + theme.dest.replace('pub/static', ''),
-              dest = config.projectPath + theme.dest;
+      const theme = config.themes[name],
+            src  = config.tempPath + theme.dest.replace('pub/static', ''),
+            dest = config.projectPath + theme.dest;
 
-        plugins.globby.sync(
-          [
-            src + '/**/web/**',
-            // temporaily remove babel files from this task
-            '!/**/*.babel.js'
-          ],
-          { nodir: true }
-        ).forEach(srcPath => {
-          theme.locale.forEach(locale => {
-            const destPath = dest + '/' + locale + srcPath
-              .replace(src, '')
-              .replace('web/', '');
-
-            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.ensureSymlinkSync(srcPath, destPath);
-          });
-        });
-      }
-      else {
+      plugins.globby.sync(
+        [
+          src + '/**/web/**',
+          // temporaily remove babel files from this task
+          '!/**/*.babel.js'
+        ],
+        { nodir: true }
+      ).forEach(srcPath => {
         theme.locale.forEach(locale => {
-          const src  = config.tempPath + theme.dest.replace('pub/static', '') + '/' + locale,
-                dest = config.projectPath + theme.dest;
+          const destPath = dest + '/' + locale + srcPath
+            .replace(src, '')
+            .replace('web/', '');
 
-          plugins.globby.sync(
-            [
-              src + '/**/web/**',
-              // temporaily remove babel files from this task
-              '!/**/*.babel.js'
-            ],
-            { nodir: true }
-          ).forEach(srcPath => {
-            const destPath = dest + '/' + locale + srcPath
-              .replace(src, '')
-              .replace('web/', '');
-
-            prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.ensureSymlinkSync(srcPath, destPath);
-          });
+          prod ? plugins.fs.copySync(srcPath, destPath) : plugins.fs.ensureSymlinkSync(srcPath, destPath);
         });
-      }
+      });
     });
   });
 };

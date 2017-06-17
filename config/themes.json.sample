@@ -15,14 +15,12 @@
     "src": "vendor/snowdog/theme-custom",
     "dest": "pub/static/frontend/Snowdog/child-with-locale-overwrites",
     "locale": ["en_US", "pl_PL"],
-    "localeOverwrites": true,
     "parent": "blank"
   },
   "all-possible-options": {
     "src": "vendor/snowdog/theme-all-possible-options",
     "dest": "pub/static/frontend/Snowdog/all-possible-options",
     "locale": ["en_US", "pl_PL"],
-    "localeOverwrites": true,
     "parent": "blank",
     "stylesDir": "web/css",
     "postcss": ["plugins.autoprefixer()"],

@@ -8,10 +8,10 @@ module.exports = function() { // eslint-disable-line func-names
 
   // Run all of these tasks in order
   plugins.runSequence(
+    'browser-sync',
     'inheritance',
     'babel',
     'styles',
-    'watch',
-    'browser-sync'
+    'watch'
   );
 };

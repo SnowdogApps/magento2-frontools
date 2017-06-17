@@ -14,6 +14,7 @@
     "autoprefixer": "~7.1.0",
     "babel-preset-env": "~1.5.0",
     "browser-sync": "~2.18.8",
+    "chokidar": "~1.7.0",
     "cssnano": "~3.10.0",
     "eslint-config-idiomatic": "~3.1.0",
     "fs-extra": "~3.0.1",

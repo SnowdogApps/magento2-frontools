@@ -6,15 +6,10 @@ Set of front-end tools for Magento 2, based on Gulp.js
 ## Questions
 If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
 
-## LESS themes support
-LESS support was dropped in version 1.0.0. Feel free to use an older version (0.11.4 and lower) or create a fork and customize newer versions to fit your needs.
-
-## NPM and Yarn support
-Up from version 1.0.0 we are supporting both Node.js packages managers. If you want to keep modules in safe versions all the time, use Yarn, `yarn.lock` is already added to the repository.
-
 ## Requirements
-* Node.js LTS version (v6 branch). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
-* Gulp CLI global package - `npm install -g gulp-cli` or `yarn global add gulp-cli`
+* Unix-like OS (please, do not ask about Windows support)
+* Node.js LTS version (currently branch v6). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
+* Gulp CLI global package - `yarn global add gulp-cli` or `npm install -g gulp-cli`
 * Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
 
 ## Installation
@@ -32,7 +27,6 @@ Check `config/themes.json.sample` to get samples.
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `locale` - array of available locales
-- `localeOverwrites` - (default `false`) set to `true` if you want to overwrite some styles for specifilc language. Remember that path to overwriting file has to be same as base file after removing `/i18n/{lang_code}`.
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
 - `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
