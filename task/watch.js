@@ -33,7 +33,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
     }
 
     // Initialize watchers
-    const tempWatcher = plugins.chokidar.watch(themeTempSrc, {
+    const tempWatcher = plugins.chokidar.watch(themeTempSrc, { // eslint-disable-line one-var
             ignoreInitial: true
           }),
           srcWatcher = plugins.chokidar.watch(themeSrc, {
