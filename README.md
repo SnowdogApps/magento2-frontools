@@ -29,6 +29,7 @@ Check `config/themes.json.sample` to get samples.
 - `locale` - array of available locales
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
+- `disableSuffix` - disable adding `.min` sufix using `--prod` flag.
 - `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
@@ -44,16 +45,12 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
-* `browser-sync` - Run [browserSync](https://www.browsersync.io/).
 * `clean` - Removes `/pub/static` directory content.
 * `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests.
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `default` - type `gulp` to see this readme in console.
-* `deploy` - Symlink or copy all static assets to `pub/static`. Runs `clean` and `inheritance` tasks.
-  * `--theme name` - Specify theme to deploy.
-  * `--prod` - Copy files instead of making symlinks.
-* `dev` - Runs `browser-sync`, `inheritance` and `watch`  tasks.
+* `dev` - Runs [browserSync](https://www.browsersync.io/) and `inheritance`, `babel`, `styles`, `watch` tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Toggles source maps generation.
