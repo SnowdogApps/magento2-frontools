@@ -6,15 +6,10 @@ Set of front-end tools for Magento 2, based on Gulp.js
 ## Questions
 If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
 
-## LESS themes support
-LESS support was dropped in version 1.0.0. Feel free to use an older version (0.11.4 and lower) or create a fork and customize newer versions to fit your needs.
-
-## NPM and Yarn support
-Up from version 1.0.0 we are supporting both Node.js packages managers. If you want to keep modules in safe versions all the time, use Yarn, `yarn.lock` is already added to the repository.
-
 ## Requirements
-* Node.js LTS version (v6 branch). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
-* Gulp CLI global package - `npm install -g gulp-cli` or `yarn global add gulp-cli`
+* Unix-like OS (please, do not ask about Windows support)
+* Node.js LTS version (currently branch v6). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
+* Gulp CLI global package - `yarn global add gulp-cli` or `npm install -g gulp-cli`
 * Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
 
 ## Installation
@@ -32,9 +27,9 @@ Check `config/themes.json.sample` to get samples.
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
 - `locale` - array of available locales
-- `localeOverwrites` - (default `false`) set to `true` if you want to overwrite some styles for specifilc language. Remember that path to overwriting file has to be same as base file after removing `/i18n/{lang_code}`.
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
+- `disableSuffix` - disable adding `.min` sufix using `--prod` flag.
 - `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
@@ -45,21 +40,18 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
 * Create [stylelint](https://github.com/stylelint/stylelint) configuration
+* Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
-* `browser-sync` - Run [browserSync](https://www.browsersync.io/).
 * `clean` - Removes `/pub/static` directory content.
 * `csslint` - Run [stylelint](https://github.com/stylelint/stylelint) based tests.
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `default` - type `gulp` to see this readme in console.
-* `deploy` - Symlink or copy all static assets to `pub/static`. Runs `clean` and `inheritance` tasks.
-  * `--theme name` - Specify theme to deploy.
-  * `--prod` - Copy files instead of making symlinks.
-* `dev` - Runs `browser-sync`, `inheritance` and `watch`  tasks.
+* `dev` - Runs [browserSync](https://www.browsersync.io/) and `inheritance`, `babel`, `styles`, `watch` tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Toggles source maps generation.
@@ -76,6 +68,8 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--disableMaps` - Toggles source maps generation.
   * `--prod` - Production output - minifies styles and add `.min` sufix.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
+* `svg` - Run [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) to generate SVG sprite.
+  * `--theme name` - Process single theme.
 * `watch` - Watch for style changes and run processing tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.

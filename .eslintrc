@@ -1,4 +1,6 @@
-extends: idiomatic
+extends:
+  - eslint:recommended
+  - idiomatic
 env:
   node: true
   es6: true

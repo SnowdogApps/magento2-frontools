@@ -1,7 +1,6 @@
 'use strict';
-module.exports = function(plugins, config, name) { // eslint-disable-line func-names
-  const path        = require('path'),
-        ignorePaths = config.themes[name].ignore || [];
+module.exports = function(plugins, config, name, tree = true) { // eslint-disable-line func-names
+  const path = require('path');
 
   function createSymlink(srcPath, destPath) {
     plugins.fs.removeSync(destPath);
@@ -9,26 +8,8 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   }
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
-    src = path.normalize(src);
-    dest = path.normalize(dest);
-
-    if (Array.isArray(replacePattern)) {
-      replacePattern = replacePattern.map(pattern => {
-        pattern[0] = path.normalize(pattern[0]);
-        if (pattern[1] !== '') {
-          pattern[1] = path.normalize(pattern[1]);
-        }
-        return pattern;
-      });
-    }
-    else {
-      replacePattern = path.normalize(replacePattern);
-    }
-
     plugins.globby.sync(
-      [src + '/**']
-        .concat(ignorePaths.map(pattern => '!/**/' + pattern))
-        .concat(ignore.map(pattern => '!/**/' + pattern + '/**')),
+      [src + '/**'].concat(ignore.map(pattern => '!/**/' + pattern)),
       { nodir: true }
     ).forEach(srcPath => {
       let destPath = path.join(dest, srcPath);
@@ -48,6 +29,11 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
   function themeDependencyTree(themeName, dependencyTree) {
     dependencyTree = dependencyTree ? dependencyTree : [];
     dependencyTree.push(themeName);
+
+    if (!tree) {
+      return dependencyTree;
+    }
+
     if (config.themes[themeName].parent) {
       return themeDependencyTree(
         config.themes[themeName].parent,
@@ -59,16 +45,15 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
     }
   }
 
-  themeDependencyTree(name).forEach(themeName => {
-    const theme = config.themes[themeName],
-          themeSrc = config.projectPath + theme.src,
-          themeDest = config.tempPath + theme.dest.replace('pub/static', '');
+  return new Promise(resolve => {
+    themeDependencyTree(name).forEach(themeName => {
+      const theme = config.themes[themeName],
+            themeSrc = config.projectPath + theme.src,
+            themeDest = config.tempPath + theme.dest.replace('pub/static', '');
 
-    // Clean destination dir before generating new symlinks
-    plugins.fs.removeSync(themeDest);
+      // Clean destination dir before generating new symlinks
+      plugins.fs.removeSync(themeDest);
 
-    // Create symlinks for themes without any per locale modifcations (default)
-    if (!theme.localeOverwrites) {
       // Create symlinks for theme modules
       if (theme.modules) {
         Object.keys(theme.modules).forEach(name => {
@@ -78,82 +63,21 @@ module.exports = function(plugins, config, name) { // eslint-disable-line func-n
             themeDest,
             [
               [moduleSrc, '/' + name]
-            ]
+            ],
+            theme.ignore
           );
         });
       }
 
       if (theme.parent) {
         const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
-        generateSymlinks(parentSrc, themeDest, parentSrc);
+        generateSymlinks(parentSrc, themeDest, parentSrc, config.themes[theme.parent].ignore);
       }
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-      generateSymlinks(themeSrc, themeDest, themeSrc);
-    }
-    // Create symlinks for themes with per locale modifcations
-    else {
-      // We have to handle every locale independly, b/c of possible overwrites
-      theme.locale.forEach(locale => {
-        // Create symlinks for theme modules
-        if (theme.modules) {
-          Object.keys(theme.modules).forEach(name => {
-            const moduleSrc = config.projectPath + theme.modules[name];
-            generateSymlinks(
-              moduleSrc,
-              themeDest + '/' + locale,
-              [
-                [moduleSrc, '/' + name]
-              ],
-              ['i18n']
-            );
-          });
-        }
+      generateSymlinks(themeSrc, themeDest, themeSrc, theme.ignore);
+    });
 
-        // If theme have parent, create symlinks to all avaliabe files and then overwitte only neccessary
-        if (theme.parent) {
-          const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
-          generateSymlinks(
-            parentSrc,
-            themeDest + '/' + locale,
-            parentSrc,
-            ['i18n']
-          );
-        }
-
-        // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-        generateSymlinks(
-          themeSrc,
-          themeDest + '/' + locale,
-          themeSrc,
-          ['i18n']
-        );
-
-        // Overwritte parent/current modules symlinks with locale specific files
-        if (theme.modules) {
-          Object.keys(theme.modules).forEach(name => {
-            const moduleSrc = config.projectPath + theme.modules[name];
-            generateSymlinks(
-              moduleSrc + '/**/i18n/' + locale,
-              themeDest + '/' + locale,
-              [
-                [moduleSrc, '/' + name],
-                ['/i18n/' + locale, '']
-              ]
-            );
-          });
-        }
-
-        // Overwritte parent/current theme symlinks with locale specific files
-        generateSymlinks(
-          themeSrc + '/**/i18n/' + locale,
-          themeDest + '/' + locale,
-          [
-            [themeSrc, ''],
-            ['/i18n/' + locale, '']
-          ]
-        );
-      });
-    }
+    resolve();
   });
 };
