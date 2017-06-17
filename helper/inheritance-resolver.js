@@ -45,35 +45,39 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
     }
   }
 
-  themeDependencyTree(name).forEach(themeName => {
-    const theme = config.themes[themeName],
-          themeSrc = config.projectPath + theme.src,
-          themeDest = config.tempPath + theme.dest.replace('pub/static', '');
+  return new Promise(resolve => {
+    themeDependencyTree(name).forEach(themeName => {
+      const theme = config.themes[themeName],
+            themeSrc = config.projectPath + theme.src,
+            themeDest = config.tempPath + theme.dest.replace('pub/static', '');
 
-    // Clean destination dir before generating new symlinks
-    plugins.fs.removeSync(themeDest);
+      // Clean destination dir before generating new symlinks
+      plugins.fs.removeSync(themeDest);
 
-    // Create symlinks for theme modules
-    if (theme.modules) {
-      Object.keys(theme.modules).forEach(name => {
-        const moduleSrc = config.projectPath + theme.modules[name];
-        generateSymlinks(
-          moduleSrc,
-          themeDest,
-          [
-            [moduleSrc, '/' + name]
-          ],
-          theme.ignore
-        );
-      });
-    }
+      // Create symlinks for theme modules
+      if (theme.modules) {
+        Object.keys(theme.modules).forEach(name => {
+          const moduleSrc = config.projectPath + theme.modules[name];
+          generateSymlinks(
+            moduleSrc,
+            themeDest,
+            [
+              [moduleSrc, '/' + name]
+            ],
+            theme.ignore
+          );
+        });
+      }
 
-    if (theme.parent) {
-      const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
-      generateSymlinks(parentSrc, themeDest, parentSrc, config.themes[theme.parent].ignore);
-    }
+      if (theme.parent) {
+        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
+        generateSymlinks(parentSrc, themeDest, parentSrc, config.themes[theme.parent].ignore);
+      }
 
-    // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-    generateSymlinks(themeSrc, themeDest, themeSrc, theme.ignore);
+      // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
+      generateSymlinks(themeSrc, themeDest, themeSrc, theme.ignore);
+    });
+
+    resolve();
   });
 };

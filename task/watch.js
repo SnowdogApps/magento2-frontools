@@ -14,6 +14,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
   plugins.helper.inheritance   = require('../helper/inheritance-resolver');
   plugins.helper.sass          = require('../helper/scss');
   plugins.helper.sassLint      = require('../helper/sass-lint');
+  plugins.helper.svg           = require('../helper/svg');
 
   plugins.util.log(
     plugins.util.colors.yellow('Initializing watcher...')
@@ -86,19 +87,19 @@ module.exports = function(resolve) { // eslint-disable-line func-names
         tempWatcher.unwatch(themeTempSrc);
 
         // Run inheritance resolver just for one theme without parent(s)
-        plugins.helper.inheritance(plugins, config, name, false);
+        plugins.helper.inheritance(plugins, config, name, false).then(() => {
+          // Regenerate SASS Dependency Tree
+          generateSassDependencyTree();
 
-        // Regenerate SASS Dependency Tree
-        generateSassDependencyTree();
+          // Add all files to watch again after solving inheritance
+          tempWatcher.add(themeTempSrc);
 
-        // Add all files to watch again after solving inheritance
-        tempWatcher.add(themeTempSrc);
-
-        // Emit event on added / moved / renamed / deleted file to trigger regualr pipeline
-        plugins.globby.sync(themeTempSrc + '/**/' + plugins.path.basename(path))
-          .forEach(file => {
-            tempWatcher.emit('change', file);
-          });
+          // Emit event on added / moved / renamed / deleted file to trigger regualr pipeline
+          plugins.globby.sync(themeTempSrc + '/**/' + plugins.path.basename(path))
+            .forEach(file => {
+              tempWatcher.emit('change', file);
+            });
+        });
       }, 100);
     }
 
@@ -136,6 +137,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
           plugins.helper.sassLint(gulp, plugins, config, name, path);
         }
       }
+
       // SASS Compilation
       if (plugins.path.extname(path) === '.scss') {
         Object.keys(sassDependecyTree).forEach(file => {
@@ -148,6 +150,11 @@ module.exports = function(resolve) { // eslint-disable-line func-names
       // Babel
       if (plugins.path.basename(path).includes('.babel.js')) {
         plugins.helper.babel(gulp, plugins, config, name, path);
+      }
+
+      // SVG Sprite
+      if (plugins.path.extname(path) === '.svg') {
+        plugins.helper.svg(gulp, plugins, config, name);
       }
 
       // Files that require reload after save
@@ -166,5 +173,5 @@ module.exports = function(resolve) { // eslint-disable-line func-names
     });
   });
 
-  return resolve;
+  resolve();
 };

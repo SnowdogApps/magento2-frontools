@@ -1,0 +1,4 @@
+mode:
+  symbol:
+    dest: 'images'
+    sprite: 'icons-sprite.svg'

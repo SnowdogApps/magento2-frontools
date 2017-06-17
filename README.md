@@ -40,6 +40,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [eslint](https://github.com/adametry/gulp-eslint) configuration
 * Create [sass-lint](https://github.com/sasstools/sass-lint) configuration
 * Create [stylelint](https://github.com/stylelint/stylelint) configuration
+* Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
@@ -67,6 +68,8 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--disableMaps` - Toggles source maps generation.
   * `--prod` - Production output - minifies styles and add `.min` sufix.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
+* `svg` - Run [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) to generate SVG sprite.
+  * `--theme name` - Process single theme.
 * `watch` - Watch for style changes and run processing tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
