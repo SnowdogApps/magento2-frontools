@@ -5,11 +5,13 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
         dest      = [],
         svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config);
 
+  plugins.path = require('path');
+
   theme.locale.forEach(locale => {
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
 
-  return gulp.src(srcBase + '/**/icons/**/*.svg', { base: srcBase })
+  return gulp.src(srcBase + '/**/icons/**/*.svg')
     .pipe(
       plugins.if(
         !plugins.util.env.ci,
@@ -18,7 +20,14 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
         })
       )
     )
-    .pipe(plugins.svgSprite(svgConfig))
+    .pipe(plugins.svgSprite({
+      shape: {
+        id: {
+          generator: file => plugins.path.basename(file, '.svg')
+        }
+      },
+      mode: svgConfig
+    }))
     .pipe(plugins.multiDest(dest))
     .pipe(plugins.logger({
       display   : 'name',
