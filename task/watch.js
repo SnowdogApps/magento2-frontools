@@ -167,8 +167,10 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
     destWatcher.on('change', path => {
       // CSS Lint
-      if (plugins.path.extname(path) === '.css') {
-        plugins.helper.cssLint(gulp, plugins, config, name, path);
+      if (!plugins.util.env.disableLinting) {
+        if (plugins.path.extname(path) === '.css') {
+          plugins.helper.cssLint(gulp, plugins, config, name, path);
+        }
       }
     });
   });
