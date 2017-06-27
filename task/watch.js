@@ -53,8 +53,8 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
       // Find all main SASS files
       plugins.globby.sync([
-        themeTempSrc + '/**/*.scss',
-        '!/**/_*.scss'
+        themeTempSrc + '/**/*.sass',
+        '!/**/_*.sass'
       ]).forEach(file => {
         // Generate array of main file dependecies
         sassDependecyTree[file] = plugins.helper.dependecyTree(plugins, file);
@@ -133,13 +133,13 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
       // SASS Lint
       if (!plugins.util.env.disableLinting) {
-        if (plugins.path.extname(path) === '.scss') {
+        if (plugins.path.extname(path) === '.sass') {
           plugins.helper.sassLint(gulp, plugins, config, name, path);
         }
       }
 
       // SASS Compilation
-      if (plugins.path.extname(path) === '.scss') {
+      if (plugins.path.extname(path) === '.sass') {
         Object.keys(sassDependecyTree).forEach(file => {
           if (sassDependecyTree[file].includes(path)) {
             plugins.helper.sass(gulp, plugins, config, name, file);
