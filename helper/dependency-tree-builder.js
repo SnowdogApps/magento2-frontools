@@ -20,20 +20,20 @@ module.exports = function(plugins, file) { // eslint-disable-line func-names
             filePath = filePath.replace(/\.\.\//, '');
             const filePathParts = /(.*)\/(.*)/g.exec(filePath);
             if (filePathParts) {
-              fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.scss';
+              fullPath = parentPath + '/' + filePathParts[1] + '/_' + filePathParts[filePathParts.length - 1] + '.sass';
             }
             else {
-              fullPath = parentPath + '/_' + filePath + '.scss';
+              fullPath = parentPath + '/_' + filePath + '.sass';
             }
           }
         }
         else {
           if (result[1].includes('/')) {
             const filePath = /(.*)\/(.*)/g.exec(result[1]);
-            fullPath = path + '/' + filePath[1] + '/_' + filePath[filePath.length - 1] + '.scss';
+            fullPath = path + '/' + filePath[1] + '/_' + filePath[filePath.length - 1] + '.sass';
           }
           else {
-            fullPath = path + '/_' + result[1] + '.scss';
+            fullPath = path + '/_' + result[1] + '.sass';
           }
         }
         imports.push(fullPath);
