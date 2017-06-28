@@ -8,6 +8,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         production    = plugins.util.env.prod || false,
         postcss       = [],
         disableSuffix = theme.disableSuffix || false;
+        gulpSass = theme.gulpSass || {};
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
@@ -46,7 +47,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     )
     .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.init()))
     .pipe(
-      plugins.sass()
+      plugins.sass(gulpSass)
         .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
     )
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
