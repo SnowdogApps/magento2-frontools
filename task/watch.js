@@ -53,8 +53,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
       // Find all main SASS files
       plugins.globby.sync([
-        themeTempSrc + '/**/*\.(sass|scss)',
-        '!/**/_*\.(sass|scss)'
+        themeTempSrc + '/**/*.+(sass|scss)'
       ]).forEach(file => {
         // Generate array of main file dependecies
         sassDependecyTree[file] = plugins.helper.dependecyTree(plugins, file);
