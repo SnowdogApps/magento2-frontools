@@ -56,7 +56,9 @@ module.exports = function(resolve) { // eslint-disable-line func-names
         themeTempSrc + '/**/*.+(sass|scss)'
       ]).forEach(file => {
         // Generate array of main file dependecies
+        
         sassDependecyTree[file] = plugins.helper.dependecyTree(plugins, file);
+
       });
     }
 
