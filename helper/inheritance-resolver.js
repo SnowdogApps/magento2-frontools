@@ -12,17 +12,10 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
       [src + '/**'].concat(ignore.map(pattern => '!/**/' + pattern)),
       { nodir: true }
     ).forEach(srcPath => {
-      let destPath = path.join(dest, srcPath);
-      // Iterate through all replace patterns and apply them
-      if (Array.isArray(replacePattern)) {
-        replacePattern.forEach(replace => {
-          destPath = destPath.replace(replace[0], replace[1]);
-        });
-      }
-      else {
-        destPath = destPath.replace(replacePattern, '');
-      }
-      createSymlink(srcPath, destPath);
+      createSymlink(
+        srcPath,
+        path.join(dest, srcPath).replace(src + '/', replacePattern + '/')
+      );
     });
   }
 
@@ -61,9 +54,7 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
           generateSymlinks(
             moduleSrc,
             themeDest,
-            [
-              [moduleSrc, '/' + name]
-            ],
+            '/' + name,
             theme.ignore
           );
         });
@@ -71,11 +62,11 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
 
       if (theme.parent) {
         const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
-        generateSymlinks(parentSrc, themeDest, parentSrc, config.themes[theme.parent].ignore);
+        generateSymlinks(parentSrc, themeDest, '', config.themes[theme.parent].ignore);
       }
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
-      generateSymlinks(themeSrc, themeDest, themeSrc, theme.ignore);
+      generateSymlinks(themeSrc, themeDest, '', theme.ignore);
     });
 
     resolve();
