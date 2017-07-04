@@ -47,6 +47,12 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
       // Clean destination dir before generating new symlinks
       plugins.fs.removeSync(themeDest);
 
+      // Create symlinks for parent theme
+      if (theme.parent) {
+        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
+        generateSymlinks(parentSrc, themeDest, '', config.themes[theme.parent].ignore);
+      }
+
       // Create symlinks for theme modules
       if (theme.modules) {
         Object.keys(theme.modules).forEach(name => {
@@ -58,11 +64,6 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
             theme.ignore
           );
         });
-      }
-
-      if (theme.parent) {
-        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
-        generateSymlinks(parentSrc, themeDest, '', config.themes[theme.parent].ignore);
       }
 
       // Create symlinks to all files in this theme. Will overwritte parent symlinks if exist.
