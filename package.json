@@ -41,7 +41,7 @@
     "gulp-task-loader": "~1.4.4",
     "gulp-uglify": "~3.0.0",
     "gulp-util": "~3.0.8",
-    "js-yaml": "~3.8.4",
+    "js-yaml": "~3.9.0",
     "marked": "~0.3.6",
     "marked-terminal": "~2.0.0",
     "merge-stream": "~1.0.1",
