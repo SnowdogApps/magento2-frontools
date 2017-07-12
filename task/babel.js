@@ -7,7 +7,7 @@ module.exports = function() { // eslint-disable-line func-names
         themes  = plugins.getThemes(),
         streams = plugins.mergeStream();
 
-  // Generate all necessary symlinks before transpilation, but ony if not a part of tasks pipeline
+  // Generate all necessary symlinks before transpilation, but only if not a part of tasks pipeline
   if (!plugins.util.env.pipeline) {
     plugins.runSequence('inheritance');
   }
