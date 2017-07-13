@@ -13,14 +13,15 @@ module.exports = function (gulp, plugins, config, name, file) { // eslint-disabl
     }
 
     function getModuleDir(file) {
-        return file.replace(/view\/frontend\/web\/js\/(.*)\.babel\.js/, '');
+        return file.replace(/view\/frontend\/web\/js\/(.*)\.entry\.js/, '');
     }
 
     function getJsDir(file) {
-        return file.path.replace(/'(.*).babel.js'/, '');
+        return file.path.replace(/'(.*).entry.js'/, '');
     }
 
-    var webpack = require('webpack-stream');
+    var webpackStream = require('webpack-stream');
+    var webpack = require('webpack');
     var vinylPaths = require('vinyl-paths');
 
     const dest = [];
@@ -28,7 +29,7 @@ module.exports = function (gulp, plugins, config, name, file) { // eslint-disabl
         dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
-    return gulp.src(file || srcBase + '/**/*.babel.js', {base: srcBase})
+    return gulp.src(file || srcBase + '/**/*.entry.js', {base: srcBase})
         .pipe(
             plugins.if(
                 !plugins.util.env.ci,
@@ -42,7 +43,7 @@ module.exports = function (gulp, plugins, config, name, file) { // eslint-disabl
             var webpackfile = moduleDir + 'webpack.config.js';
 
             return new Promise(function (resolve, reject) {
-                webpack(require(webpackfile))
+                webpackStream(require(webpackfile), webpack)
                     .pipe(gulp.dest(moduleDir + 'view/frontend/web/js/dist/'))
                     .on('end', resolve)
             });
