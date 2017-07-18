@@ -1,4 +1,4 @@
-[![Travis branch](https://img.shields.io/travis/SnowdogApps/magento2-frontools/master.svg?maxAge=2592000)](https://travis-ci.org/SnowdogApps/magento2-frontools) [![Packagist](https://img.shields.io/packagist/v/snowdog/frontools.svg?maxAge=2592000)](https://packagist.org/packages/snowdog/frontools) [![Packagist](https://img.shields.io/packagist/dt/snowdog/frontools.svg?maxAge=2592000)](https://packagist.org/packages/snowdog/frontools) [![Greenkeeper badge](https://badges.greenkeeper.io/SnowdogApps/magento2-frontools.svg)](https://greenkeeper.io/)
+[![Travis branch](https://img.shields.io/travis/SnowdogApps/magento2-frontools/master.svg)](https://travis-ci.org/SnowdogApps/magento2-frontools) [![Packagist](https://img.shields.io/packagist/v/snowdog/frontools.svg)](https://packagist.org/packages/snowdog/frontools) [![Packagist](https://img.shields.io/packagist/dt/snowdog/frontools.svg)](https://packagist.org/packages/snowdog/frontools) [![Greenkeeper badge](https://badges.greenkeeper.io/SnowdogApps/magento2-frontools.svg)](https://greenkeeper.io/)
 
 # Magento 2 Frontools
 Set of front-end tools for Magento 2, based on Gulp.js
