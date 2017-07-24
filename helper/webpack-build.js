@@ -29,7 +29,13 @@ module.exports = function (gulp, plugins, config, name, file) { // eslint-disabl
         dest.push(config.projectPath + theme.dest + '/' + locale);
     });
 
-    return gulp.src(file || srcBase + '/**/*.entry.js', {base: srcBase})
+    return gulp.src(
+      [
+        file || srcBase + '/**/*.entry.js', 
+        '!' + srcBase + '/**/node_modules/**/*.js'
+      ],
+      { base: srcBase }
+    )
         .pipe(
             plugins.if(
                 !plugins.util.env.ci,
