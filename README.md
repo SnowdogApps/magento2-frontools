@@ -29,7 +29,7 @@ Check `config/themes.json.sample` to get samples.
 - `locale` - array of available locales
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
-- `disableSuffix` - disable adding `.min` sufix using `--prod` flag.
+- `disableSuffix` - disable adding `.min` suffix using `--prod` flag.
 - `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
