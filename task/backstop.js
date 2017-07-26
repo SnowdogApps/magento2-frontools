@@ -5,7 +5,7 @@ module.exports = function() { // eslint-disable-line func-names
         plugins = this.opts.plugins,
         config  = this.opts.configs,
         themes  = plugins.getThemes();
-  console.log(plugins.util.env);
+
   themes.forEach(name => {
     plugins.util.log(
       plugins.util.colors.green('Runing BackstopJs on') + ' '
