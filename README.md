@@ -64,6 +64,7 @@ The bundle also needs to have a entry file in the format `*.babel.js` for the co
   * `--reference` - Create reference screenshots
   * `--test` - Take new screenshots and compare against reference ones, launch the results report in the browser
   * `--approve` - If there are new changes that are OK, update the reference screenshots with the test ones
+  * `--filter=foo` - Add this flag after `--reference` or `--test` with a regex matching scenarios you want to test (e.g. foo)
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
