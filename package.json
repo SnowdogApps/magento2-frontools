@@ -16,7 +16,7 @@
     "babel-preset-env": "~1.5.0",
     "browser-sync": "~2.18.12",
     "chokidar": "~1.7.0",
-    "cssnano": "~3.10.0",
+    "cssnano": "~4.0.0-rc.2",
     "eslint-config-idiomatic": "~3.1.0",
     "fs-extra": "~3.0.1",
     "globby": "~6.1.0",
