@@ -34,6 +34,10 @@ Check `config/themes.json.sample` to get samples.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
+## `watcher.json` structure
+Check `config/watcher.json.sample` to get samples.
+- `usePolling` - set this to `true` to successfully watch files over a network (i.e. Docker or Vagrant) or when your watcher dosen't work well. Warining, enabling this option may lead to high CPU utilization! [chokidar docs](https://github.com/paulmillr/chokidar#performance)
+
 ## Optional configurations for 3rd party plugins
 You will find sample config files for theses plugins in `vendor/snowdog/frontools/config` directory.
 * Create [browserSync](https://www.browsersync.io/) configuration
