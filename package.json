@@ -18,7 +18,7 @@
     "chokidar": "~1.7.0",
     "cssnano": "~3.10.0",
     "eslint-config-idiomatic": "~4.0.0",
-    "fs-extra": "~3.0.1",
+    "fs-extra": "~4.0.0",
     "globby": "~6.1.0",
     "gulp": "~3.9.1",
     "gulp-babel": "~6.1.2",
