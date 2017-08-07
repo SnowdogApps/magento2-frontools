@@ -1,6 +1,6 @@
 {
   "name": "magento2-frontools",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "author": {
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
@@ -13,11 +13,11 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "~7.1.0",
-    "babel-preset-env": "~1.5.0",
+    "babel-preset-env": "~1.6.0",
     "browser-sync": "~2.18.12",
     "chokidar": "~1.7.0",
     "cssnano": "~3.10.0",
-    "eslint-config-idiomatic": "~3.1.0",
+    "eslint-config-idiomatic": "~4.0.0",
     "fs-extra": "~4.0.0",
     "globby": "~6.1.0",
     "gulp": "~3.9.1",
@@ -41,13 +41,13 @@
     "gulp-task-loader": "~1.4.4",
     "gulp-uglify": "~3.0.0",
     "gulp-util": "~3.0.8",
-    "js-yaml": "~3.8.4",
+    "js-yaml": "~3.9.0",
     "marked": "~0.3.6",
     "marked-terminal": "~2.0.0",
     "merge-stream": "~1.0.1",
     "postcss-reporter": "~4.0.0",
-    "run-sequence": "~1.2.2",
-    "stylelint": "~7.11.0",
+    "run-sequence": "~2.0.0",
+    "stylelint": "~7.12.0",
     "stylelint-config-standard": "~16.0.0"
   },
   "scripts": {
