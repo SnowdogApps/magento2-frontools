@@ -1,6 +1,6 @@
 {
   "name": "magento2-frontools",
-  "version": "1.5.2",
+  "version": "1.5.6",
   "author": {
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
@@ -47,7 +47,7 @@
     "merge-stream": "~1.0.1",
     "postcss-reporter": "~4.0.0",
     "run-sequence": "~2.0.0",
-    "stylelint": "~7.11.0",
+    "stylelint": "~7.12.0",
     "stylelint-config-standard": "~16.0.0"
   },
   "scripts": {
