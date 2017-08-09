@@ -1,7 +1,7 @@
 'use strict';
 // Plugins / Functions / Modules
 const plugins = require('gulp-load-plugins')({
-        pattern: ['*', '!gulp', '!gulp-load-plugins'],
+        pattern: ['*', '!gulp', '!gulp-load-plugins', '@*/gulp{-,.}*'],
         rename : {
           'browser-sync'    : 'browserSync',
           'fs-extra'        : 'fs',
@@ -11,7 +11,8 @@ const plugins = require('gulp-load-plugins')({
           'merge-stream'    : 'mergeStream',
           'postcss-reporter': 'reporter',
           'run-sequence'    : 'runSequence'
-        }
+        },
+        maintainScope: false
       }),
       config = {};
 
