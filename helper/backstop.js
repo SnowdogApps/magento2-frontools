@@ -1,10 +1,8 @@
 'use strict';
-module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
+module.exports = function(gulp, plugins, config, file) { // eslint-disable-line func-names
 
   return () => {
-    const theme          = config.themes[name],
-          srcBase        = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-          backstopConfig = require('../helper/config-loader')('backstop.json', plugins, config),
+    const backstopConfig = require('../helper/config-loader')('backstop.json', plugins, config),
           backstopConfigFilePath = config.projectPath + 'dev/tools/frontools/config/backstop.json',
           backstopOptions = {
                "backstopConfigFilePath": backstopConfigFilePath
