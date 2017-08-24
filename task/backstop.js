@@ -8,7 +8,7 @@ module.exports = function() { // eslint-disable-line func-names
 
   // themes.forEach(name => {
     plugins.util.log(
-      plugins.util.colors.green('Runing BackstopJs')
+      plugins.util.colors.green('Running BackstopJs')
     );
     require('../helper/backstop')(gulp, plugins, config)();
   // });
