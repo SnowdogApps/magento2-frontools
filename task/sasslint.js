@@ -9,7 +9,7 @@ module.exports = function() { // eslint-disable-line func-names
 
   themes.forEach(name => {
     plugins.util.log(
-      plugins.util.colors.green('Runing SASS Lint on') + ' '
+      plugins.util.colors.green('Running SASS Lint on') + ' '
       + plugins.util.colors.blue(name) + ' '
       + plugins.util.colors.green('theme...')
     );
