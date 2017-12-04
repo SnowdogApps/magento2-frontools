@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "~7.1.0",
+    "autoprefixer": "~7.2.0",
     "babel-preset-env": "~1.5.0",
     "browser-sync": "~2.18.12",
     "chokidar": "~1.7.0",
@@ -48,7 +48,7 @@
     "postcss-reporter": "~4.0.0",
     "run-sequence": "~1.2.2",
     "stylelint": "~8.1.0",
-    "stylelint-config-standard": "~16.0.0"
+    "stylelint-config-standard": "~18.0.0"
   },
   "scripts": {
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
