@@ -16,7 +16,7 @@ module.exports = function(plugins, file) { // eslint-disable-line func-names
               filePath   = result[1];
 
           while (filePath.includes('../')) {
-            parentPath = parentPath.replace(/\/[^\/]+$/g, '');
+            parentPath = parentPath.replace(/\/[^/]+$/g, '');
             filePath = filePath.replace(/\.\.\//, '');
             const filePathParts = /(.*)\/(.*)/g.exec(filePath);
             if (filePathParts) {
