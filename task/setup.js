@@ -11,7 +11,9 @@ module.exports = function() { // eslint-disable-line func-names
 
         // Set config files paths
         configSamplesPath    = './config/',
-        configPath           = config.projectPath + 'dev/tools/frontools/config/';
+        configPath           = config.projectPath + 'dev/tools/frontools/config/',
+        casperSamplesPath    = './tests/backstop_data/casper_scripts/',
+        casperPath           = config.projectPath + 'dev/tests/backstop_data/casper_scripts/';
 
   try {
     plugins.fs.symlinkSync(relativeDirectory, config.projectPath + '/' + symlinkDirectoryName, 'dir');
@@ -32,7 +34,8 @@ module.exports = function() { // eslint-disable-line func-names
 
     try {
       plugins.fs.copySync(configSamplesPath + fileName, configPath + newFileName, {
-        clobber: false
+        overwrite: false,
+        errorOnExist: true
       });
 
       plugins.util.log('File ' + fileName + ' copied to /dev/tools/frontools/config/' + newFileName);
@@ -40,6 +43,23 @@ module.exports = function() { // eslint-disable-line func-names
     catch (error) {
       plugins.util.log(
         plugins.util.colors.yellow('File ' + newFileName + ' already exists. Skipped it.')
+      );
+    }
+  });
+
+  // Copy Casper scripts over to 'dev/tests/backstop_data/casper_scripts' directory.
+  plugins.fs.readdirSync(casperSamplesPath).forEach((fileName) => {
+
+    try {
+      plugins.fs.copySync(casperSamplesPath + fileName, casperPath + fileName, {
+        clobber: false
+      });
+
+      plugins.util.log('File: ' + fileName + ' copied to /dev/tests/backstop_data/casper_scripts/' + fileName);
+    }
+    catch (error) {
+      plugins.util.log(
+        plugins.util.colors.yellow('File ' + fileName + ' already exists. Skipped it.')
       );
     }
   });

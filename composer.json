@@ -12,10 +12,12 @@
         }
     },
     "require": {
-        "magento/framework": "^100.0.1"
+        "magento/framework": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.5"
     },
-    "type": "magento2-module"
+    "type": "magento2-component",
+    "license": "MIT",
+    "type": "magento2-component"
 }

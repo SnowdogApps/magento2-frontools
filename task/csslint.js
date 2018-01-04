@@ -4,14 +4,17 @@ module.exports = function() { // eslint-disable-line func-names
   const gulp    = this.gulp,
         plugins = this.opts.plugins,
         config  = this.opts.configs,
-        themes  = plugins.getThemes();
+        themes  = plugins.getThemes(),
+        streams = plugins.mergeStream();
 
   themes.forEach(name => {
     plugins.util.log(
-      plugins.util.colors.green('Runing CSS Lint on') + ' '
+      plugins.util.colors.green('Running CSS Lint on') + ' '
       + plugins.util.colors.blue(name) + ' '
       + plugins.util.colors.green('theme...')
     );
-    require('../helper/css-lint')(gulp, plugins, config, name)();
+    streams.add(require('../helper/css-lint')(gulp, plugins, config, name));
   });
+
+  return streams;
 };

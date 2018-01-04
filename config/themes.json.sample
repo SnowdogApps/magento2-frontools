@@ -1,29 +1,52 @@
 {
-  "blank": {
-    "src": "vendor/snowdog/theme-blank-sass",
-    "dest": "pub/static/frontend/Snowdog/blank",
-    "locale": ["en_US"]
-  },
-  "basc-child": {
-    "src": "vendor/snowdog/theme-basic-child",
-    "dest": "pub/static/frontend/Snowdog/basic-child",
-    "locale": ["en_US"],
-    "parent": "blank"
-  },
-  "child-with-locale-overwrites": {
-    "src": "vendor/snowdog/custom",
-    "dest": "pub/static/frontend/Snowdog/child-with-locale-overwrites",
-    "locale": ["en_US", "pl_PL"],
-    "localeOverwrites": true,
-    "parent": "blank"
-  },
-  "all-possible-options": {
-    "src": "vendor/snowdog/theme-all-possible-options",
-    "dest": "pub/static/frontend/Snowdog/all-possible-options",
-    "locale": ["en_US", "pl_PL"],
-    "localeOverwrites": true,
-    "parent": "blank",
-    "stylesDir": "web/css",
-    "postcss": ["plugins.autoprefixer()"]
-  }
+    "base": {
+        "src"      : "vendor/ampersand/magento2-base-theme",
+        "dest"     : "pub/static/frontend/Ampersand/base",
+        "locale"   : ["en_GB"],
+        "stylesDir": "web/css"
+    },
+    "example": {
+        "src"      : "app/design/frontend/MiniSpares/default",
+        "dest"     : "pub/static/frontend/MiniSpares/default",
+        "parent"   : "base",
+        "locale"   : ["en_GB"],
+        "lang"     : "scss",
+        "postcss"  : ["plugins.autoprefixer()"],
+        "stylesDir": "web/css"
+    },
+    "blank": {
+        "src": "vendor/snowdog/theme-blank-sass",
+        "dest": "pub/static/frontend/Snowdog/blank",
+        "locale": ["en_US"],
+        "ignore": [".test"]
+    },
+    "basic-child": {
+        "src": "vendor/snowdog/theme-basic-child",
+        "dest": "pub/static/frontend/Snowdog/basic-child",
+        "locale": ["en_US"],
+        "parent": "blank"
+    },
+    "child-with-locale-overwrites": {
+        "src": "vendor/snowdog/theme-custom",
+        "dest": "pub/static/frontend/Snowdog/child-with-locale-overwrites",
+        "locale": ["en_US", "pl_PL"],
+        "localeOverwrites": true,
+        "parent": "blank"
+    },
+    "all-possible-options": {
+        "src": "vendor/snowdog/theme-all-possible-options",
+        "dest": "pub/static/frontend/Snowdog/all-possible-options",
+        "locale": ["en_US", "pl_PL"],
+        "localeOverwrites": true,
+        "parent": "blank",
+        "stylesDir": "web/css",
+        "postcss": ["plugins.autoprefixer()"],
+        "modules": {
+            "Snowdog_Sample": "vendor/snowdog/module-sample"
+        },
+        "ignore": [
+            "vendor/snowdog/module-sample/{docs,dist}/**",
+            "*.xml"
+        ]
+    }
 }

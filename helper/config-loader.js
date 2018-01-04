@@ -12,7 +12,7 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
       return plugins.yaml.safeLoad(plugins.fs.readFileSync(externalPath));
     }
     else {
-      return require(externalPath);
+      return JSON.parse(plugins.fs.readFileSync(externalPath));
     }
   }
   else if (plugins.globby.sync('./config/' + file).length) {
@@ -20,7 +20,7 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
       return plugins.yaml.safeLoad(plugins.fs.readFileSync('./config/' + file));
     }
     else {
-      return require('../config/' + file);
+      return JSON.parse(plugins.fs.readFileSync('../config/' + file));
     }
   }
   else {
@@ -30,7 +30,6 @@ module.exports = function(file, plugins, config, failOnError) { // eslint-disabl
         'message': plugins.errorMessage('You have to create ' + file)
       })
     }
-
     return {};
   }
 };
