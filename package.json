@@ -29,7 +29,7 @@
     "gulp-logger": "~0.0.2",
     "gulp-multi-dest": "~0.0.4",
     "gulp-notify": "~3.0.0",
-    "gulp-plumber": "~1.1.0",
+    "gulp-plumber": "~1.2.0",
     "gulp-postcss": "~7.0.0",
     "gulp-rename": "~1.2.2",
     "gulp-rimraf": "~0.2.1",
