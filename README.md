@@ -86,7 +86,7 @@ The bundle also needs to have a entry file in the format `*.babel.js` for the co
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
 * `imagemin` - minifies images within the `app/design/frontend/<Vendor>/<theme>/web/images` directory in place for each theme
-  *  `--dir filepath` - minifies images within the provided directory in place: directory should be relative to project root
+  *  `--dir filepath` - minifies images within the provided directory in place: directory should be relative to project root. This is a more reliable method.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests.
   * `--theme name` - Process single theme.
