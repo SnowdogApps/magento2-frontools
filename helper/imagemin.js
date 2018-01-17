@@ -10,12 +10,12 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
         // Requires an argument, if only `--dir` provided then this is just true
         if (plugins.util.env.dir !== true) {
             const minnedImageDir = path.join(config.projectPath, plugins.util.env.dir);
-            const imageDir = path.join(config.projectPath, plugins.util.env.dir, '**/*');
+            const imageDir = path.join(minnedImageDir, '**/*');
             console.log('Minifying everything in: ' + minnedImageDir);
 
-            return gulp.src(config.projectPath + 'dev/tests/backstop_data/bitmaps_reference/**/*')
+            return gulp.src(imageDir)
                 .pipe(plugins.imagemin(imageMinConfig))
-                .pipe(gulp.dest(config.projectPath + 'dev/tests/backstop_data/bitmaps_reference/'));
+                .pipe(gulp.dest(minnedImageDir));
         } else {
             console.log('Must provide a directory as an argument');
         }

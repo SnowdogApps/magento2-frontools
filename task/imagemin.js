@@ -6,7 +6,6 @@ module.exports = function() { // eslint-disable-line func-names
         config  = this.opts.configs,
         themes  = plugins.getThemes();
 
-
   if (plugins.util.env.dir) {
       plugins.util.log(
         plugins.util.colors.green('Running imagemin on custom directory...')
