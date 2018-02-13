@@ -19,7 +19,7 @@
     "cssnano": "~3.10.0",
     "eslint-config-idiomatic": "~4.0.0",
     "fs-extra": "~4.0.2",
-    "globby": "~7.1.1",
+    "globby": "~8.0.0",
     "gulp": "~3.9.1",
     "gulp-babel": "~6.0.0",
     "gulp-concat": "~2.6.1",
