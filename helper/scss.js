@@ -52,7 +52,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
     .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
     .pipe(plugins.if(production && !disableSuffix, plugins.rename({ suffix: '.min' })))
-    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write('.', {includeContent: true})))
+    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write('.', { includeContent: true })))
     .pipe(plugins.rename(adjustDestinationDirectory))
     .pipe(plugins.multiDest(dest))
     .pipe(plugins.logger({
