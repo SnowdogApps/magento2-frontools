@@ -52,6 +52,18 @@
     "stylelint-config-standard": "~18.0.0"
   },
   "scripts": {
+    "babel": "gulp babel",
+    "clean": "gulp clean",
+    "csslint": "gulp csslint",
+    "default": "gulp",
+    "dev": "gulp dev",
+    "eslint": "gulp eslint",
+    "inheritance": "gulp inheritance",
+    "sasslint": "gulp sasslint",
+    "setup": "gulp setup",
+    "styles": "gulp styles",
+    "svg": "gulp svg",
+    "watch": "gulp watch",
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
   }
 }
