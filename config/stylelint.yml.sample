@@ -16,5 +16,3 @@ rules:
   font-family-no-missing-generic-family-keyword: null
   no-duplicate-selectors: null
   comment-whitespace-inside: null
-  length-zero-no-unit: null
-  number-leading-zero: null
