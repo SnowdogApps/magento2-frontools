@@ -34,7 +34,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   });
 
   return gulp.src(
-    file || srcBase + '/**/*.scss',
+    file || srcBase + '/**/*.+(sass|scss)',
     { base: srcBase }
   )
     .pipe(
