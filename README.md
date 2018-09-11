@@ -26,6 +26,7 @@ If you want to keep config files inside frontools `config` dir, you have to hand
 Check `config/themes.json.sample` to get samples.
 - `src` - full path to theme
 - `dest` - full path to `pub/static/[theme_area]/[theme_vendor]/[theme_name]`
+- `dev_directory` - full path to `app/design/[theme_area]/[theme_vendor]/[theme_name]/web`
 - `locale` - array of available locales
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
