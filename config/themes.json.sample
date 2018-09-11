@@ -8,6 +8,7 @@
   "basic-child": {
     "src": "vendor/snowdog/theme-basic-child",
     "dest": "pub/static/frontend/Snowdog/basic-child",
+    "dev_directory": "app/design/frontend/Snowdog/basic-child",
     "locale": ["en_US"],
     "parent": "blank"
   },
