@@ -48,11 +48,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         })
       )
     )
-    .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.init()))
+    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
     .pipe(plugins.babel(babelConfig))
     .pipe(plugins.if(production, plugins.uglify()))
-    .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.write()))
     .pipe(plugins.if(production, plugins.rename({ suffix: '.min' })))
+    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write('.', { includeContent: true })))
     .pipe(plugins.rename(adjustDestinationDirectory))
     .pipe(plugins.multiDest(dest))
     .pipe(plugins.logger({
