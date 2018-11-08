@@ -17,6 +17,8 @@ module.exports = function(resolve) { // eslint-disable-line func-names
   plugins.helper.sass          = require('../helper/scss');
   plugins.helper.sassLint      = require('../helper/sass-lint');
   plugins.helper.svg           = require('../helper/svg');
+  plugins.helper.inky          = require('../helper/inky');
+  plugins.helper.inliner       = require('../helper/inliner');
 
   plugins.util.log(
     plugins.util.colors.yellow('Initializing watcher...')
@@ -165,6 +167,10 @@ module.exports = function(resolve) { // eslint-disable-line func-names
       // SVG Sprite
       if (plugins.path.extname(path) === '.svg') {
         plugins.helper.svg(gulp, plugins, config, name);
+      }
+
+      if (plugins.path.extname(path) === '.hbs' && path.includes('email')) {
+        plugins.runSequence('inky');
       }
 
       // Files that require reload after save
