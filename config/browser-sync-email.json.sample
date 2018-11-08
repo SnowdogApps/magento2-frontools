@@ -1,0 +1,11 @@
+{
+  "server": {
+    "baseDir": "../../../"
+  },
+  "files": [
+    "../../../app/design/frontend/**/email/**/*.html",
+    "../../../pub/static/frontend/**/email.css"
+  ],
+  "open": false,
+  "startPath": "app/design/frontend/Framework/WhiteLabel/Magento_Customer/email/welcome.html"
+}

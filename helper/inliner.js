@@ -32,7 +32,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   }
 
   return gulp.src(
-    file || srcBase + '/**/*.email.hbs',
+    file || srcBase + '/**/*.email.tmp.hbs',
     { base: srcBase }
   )
     .pipe(
@@ -43,6 +43,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         })
       )
     )
+    .pipe(plugins.replace(`<link rel="stylesheet" href="/pub/static/frontend/###THEME-NAME###/de_DE/css/email.css">`, ''))
     .pipe(plugins.inlineCss({
       extraCss: css,
       applyStyleTags: false,
@@ -56,7 +57,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       minifyCSS: true
     }))
     .pipe(plugins.rename(function (path) {
-      path.basename = path.basename.replace('.email', '');
+      path.basename = path.basename.replace('.email.tmp', '');
       path.extname = '.html';
 
       return path;

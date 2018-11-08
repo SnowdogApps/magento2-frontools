@@ -3,6 +3,9 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   const theme       = config.themes[name],
         srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
         dest        = [],
+        srcTheme    = [],
+        themeName   = srcBase.split('/frontools/frontend/')[1],
+        enableInliner = plugins.util.env.enableInliner || false,
         production  = plugins.util.env.prod || false;
 
   function adjustDestinationDirectory(file) {
@@ -14,10 +17,14 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
 
+  srcTheme.push(config.projectPath + theme.src);
+
   // Return empty stream if no email directory is included
   if (!plugins.fs.existsSync(srcBase + '/email')) {
     return [];
   }
+
+  plugins.panini.refresh();
 
   return gulp.src(
     file || srcBase + '/**/*.email.hbs',
@@ -37,9 +44,22 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       partials: srcBase + '/email/partials/',
       helpers: srcBase + '/email/helpers/'
     }))
+    .pipe(plugins.if(!enableInliner, plugins.replace('###THEME-NAME###', themeName)))
     .pipe(plugins.inky())
+    .pipe(plugins.if(enableInliner, plugins.rename(function (path) {
+      path.basename = path.basename.replace('.email', '.email.tmp');
+
+      return path;
+    })))
+    .pipe(plugins.if(!enableInliner, plugins.rename(function (path) {
+      path.basename = path.basename.replace('.email', '');
+      path.extname = '.html';
+
+      return path;
+    })))
     .pipe(plugins.rename(adjustDestinationDirectory))
-    .pipe(plugins.multiDest(srcBase))
+    .pipe(plugins.if(enableInliner, plugins.multiDest(srcBase)))
+    .pipe(plugins.if(!enableInliner, plugins.multiDest(srcTheme)))
     .pipe(plugins.logger({
       display   : 'name',
       beforeEach: 'Theme: ' + name + ' ',
