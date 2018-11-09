@@ -3,8 +3,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   const theme       = config.themes[name],
         srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
         dest        = [],
-        srcTheme    = [],
-        production  = plugins.util.env.prod || false;
+        srcTheme    = [];
 
   function adjustDestinationDirectory(file) {
     file.dirname = file.dirname.replace('web/', '');
@@ -15,16 +14,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
 
+  const cssFilePath = dest[0] + '/css/email.css', // eslint-disable-line one-var
+        css = plugins.fs.existsSync(cssFilePath) ? plugins.fs.readFileSync(cssFilePath).toString() : '',
+        mqCss = plugins.fs.existsSync(cssFilePath) ? plugins.siphon(css) : '';
+
   srcTheme.push(config.projectPath + theme.src);
-
-  var cssFilePath = dest[0] + '/css/email.css';
-  var css = '';
-  var mqCss = '';
-
-  if (plugins.fs.existsSync(cssFilePath)) {
-    css = plugins.fs.readFileSync(cssFilePath).toString();
-    mqCss = plugins.siphon(css);
-  }
 
   // Return empty stream if no email directory is included
   if (!plugins.fs.existsSync(srcBase + '/email')) {
@@ -43,7 +37,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         })
       )
     )
-    .pipe(plugins.replace(`<link rel="stylesheet" href="/pub/static/frontend/###THEME-NAME###/de_DE/css/email.css">`, ''))
+    .pipe(plugins.replace(`<link rel="stylesheet" href="/pub/static/frontend/###THEME-NAME###/de_DE/css/email.css">`, '')) // eslint-disable-line quotes
     .pipe(plugins.inlineCss({
       extraCss: css,
       applyStyleTags: false,
@@ -56,7 +50,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       collapseWhitespace: true,
       minifyCSS: true
     }))
-    .pipe(plugins.rename(function (path) {
+    .pipe(plugins.rename(function rename(path) {
       path.basename = path.basename.replace('.email.tmp', '');
       path.extname = '.html';
 

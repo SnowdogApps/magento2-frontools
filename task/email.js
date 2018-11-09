@@ -1,8 +1,7 @@
 'use strict';
 module.exports = function() { // eslint-disable-line func-names
-                              // Global variables
-  const plugins = this.opts.plugins,
-        config  = this.opts.configs;
+  // Global variables
+  const plugins = this.opts.plugins;
 
   // Prevent runing inheritance task more than once
   plugins.util.env.pipeline = true;

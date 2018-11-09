@@ -5,8 +5,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         dest        = [],
         srcTheme    = [],
         themeName   = srcBase.split('/frontools/frontend/')[1],
-        enableInliner = plugins.util.env.enableInliner || false,
-        production  = plugins.util.env.prod || false;
+        enableInliner = plugins.util.env.enableInliner || false;
 
   function adjustDestinationDirectory(file) {
     file.dirname = file.dirname.replace('web/', '');
@@ -46,12 +45,12 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     }))
     .pipe(plugins.if(!enableInliner, plugins.replace('###THEME-NAME###', themeName)))
     .pipe(plugins.inky())
-    .pipe(plugins.if(enableInliner, plugins.rename(function (path) {
+    .pipe(plugins.if(enableInliner, plugins.rename(function rename(path) {
       path.basename = path.basename.replace('.email', '.email.tmp');
 
       return path;
     })))
-    .pipe(plugins.if(!enableInliner, plugins.rename(function (path) {
+    .pipe(plugins.if(!enableInliner, plugins.rename(function rename(path) {
       path.basename = path.basename.replace('.email', '');
       path.extname = '.html';
 
