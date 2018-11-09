@@ -58,6 +58,7 @@
     "stylelint-config-standard": "~18.2.0"
   },
   "scripts": {
+    "prepare": "patch-package",
     "babel": "gulp babel",
     "clean": "gulp clean",
     "csslint": "gulp csslint",
@@ -73,5 +74,9 @@
     "watch": "gulp watch",
     "email": "gulp email",
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
+  },
+  "devDependencies": {
+    "patch-package": "^5.1.1",
+    "postinstall-prepare": "^1.0.1"
   }
 }

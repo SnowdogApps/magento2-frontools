@@ -1,0 +1,17 @@
+patch-package
+--- a/node_modules/panini/lib/utils.js
++++ b/node_modules/panini/lib/utils.js
+@@ -16,7 +16,12 @@ exports.loadFiles = function(dir, pattern) {
+   dir = !Array.isArray(dir) ? [dir] : dir;
+ 
+   for (var i in dir) {
+-    files = files.concat(glob.sync(path.join(process.cwd(), dir[i], pattern)));
++    var filePath = [process.cwd(), dir[i], pattern];
++    if(path.isAbsolute(dir[i])) {
++      filePath.shift();
++    }
++
++    files = files.concat(glob.sync(path.join.apply(null, filePath)));
+   }
+ 
+   return files;
