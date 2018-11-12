@@ -45,6 +45,8 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     }))
     .pipe(plugins.if(!enableInliner, plugins.replace('###THEME-NAME###', themeName)))
     .pipe(plugins.inky())
+    .pipe(plugins.replace(/(\\?{!!)(\s+)?/g, '{{'))
+    .pipe(plugins.replace(/(\s+)?(!!}\\?)/g, '}}'))
     .pipe(plugins.if(enableInliner, plugins.rename(function rename(path) {
       path.basename = path.basename.replace('.email', '.email.tmp');
 
