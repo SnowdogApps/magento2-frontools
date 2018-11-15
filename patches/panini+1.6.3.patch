@@ -1,4 +1,21 @@
 patch-package
+--- a/node_modules/panini/index.js
++++ b/node_modules/panini/index.js
+@@ -38,10 +38,12 @@ module.exports = function(options) {
+   if (!panini) {
+     panini = new Panini(options);
+     panini.loadBuiltinHelpers();
+-    panini.refresh();
+-    module.exports.refresh = panini.refresh.bind(panini);
+   }
+ 
++  panini.options = options;
++  panini.refresh();
++  module.exports.refresh = panini.refresh.bind(panini);
++
+   // Compile pages with the above helpers
+   return panini.render();
+ }
 --- a/node_modules/panini/lib/utils.js
 +++ b/node_modules/panini/lib/utils.js
 @@ -16,7 +16,12 @@ exports.loadFiles = function(dir, pattern) {
