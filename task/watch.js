@@ -24,6 +24,9 @@ module.exports = function(resolve) { // eslint-disable-line func-names
     plugins.util.colors.yellow('Initializing watcher...')
   );
 
+  const paniniRegExpRule = /(email)\/(partials|layouts|helpers)\/\w*.hbs/,
+        paniniRegExp = new RegExp(paniniRegExpRule);
+
   themes.forEach(name => {
     const theme = config.themes[name],
           themeTempSrc = config.tempPath + theme.dest.replace('pub/static', ''),
@@ -169,9 +172,16 @@ module.exports = function(resolve) { // eslint-disable-line func-names
         plugins.helper.svg(gulp, plugins, config, name);
       }
 
-      if (plugins.path.extname(path) === '.hbs' && path.includes('email')) {
-        plugins.runSequence('inky');
+      if (plugins.path.basename(path).includes('email.hbs')) {
+        plugins.helper.inky(gulp, plugins, config, name, path);
       }
+
+      if (paniniRegExp.test(path)) {
+        const basePath = path.replace(paniniRegExpRule, '**/*.email.hbs');
+
+        plugins.helper.inky(gulp, plugins, config, name, basePath);
+      }
+
 
       // Files that require reload after save
       if (['.html', '.phtml', '.xml', '.csv', '.js', '.vue'].some(
