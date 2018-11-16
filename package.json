@@ -25,7 +25,9 @@
     "gulp-babel": "~7.0.1",
     "gulp-concat": "~2.6.1",
     "gulp-eslint": "~4.0.2",
+    "gulp-htmlmin": "^5.0.1",
     "gulp-if": "~2.0.2",
+    "gulp-inline-css": "^3.3.1",
     "gulp-load-plugins": "~1.5.0",
     "gulp-logger": "~0.0.2",
     "gulp-multi-dest": "~1.3.7",
@@ -33,6 +35,7 @@
     "gulp-plumber": "~1.2.0",
     "gulp-postcss": "~7.0.1",
     "gulp-rename": "~1.2.2",
+    "gulp-replace": "^1.0.0",
     "gulp-rimraf": "~0.2.2",
     "gulp-sass": "~3.2.1",
     "gulp-sass-error": "~1.0.5",
@@ -42,21 +45,26 @@
     "gulp-task-loader": "~1.4.4",
     "gulp-uglify": "~3.0.0",
     "gulp-util": "~3.0.8",
+    "inky": "^1.3.7",
     "js-yaml": "~3.11.0",
     "marked": "~0.3.12",
     "marked-terminal": "~2.0.0",
     "merge-stream": "~1.0.1",
+    "panini": "^1.6.3",
     "postcss-reporter": "~5.0.0",
     "run-sequence": "~2.2.1",
+    "siphon-media-query": "^1.0.0",
     "stylelint": "~9.1.3",
     "stylelint-config-standard": "~18.2.0"
   },
   "scripts": {
+    "prepare": "patch-package",
     "babel": "gulp babel",
     "clean": "gulp clean",
     "csslint": "gulp csslint",
     "default": "gulp",
     "dev": "gulp dev",
+    "dev:email": "gulp dev:email",
     "eslint": "gulp eslint",
     "inheritance": "gulp inheritance",
     "sasslint": "gulp sasslint",
@@ -64,6 +72,11 @@
     "styles": "gulp styles",
     "svg": "gulp svg",
     "watch": "gulp watch",
+    "email": "gulp email",
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
+  },
+  "devDependencies": {
+    "patch-package": "^5.1.1",
+    "postinstall-prepare": "^1.0.1"
   }
 }

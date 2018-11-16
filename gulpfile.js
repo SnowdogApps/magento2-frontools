@@ -10,7 +10,10 @@ const plugins = require('gulp-load-plugins')({
           'marked-terminal' : 'markedTerminal',
           'merge-stream'    : 'mergeStream',
           'postcss-reporter': 'reporter',
-          'run-sequence'    : 'runSequence'
+          'run-sequence'    : 'runSequence',
+          'panini'          : 'panini',
+          'inky'            : 'inky',
+          'siphon-media-query' : 'siphon',
         }
       }),
       config = {};
