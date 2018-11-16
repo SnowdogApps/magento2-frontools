@@ -1,21 +1,17 @@
 patch-package
---- a/node_modules/panini/index.js
-+++ b/node_modules/panini/index.js
-@@ -38,10 +38,12 @@ module.exports = function(options) {
-   if (!panini) {
-     panini = new Panini(options);
-     panini.loadBuiltinHelpers();
--    panini.refresh();
--    module.exports.refresh = panini.refresh.bind(panini);
-   }
+--- a/node_modules/panini/lib/render.js
++++ b/node_modules/panini/lib/render.js
+@@ -21,6 +21,10 @@ function render(file, enc, cb) {
+     var page = fm(stripBom(file.contents.toString()));
+     var pageData;
  
-+  panini.options = options;
-+  panini.refresh();
-+  module.exports.refresh = panini.refresh.bind(panini);
++    // Rendering is processed in asynchronous strem - therefore you need to refresh Handlebars Configuration when in multi-instance mode
++    this.Handlebars.partials = {};
++    this.refresh();
 +
-   // Compile pages with the above helpers
-   return panini.render();
- }
+     // Determine which layout to use
+     var basePath = path.relative(this.options.root, path.dirname(file.path));
+     var layout =
 --- a/node_modules/panini/lib/utils.js
 +++ b/node_modules/panini/lib/utils.js
 @@ -16,7 +16,12 @@ exports.loadFiles = function(dir, pattern) {

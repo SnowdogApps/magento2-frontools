@@ -23,7 +23,16 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     return [];
   }
 
-  plugins.panini.refresh();
+  var Panini = require('panini').Panini;
+
+  var panini = new Panini({
+    root: srcBase + '/',
+    layouts: srcBase + '/email/layouts/',
+    partials: srcBase + '/email/partials/',
+    helpers: srcBase + '/email/helpers/'
+  });
+
+  panini.loadBuiltinHelpers();
 
   return gulp.src(
     file || srcBase + '/**/*.email.hbs',
@@ -37,12 +46,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         })
       )
     )
-    .pipe(plugins.panini({
-      root: srcBase + '/',
-      layouts: srcBase + '/email/layouts/',
-      partials: srcBase + '/email/partials/',
-      helpers: srcBase + '/email/helpers/'
-    }))
+    .pipe(panini.render())
     .pipe(plugins.if(!enableInliner, plugins.replace('###THEME-NAME###', themeName)))
     .pipe(plugins.inky())
     .pipe(plugins.replace(/(\\?{!!)(\s+)?/g, '{{'))
