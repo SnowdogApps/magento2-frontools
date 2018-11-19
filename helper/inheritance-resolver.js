@@ -9,7 +9,7 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
 
   function generateSymlinks(src, dest, replacePattern, ignore = []) {
     plugins.globby.sync(
-      [src + '/**'].concat(ignore.map(pattern => '!/**/' + pattern)),
+      [src + '/**'].concat(ignore.map(pattern => '!**/' + pattern)),
       { nodir: true }
     ).forEach(srcPath => {
       createSymlink(
@@ -42,14 +42,14 @@ module.exports = function(plugins, config, name, tree = true) { // eslint-disabl
     themeDependencyTree(name).forEach(themeName => {
       const theme = config.themes[themeName],
             themeSrc = config.projectPath + theme.src,
-            themeDest = config.tempPath + theme.dest.replace('pub/static', '');
+            themeDest = config.tempPath + theme.dest.replace(/(.*)(?=frontend|adminhtml)/, '/');
 
       // Clean destination dir before generating new symlinks
       plugins.fs.removeSync(themeDest);
 
       // Create symlinks for parent theme
       if (theme.parent) {
-        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace('pub/static', '');
+        const parentSrc = config.tempPath + config.themes[theme.parent].dest.replace(/(.*)(?=frontend|adminhtml)/, '/');
         generateSymlinks(parentSrc, themeDest, '', config.themes[theme.parent].ignore);
       }
 
