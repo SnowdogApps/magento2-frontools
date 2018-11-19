@@ -1,6 +1,6 @@
 {
   "name": "magento2-frontools",
-  "version": "1.5.15",
+  "version": "1.5.16",
   "author": {
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
@@ -17,7 +17,7 @@
     "babel-preset-env": "~1.6.1",
     "browser-sync": "~2.23.6",
     "chokidar": "~2.0.2",
-    "cssnano": "~3.10.0",
+    "cssnano": "~4.1.7",
     "eslint-config-idiomatic": "~4.0.0",
     "fs-extra": "~5.0.0",
     "globby": "~8.0.0",
