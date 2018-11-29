@@ -24,7 +24,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
     plugins.util.colors.yellow('Initializing watcher...')
   );
 
-  const paniniRegExpRule = /(email)\/(partials|layouts|helpers)\/\w*.hbs/,
+  const paniniRegExpRule = /(email)\/(partials|layouts|helpers)\/\w*.hbs/, // eslint-disable-line one-var
         paniniRegExp = new RegExp(paniniRegExpRule);
 
   themes.forEach(name => {

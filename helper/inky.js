@@ -23,14 +23,13 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     return [];
   }
 
-  var Panini = require('panini').Panini;
-
-  var panini = new Panini({
-    root: srcBase + '/',
-    layouts: srcBase + '/email/layouts/',
-    partials: srcBase + '/email/partials/',
-    helpers: srcBase + '/email/helpers/'
-  });
+  const PaniniInstance = require('panini').Panini, // eslint-disable-line one-var
+        panini = new PaniniInstance({
+          root: srcBase + '/',
+          layouts: srcBase + '/email/layouts/',
+          partials: srcBase + '/email/partials/',
+          helpers: srcBase + '/email/helpers/'
+        });
 
   panini.loadBuiltinHelpers();
 
