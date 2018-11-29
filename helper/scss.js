@@ -7,7 +7,8 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         disableMaps   = plugins.util.env.disableMaps || false,
         production    = plugins.util.env.prod || false,
         postcss       = [],
-        disableSuffix = theme.disableSuffix || false;
+        disableSuffix = theme.disableSuffix || false,
+        browserslist  = require('../helper/config-loader')('browserslist.json', plugins, config);
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
@@ -15,7 +16,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     });
   }
   else {
-    postcss.push(plugins.autoprefixer());
+    postcss.push(plugins.autoprefixer({ browsers: browserslist }));
   }
 
   function adjustDestinationDirectory(file) {
@@ -44,15 +45,15 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         })
       )
     )
-    .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.init()))
+    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
     .pipe(
       plugins.sass()
         .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
     )
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
     .pipe(plugins.if(postcss.length, plugins.postcss(postcss || [])))
-    .pipe(plugins.if(!disableMaps && !production, plugins.sourcemaps.write()))
     .pipe(plugins.if(production && !disableSuffix, plugins.rename({ suffix: '.min' })))
+    .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write('.', { includeContent: true })))
     .pipe(plugins.rename(adjustDestinationDirectory))
     .pipe(plugins.replace('@charset "UTF-8";',''))
     .pipe(plugins.multiDest(dest))

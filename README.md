@@ -58,7 +58,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * `dev` - Runs [browserSync](https://www.browsersync.io/) and `inheritance`, `babel`, `styles`, `watch` tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
-  * `--disableMaps` - Toggles source maps generation.
+  * `--disableMaps` - Disable inline source maps generation.
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
@@ -69,7 +69,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--symlink name` - If you don't want to use `tools` as the symlink you can specify another name.
 * `styles` - Use this task to manually trigger styles processing pipeline.
   * `--theme name` - Process single theme.
-  * `--disableMaps` - Toggles source maps generation.
+  * `--disableMaps` - Disable inline source maps generation.
   * `--prod` - Production output - minifies styles and add `.min` sufix.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `svg` - Run [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) to generate SVG sprite.
@@ -77,4 +77,4 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * `watch` - Watch for style changes and run processing tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
-  * `--disableMaps` - Enable inline source maps generation.
+  * `--disableMaps` - Disable inline source maps generation.

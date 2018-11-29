@@ -12,3 +12,7 @@ rules:
   declaration-block-no-duplicate-properties: null
   comment-empty-line-before: null
   color-hex-length: null
+  no-descending-specificity: null
+  font-family-no-missing-generic-family-keyword: null
+  no-duplicate-selectors: null
+  max-empty-lines: null
