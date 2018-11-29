@@ -36,7 +36,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       });
     });
 
-  return gulp.src(
+  const gulpTask = gulp.src( // eslint-disable-line one-var
     file || srcBase + '/**/*.babel.js',
     { base: srcBase }
   )
@@ -59,6 +59,15 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       display   : 'name',
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
-    }))
-    .pipe(plugins.browserSync.stream());
+    }));
+
+  if (plugins.browserSyncInstances) {
+    Object.keys(plugins.browserSyncInstances).map((instanceKey) => {
+      const instance = plugins.browserSyncInstances[instanceKey];
+
+      gulpTask.pipe(instance.stream());
+    });
+  }
+
+  return gulpTask;
 };

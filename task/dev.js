@@ -7,12 +7,23 @@ module.exports = function() { // eslint-disable-line func-names
   // Prevent runing inheritance task more than once
   plugins.util.env.pipeline = true;
 
+  let browserSyncConfig = require('../helper/config-loader')('browser-sync.json', plugins, config);
+
+  if (!Array.isArray(browserSyncConfig)) {
+    browserSyncConfig = [browserSyncConfig];
+  }
+
+  plugins.browserSyncInstances = {};
+
   plugins.runSequence('inheritance', 'babel', 'styles', () => {
     // Setup browser-sync
-    plugins.browserSync.create();
-    plugins.browserSync(
-      require('../helper/config-loader')('browser-sync.json', plugins, config)
-    );
+    browserSyncConfig.forEach((item, index) => {
+      const instance = `browserSyncInstance${index}`;
+
+      plugins.browserSyncInstances[instance] = plugins.browserSync.create();
+      plugins.browserSyncInstances[instance].init(item);
+    });
+
     plugins.runSequence('watch');
   });
 };
