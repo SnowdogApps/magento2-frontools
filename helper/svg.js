@@ -9,7 +9,7 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
     dest.push(plugins.path.join(config.projectPath, theme.dest, locale))
   })
 
-  return gulp.src(srcBase + '/**/icons/**/*.svg')
+  const gulpTask = gulp.src(srcBase + '/**/icons/**/*.svg') // eslint-disable-line one-var
     .pipe(
       plugins.if(
         !plugins.util.env.ci,
@@ -32,5 +32,14 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
     }))
-    .pipe(plugins.browserSync.stream())
+
+  if (plugins.browserSyncInstances) {
+    Object.keys(plugins.browserSyncInstances).map((instanceKey) => {
+      const instance = plugins.browserSyncInstances[instanceKey]
+
+      gulpTask.pipe(instance.stream())
+    })
+  }
+
+  return gulpTask
 }

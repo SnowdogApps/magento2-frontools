@@ -170,7 +170,12 @@ module.exports = function(resolve) { // eslint-disable-line func-names
       if (['.html', '.phtml', '.xml', '.csv', '.js', '.vue'].some(
         ext => plugins.path.extname(path) === ext
       )) {
-        plugins.browserSync.reload()
+        if (plugins.browserSyncInstances) {
+          Object.keys(plugins.browserSyncInstances).forEach((instanceKey) => {
+            const instance = plugins.browserSyncInstances[instanceKey]
+            instance.reload()
+          })
+        }
       }
     })
 
