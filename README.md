@@ -59,6 +59,8 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Disable inline source maps generation.
+* `email-fix` - Use this task to remove @charset "UTF-8"; from `email-inline.css` to avoid outputing Emogrifier.php (< 2.1.0) errors in emails
+  * `--prod` - Production mode - fix `email-inline.min.css`
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
