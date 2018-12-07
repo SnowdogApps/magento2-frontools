@@ -5,7 +5,7 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
   const srcBase = config.projectPath + theme.dest
   const emailFilename = production ? 'email-inline.min.css' : 'email-inline.css'
 
-  return gulp.src(srcBase + '/**/*/' + emailFilename)
+  return gulp.src(srcBase + '/**/*/' + emailFilename, {base: "./"})
     .pipe(plugins.if(
       !plugins.util.env.ci,
       plugins.plumber({
