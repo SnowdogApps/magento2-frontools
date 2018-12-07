@@ -23,7 +23,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       beforeEach: 'Email styles from: ',
       afterEach : ' has been fixed!'
     }))
-    .pipe(plugins.replace('@charset "UTF-8";',''))
+    .pipe(plugins.replace('@charset "UTF-8";', ''))
     .pipe(plugins.multiDest(dest))
 };
 
