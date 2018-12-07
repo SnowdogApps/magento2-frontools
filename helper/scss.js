@@ -55,7 +55,6 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     .pipe(plugins.if(production && !disableSuffix, plugins.rename({ suffix: '.min' })))
     .pipe(plugins.if(!disableMaps, plugins.sourcemaps.write('.', { includeContent: true })))
     .pipe(plugins.rename(adjustDestinationDirectory))
-    .pipe(plugins.replace('@charset "UTF-8";',''))
     .pipe(plugins.multiDest(dest))
     .pipe(plugins.logger({
       display   : 'name',

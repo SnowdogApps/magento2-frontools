@@ -66,5 +66,8 @@
     "svg": "gulp svg",
     "watch": "gulp watch",
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
+  },
+  "devDependencies": {
+    "gulp-debug": "^4.0.0"
   }
 }
