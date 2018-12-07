@@ -1,17 +1,11 @@
 'use strict';
-module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
-  const dest            = [],
-        production      = plugins.util.env.prod || false,
-        theme           = config.themes[name],
-        srcBase         = config.projectPath + theme.dest;
+module.exports = function(gulp, plugins, config, name) { // eslint-disable-line func-names
+  const production = plugins.util.env.prod || false
+  const theme = config.themes[name]
+  const srcBase = config.projectPath + theme.dest
+  const emailFilename = production ? 'email-inline.min.css' : 'email-inline.css'
 
-  let emailFilename   = 'email-inline.css';
-
-  if (production) {
-    emailFilename = 'email-inline.min.css';
-  }
-
-  return gulp.src(file || srcBase + '/**/*/' + emailFilename)
+  return gulp.src(srcBase + '/**/*/' + emailFilename)
     .pipe(plugins.if(
       !plugins.util.env.ci,
       plugins.plumber({
@@ -24,6 +18,6 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       afterEach : ' has been fixed!'
     }))
     .pipe(plugins.replace('@charset "UTF-8";', ''))
-    .pipe(plugins.multiDest(dest))
+    .pipe(gulp.dest('./'))
 };
 
