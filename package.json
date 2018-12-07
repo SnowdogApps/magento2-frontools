@@ -58,6 +58,7 @@
     "csslint": "gulp csslint",
     "default": "gulp",
     "dev": "gulp dev",
+    "email-fix": "gulp email-fix",
     "eslint": "gulp eslint",
     "inheritance": "gulp inheritance",
     "sasslint": "gulp sasslint",
@@ -66,8 +67,5 @@
     "svg": "gulp svg",
     "watch": "gulp watch",
     "test": "./node_modules/eslint/bin/eslint.js *.js helper/*.js task/*.js"
-  },
-  "devDependencies": {
-    "gulp-debug": "^4.0.0"
   }
 }
