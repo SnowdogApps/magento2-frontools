@@ -21,7 +21,7 @@
     "eslint-config-idiomatic": "~4.0.0",
     "fs-extra": "~7.0.1",
     "globby": "~8.0.1",
-    "gulp": "~3.9.1",
+    "gulp": "~4.0.0",
     "gulp-babel": "~8.0.0",
     "gulp-concat": "~2.6.1",
     "gulp-eslint": "~5.0.0",
