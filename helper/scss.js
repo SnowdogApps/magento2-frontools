@@ -33,6 +33,10 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     dest.push(config.projectPath + theme.dest + '/' + locale);
   });
 
+  if(theme.deployToWeb) {
+    dest.push(config.projectPath + theme.dest.replace('pub/static', 'app/design') + '/' + 'web');
+  }
+
   return gulp.src(
     file || srcBase + '/**/*.scss',
     { base: srcBase }
