@@ -59,6 +59,8 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Disable inline source maps generation.
+* `email-fix` - Fixes email stylesheet for Magento < 2.3.0. [Related issue](https://github.com/MyIntervals/emogrifier/issues/296)
+  * `--prod` - Production output - minifies styles and add `.min` sufix.
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
