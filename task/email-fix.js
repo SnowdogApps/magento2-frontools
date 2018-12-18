@@ -1,5 +1,5 @@
 'use strict'
-module.exports = () => {
+module.exports = function() { // eslint-disable-line func-names
   // Global variables
   const gulp     = this.gulp
   const plugins  = this.opts.plugins
