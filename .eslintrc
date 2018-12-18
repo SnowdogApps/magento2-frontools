@@ -25,3 +25,4 @@ rules:
     - 'stroustrup'
     -
       allowSingleLine: false
+  one-var: 0
