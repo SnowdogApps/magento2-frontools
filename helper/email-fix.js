@@ -1,5 +1,5 @@
-'use strict';
-module.exports = function(gulp, plugins, config, name) { // eslint-disable-line func-names
+'use strict'
+module.exports = (gulp, plugins, config, name) => {
   const production = plugins.util.env.prod || false
   const theme = config.themes[name]
   const srcBase = config.projectPath + theme.dest
@@ -13,11 +13,10 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
       })
     ))
     .pipe(plugins.logger({
-      display   : 'rel',
+      display : 'rel',
       beforeEach: 'Email styles from: ',
-      afterEach : ' has been fixed!'
+      afterEach: ' has been fixed!'
     }))
     .pipe(plugins.replace('@charset "UTF-8";', ''))
     .pipe(gulp.dest('./'))
-};
-
+}
