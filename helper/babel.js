@@ -1,13 +1,15 @@
 'use strict';
-module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
-  const theme       = config.themes[name],
-        srcBase     = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-        dest        = [],
-        disableMaps = plugins.util.env.disableMaps || false,
-        production  = plugins.util.env.prod || false,
-        babelConfig = {
-          presets: require('babel-preset-env')
-        };
+module.exports = (gulp, plugins, config, name, file) => {
+  const theme = config.themes[name]
+  const srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', '')
+  const dest = []
+  const disableMaps = plugins.util.env.disableMaps || false
+  const production = plugins.util.env.prod || false
+  const babelConfig = {
+    presets: [
+      require('@babel/preset-env')
+    ]
+  }
 
   function adjustDestinationDirectory(file) {
     file.dirname = file.dirname.replace('web/', '');
