@@ -12,12 +12,12 @@
         }
     },
     "require": {
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "eloquent/composer-npm-bridge": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~5.5"
     },
-    "type": "magento2-component",
     "license": "MIT",
     "type": "magento2-component"
 }
