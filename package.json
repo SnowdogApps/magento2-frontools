@@ -45,6 +45,7 @@
     "marked": "~0.3.6",
     "marked-terminal": "~2.0.0",
     "merge-stream": "~1.0.1",
+    "natives": "^1.1.6",
     "postcss-reporter": "~3.0.0",
     "run-sequence": "~1.2.2",
     "stylelint": "~7.9.0",
