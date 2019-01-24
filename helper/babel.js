@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (gulp, plugins, config, name, file) => {
   const theme = config.themes[name]
-  const srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', '')
+  const srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace(theme.dest_replace || 'pub/static', '')
   const dest = []
   const disableMaps = plugins.util.env.disableMaps || false
   const production = plugins.util.env.prod || false
