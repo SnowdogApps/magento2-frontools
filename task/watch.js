@@ -24,7 +24,7 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
   themes.forEach(name => {
     const theme = config.themes[name],
-          themeTempSrc = config.tempPath + theme.dest.replace(theme.dest_replace || 'pub/static', ''),
+          themeTempSrc = config.tempPath + theme.dest.replace(theme.destReplace || 'pub/static', ''),
           themeDest = config.projectPath + theme.dest,
           themeSrc = [config.projectPath + theme.src];
 

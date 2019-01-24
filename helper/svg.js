@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(gulp, plugins, config, name) { // eslint-disable-line func-names
   const theme     = config.themes[name],
-        srcBase   = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace(theme.dest_replace || 'pub/static', ''),
+        srcBase   = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace(theme.destReplace || 'pub/static', ''),
         dest      = [],
         svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config);
 
