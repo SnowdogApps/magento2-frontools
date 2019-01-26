@@ -4,7 +4,7 @@
 Set of front-end tools for Magento 2, based on Gulp.js
 
 ## Questions
-If you have any questions about this project let's go to offical Magento forum - [Less to Sass Community Project](https://community.magento.com/t5/Less-to-Sass-Community-Project/bd-p/less-to-sass)
+If you want to know more about this project, let's join [Magento Community Engineering Slack](https://tinyurl.com/engcom-slack) and ask questions on #magefront channel.
 
 ## Requirements
 * Unix-like OS (please, do not ask about Windows support)
