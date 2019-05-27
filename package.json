@@ -44,7 +44,7 @@
     "gulp-uglify": "~3.0.1",
     "gulp-util": "~3.0.8",
     "js-yaml": "~3.13.1",
-    "marked": "~0.5.2",
+    "marked": "~0.6.2",
     "marked-terminal": "~3.1.1",
     "merge-stream": "~1.0.1",
     "postcss-reporter": "~6.0.0",
