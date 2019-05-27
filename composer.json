@@ -1,5 +1,5 @@
 {
-    "name": "snowdog/frontools",
+    "name": "luudjanssen/frontools",
     "description": "Set of front-end tools for Magento 2, based on Gulp.js",
     "license": "MIT",
     "type": "magento2-component"
