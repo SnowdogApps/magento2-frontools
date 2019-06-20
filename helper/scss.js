@@ -47,7 +47,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     )
     .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
     .pipe(
-      plugins.sass({ includePaths: './node_modules' })
+      plugins.sass({ includePaths: ['./node_modules', '../../../node_modules'] })
         .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
     )
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))
