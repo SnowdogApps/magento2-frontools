@@ -16,7 +16,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     })
   }
   else {
-    postcss.push(plugins.autoprefixer({ browsers: browserslist }))
+    postcss.push(plugins.autoprefixer({ overrideBrowserslist: browserslist }))
   }
 
   function adjustDestinationDirectory(file) {
