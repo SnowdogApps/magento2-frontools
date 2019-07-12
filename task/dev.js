@@ -17,11 +17,21 @@ module.exports = function() { // eslint-disable-line func-names
 
   plugins.runSequence('inheritance', 'babel', 'styles', () => {
     // Setup browser-sync
-    browserSyncConfig.forEach((item, index) => {
+    browserSyncConfig.forEach((bsConfig, index) => {
       const instance = `browserSyncInstance${index}`
 
+      if (!bsConfig.port) {
+        bsConfig.port = 3000 + (100 * index)
+      }
+
+      bsConfig.ui = bsConfig.ui ? bsConfig.ui : {}
+
+      if (!bsConfig.ui.port) {
+        bsConfig.ui.port = 3000 + (100 * index) + 1
+      }
+
       plugins.browserSyncInstances[instance] = plugins.browserSync.create()
-      plugins.browserSyncInstances[instance].init(item)
+      plugins.browserSyncInstances[instance].init(bsConfig)
     })
 
     plugins.runSequence('watch')

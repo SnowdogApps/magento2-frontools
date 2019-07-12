@@ -10,10 +10,6 @@
   },
   {
     "proxy": "b2b.m2test.dev",
-    "port": 3002,
-    "ui": {
-      "port": 3003
-    },
     "rewriteRules": [
       {
         "match": ".b2b.m2test.dev",
