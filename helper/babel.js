@@ -64,7 +64,7 @@ module.exports = (gulp, plugins, config, name, file) => {
     }))
 
   if (plugins.browserSyncInstances) {
-    Object.keys(plugins.browserSyncInstances).map((instanceKey) => {
+    Object.keys(plugins.browserSyncInstances).forEach(instanceKey => {
       const instance = plugins.browserSyncInstances[instanceKey]
 
       gulpTask.pipe(instance.stream())

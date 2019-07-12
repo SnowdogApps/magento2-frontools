@@ -63,7 +63,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     }))
 
   if (plugins.browserSyncInstances) {
-    Object.keys(plugins.browserSyncInstances).map((instanceKey) => {
+    Object.keys(plugins.browserSyncInstances).forEach(instanceKey => {
       const instance = plugins.browserSyncInstances[instanceKey]
 
       gulpTask.pipe(instance.stream())
