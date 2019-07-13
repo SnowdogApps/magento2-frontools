@@ -1,15 +1,13 @@
-'use strict';
+'use strict'
 module.exports = function(gulp, plugins, config, name) { // eslint-disable-line func-names
-  const theme     = config.themes[name],
-        srcBase   = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace(theme.destReplace || 'pub/static', ''),
-        dest      = [],
-        svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config);
-
-  plugins.path = require('path');
+  const theme = config.themes[name]
+  const srcBase = plugins.path.join(config.tempPath, theme.dest)
+  const dest = []
+  const svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config)
 
   theme.locale.forEach(locale => {
-    dest.push(config.projectPath + theme.dest + '/' + locale);
-  });
+    dest.push(plugins.path.join(config.projectPath, theme.dest, locale))
+  })
 
   return gulp.src(srcBase + '/**/icons/**/*.svg')
     .pipe(
@@ -34,5 +32,5 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
     }))
-    .pipe(plugins.browserSync.stream());
-};
+    .pipe(plugins.browserSync.stream())
+}

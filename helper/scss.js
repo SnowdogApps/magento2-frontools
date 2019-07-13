@@ -1,37 +1,37 @@
-'use strict';
+'use strict'
 module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
-  const theme         = config.themes[name],
-        srcBase       = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace(theme.destReplace || 'pub/static', ''),
-        stylesDir     = theme.stylesDir ? theme.stylesDir : 'styles',
-        dest          = [],
-        disableMaps   = plugins.util.env.disableMaps || false,
-        production    = plugins.util.env.prod || false,
-        postcss       = [],
-        disableSuffix = theme.disableSuffix || false,
-        browserslist  = require('../helper/config-loader')('browserslist.json', plugins, config);
+  const theme = config.themes[name]
+  const srcBase = plugins.path.join(config.tempPath, theme.dest)
+  const stylesDir = theme.stylesDir ? theme.stylesDir : 'styles'
+  const dest = []
+  const disableMaps = plugins.util.env.disableMaps || false
+  const production = plugins.util.env.prod || false
+  const postcss = []
+  const disableSuffix = theme.disableSuffix || false
+  const browserslist = require('../helper/config-loader')('browserslist.json', plugins, config)
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
-      postcss.push(eval(el));
-    });
+      postcss.push(eval(el))
+    })
   }
   else {
-    postcss.push(plugins.autoprefixer({ browsers: browserslist }));
+    postcss.push(plugins.autoprefixer({ browsers: browserslist }))
   }
 
   function adjustDestinationDirectory(file) {
     if (file.dirname.startsWith(stylesDir)) {
-      file.dirname = file.dirname.replace(stylesDir, 'css');
+      file.dirname = file.dirname.replace(stylesDir, 'css')
     }
     else {
-      file.dirname = file.dirname.replace('/' + stylesDir, '');
+      file.dirname = file.dirname.replace('/' + stylesDir, '')
     }
-    return file;
+    return file
   }
 
   theme.locale.forEach(locale => {
-    dest.push(config.projectPath + theme.dest + '/' + locale);
-  });
+    dest.push(plugins.path.join(config.projectPath, theme.dest, locale))
+  })
 
   return gulp.src(
     file || srcBase + '/**/*.scss',
@@ -61,5 +61,5 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
     }))
-    .pipe(plugins.browserSync.stream());
-};
+    .pipe(plugins.browserSync.stream())
+}

@@ -1,16 +1,16 @@
-'use strict';
+'use strict'
 module.exports = function(resolve) { // eslint-disable-line func-names
   // Global variables
-  const plugins = this.opts.plugins,
-        config  = this.opts.configs,
-        themes  = plugins.getThemes(),
-        promises = [];
+  const plugins = this.opts.plugins
+  const config  = this.opts.configs
+  const themes  = plugins.getThemes()
+  const promises = []
 
   themes.forEach(name => {
-    promises.push(require('../helper/inheritance-resolver')(plugins, config, name));
-  });
+    promises.push(require('../helper/inheritance-resolver')(plugins, config, name))
+  })
 
   Promise.all(promises).then(() => {
-    resolve();
-  });
-};
+    resolve()
+  })
+}
