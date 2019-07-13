@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 module.exports = (gulp, plugins, config, name, file) => {
   const theme = config.themes[name]
-  const srcBase = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', '')
+  const srcBase = plugins.path.join(config.tempPath, theme.dest)
   const dest = []
   const disableMaps = plugins.util.env.disableMaps || false
   const production = plugins.util.env.prod || false
@@ -12,13 +12,13 @@ module.exports = (gulp, plugins, config, name, file) => {
   }
 
   function adjustDestinationDirectory(file) {
-    file.dirname = file.dirname.replace('web/', '');
-    return file;
+    file.dirname = file.dirname.replace('web/', '')
+    return file
   }
 
   theme.locale.forEach(locale => {
-    dest.push(config.projectPath + theme.dest + '/' + locale);
-  });
+    dest.push(plugins.path.join(config.projectPath, theme.dest, locale))
+  })
 
   // Cleanup existing files from pub to remove symlinks
   plugins.globby.sync(file || srcBase + '/**/*.babel.js')
@@ -28,17 +28,17 @@ module.exports = (gulp, plugins, config, name, file) => {
           file
             .replace(
               srcBase,
-              config.projectPath + theme.dest + '/' + locale
+              plugins.path.join(config.projectPath, theme.dest, locale)
             )
             .replace(
               new RegExp('web/([^_]*)$'),
               '$1'
             )
-        );
-      });
-    });
+        )
+      })
+    })
 
-  return gulp.src(
+  const gulpTask = gulp.src( // eslint-disable-line one-var
     file || srcBase + '/**/*.babel.js',
     { base: srcBase }
   )
@@ -62,5 +62,14 @@ module.exports = (gulp, plugins, config, name, file) => {
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
     }))
-    .pipe(plugins.browserSync.stream());
-};
+
+  if (plugins.browserSyncInstances) {
+    Object.keys(plugins.browserSyncInstances).forEach(instanceKey => {
+      const instance = plugins.browserSyncInstances[instanceKey]
+
+      gulpTask.pipe(instance.stream())
+    })
+  }
+
+  return gulpTask
+}

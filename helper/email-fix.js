@@ -2,7 +2,7 @@
 module.exports = (gulp, plugins, config, name) => {
   const production = plugins.util.env.prod || false
   const theme = config.themes[name]
-  const srcBase = config.projectPath + theme.dest
+  const srcBase = plugins.path.join(config.projectPath, theme.dest)
   const emailFilename = production ? 'email-inline.min.css' : 'email-inline.css'
 
   return gulp.src(srcBase + '/**/*/' + emailFilename, { base: './' })

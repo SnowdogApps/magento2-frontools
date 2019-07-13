@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 module.exports = function(gulp, plugins, config, name, file) { // eslint-disable-line func-names
-  const theme           = config.themes[name],
-        srcBase         = config.projectPath + theme.dest,
-        stylelintConfig = require('../helper/config-loader')('stylelint.yml', plugins, config);
+  const theme = config.themes[name]
+  const srcBase = plugins.path.join(config.projectPath, theme.dest)
+  const stylelintConfig = require('../helper/config-loader')('stylelint.yml', plugins, config)
 
   return gulp.src(file || plugins.globby.sync(srcBase + '/**/*.css'))
     .pipe(plugins.if(
@@ -24,5 +24,5 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
       display   : 'name',
       beforeEach: 'Theme: ' + name + ' ' + 'File: ',
       afterEach : ' - CSS Lint finished.'
-    }));
-};
+    }))
+}

@@ -1,9 +1,20 @@
-{
-  "proxy": "m2test.dev",
-  "rewriteRules": [
-    {
-      "match": ".m2test.dev",
-      "replace": ""
-    }
-  ]
-}
+[
+  {
+    "proxy": "m2test.dev",
+    "rewriteRules": [
+      {
+        "match": ".m2test.dev",
+        "replace": ""
+      }
+    ]
+  },
+  {
+    "proxy": "b2b.m2test.dev",
+    "rewriteRules": [
+      {
+        "match": ".b2b.m2test.dev",
+        "replace": ""
+      }
+    ]
+  }
+]
