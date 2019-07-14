@@ -1,17 +1,15 @@
-'use strict';
+'use strict'
 module.exports = function(gulp, plugins, config, name) { // eslint-disable-line func-names
-  const theme     = config.themes[name],
-        srcBase   = config.projectPath + 'var/view_preprocessed/frontools' + theme.dest.replace('pub/static', ''),
-        dest      = [],
-        svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config);
-
-  plugins.path = require('path');
+  const theme = config.themes[name]
+  const srcBase = plugins.path.join(config.tempPath, theme.dest)
+  const dest = []
+  const svgConfig = require('../helper/config-loader')('svg-sprite.yml', plugins, config)
 
   theme.locale.forEach(locale => {
-    dest.push(config.projectPath + theme.dest + '/' + locale);
-  });
+    dest.push(plugins.path.join(config.projectPath, theme.dest, locale))
+  })
 
-  return gulp.src(srcBase + '/**/icons/**/*.svg')
+  const gulpTask = gulp.src(srcBase + '/**/icons/**/*.svg') // eslint-disable-line one-var
     .pipe(
       plugins.if(
         !plugins.util.env.ci,
@@ -34,5 +32,14 @@ module.exports = function(gulp, plugins, config, name) { // eslint-disable-line 
       beforeEach: 'Theme: ' + name + ' ',
       afterEach : ' Compiled!'
     }))
-    .pipe(plugins.browserSync.stream());
-};
+
+  if (plugins.browserSyncInstances) {
+    Object.keys(plugins.browserSyncInstances).forEach(instanceKey => {
+      const instance = plugins.browserSyncInstances[instanceKey]
+
+      gulpTask.pipe(instance.stream())
+    })
+  }
+
+  return gulpTask
+}

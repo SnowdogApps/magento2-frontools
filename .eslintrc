@@ -25,4 +25,9 @@ rules:
     - 'stroustrup'
     -
       allowSingleLine: false
-  one-var: 0
+  one-var:
+    - 2
+    - never
+  semi:
+    - 2
+    - never
