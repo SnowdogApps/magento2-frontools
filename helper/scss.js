@@ -6,7 +6,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   const dest = []
   const disableMaps = plugins.util.env.disableMaps || false
   const production = plugins.util.env.prod || false
-  const includePaths = theme.includePaths ? theme.includePaths : [],
+  const includePaths = theme.includePaths ? theme.includePaths : []
   const postcss = []
   const sassConfig = theme.includeDir ?
                       theme.includeDir :
