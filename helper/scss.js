@@ -8,9 +8,6 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   const production = plugins.util.env.prod || false
   const includePaths = theme.includePaths ? theme.includePaths : []
   const postcss = []
-  const sassConfig = theme.includeDir ?
-                      theme.includeDir :
-                      { includePaths: ['../../../node_modules'] }
   const disableSuffix = theme.disableSuffix || false
   const browserslist = require('../helper/config-loader')('browserslist.json', plugins, config)
 
