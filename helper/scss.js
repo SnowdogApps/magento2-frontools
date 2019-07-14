@@ -6,7 +6,11 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
   const dest = []
   const disableMaps = plugins.util.env.disableMaps || false
   const production = plugins.util.env.prod || false
+  const includePaths = theme.includePaths ? theme.includePaths : [],
   const postcss = []
+  const sassConfig = theme.includeDir ?
+                      theme.includeDir :
+                      { includePaths: ['../../../node_modules'] }
   const disableSuffix = theme.disableSuffix || false
   const browserslist = require('../helper/config-loader')('browserslist.json', plugins, config)
 
@@ -47,7 +51,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
     )
     .pipe(plugins.if(!disableMaps, plugins.sourcemaps.init()))
     .pipe(
-      plugins.sass({ includePaths: ['./node_modules', '../../../node_modules'] })
+      plugins.sass({ includePaths: includePaths })
         .on('error', plugins.sassError.gulpSassError(plugins.util.env.ci || false))
     )
     .pipe(plugins.if(production, plugins.postcss([plugins.cssnano()])))

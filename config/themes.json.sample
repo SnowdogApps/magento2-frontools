@@ -23,6 +23,7 @@
     "locale": ["en_US", "pl_PL"],
     "parent": "blank",
     "stylesDir": "web/css",
+    "includePaths": ["../../../node_modules"],
     "postcss": ["plugins.autoprefixer()"],
     "disableSuffix": true,
     "modules": {
