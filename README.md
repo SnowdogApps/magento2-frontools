@@ -8,9 +8,9 @@ If you want to know more about this project, let's join [Magento Community Engin
 
 ## Requirements
 * Unix-like OS (please, do not ask about Windows support)
-* Node.js LTS version (currently branch v6). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
-* Gulp CLI global package - `yarn global add gulp-cli` or `npm install -g gulp-cli`
-* Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
+* Node.js [LTS version](https://nodejs.org/en/about/releases/). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
+* (optional) Gulp CLI installed globally - `yarn global add gulp-cli` or `npm install -g gulp-cli`
+* Magento 2 project with SASS based theme for example [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass) or [Alpaca Theme](https://github.com/SnowdogApps/magento2-alpaca-theme)
 
 ## Installation
 1. Run `composer require snowdog/frontools`
