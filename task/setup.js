@@ -18,7 +18,7 @@ module.exports = function() { // eslint-disable-line func-names
   try {
     plugins.fs.symlinkSync(
       relativeDirectory,
-      plugins.path.json(config.projectPath, symlinkDirectoryName),
+      plugins.path.join(config.projectPath, symlinkDirectoryName),
       'dir'
     )
 
