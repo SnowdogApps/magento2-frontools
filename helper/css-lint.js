@@ -16,7 +16,7 @@ module.exports = function(gulp, plugins, config, name, file) { // eslint-disable
         config: stylelintConfig
       }),
       plugins.reporter({
-        clearMessages: true,
+        clearReportedMessages: true,
         throwError: plugins.util.env.ci || false
       })
     ]))
