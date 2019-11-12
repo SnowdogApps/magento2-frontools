@@ -838,6 +838,11 @@ ansi-colors@^1.0.1:
   dependencies:
     ansi-wrap "^0.1.0"
 
+ansi-colors@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
+  integrity sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==
+
 ansi-cyan@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/ansi-cyan/-/ansi-cyan-0.1.1.tgz#538ae528af8982f28ae30d86f2f17456d2609873"
@@ -2864,6 +2869,11 @@ eslint@^6.0.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
+esm@^3.2.25:
+  version "3.2.25"
+  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
+
 espree@^3.1.6:
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
@@ -3894,13 +3904,6 @@ gulp-svg-sprite@^1.5.0:
     plugin-error "^1.0.1"
     svg-sprite "^1.5.0"
     through2 "^2.0.3"
-
-gulp-task-loader@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/gulp-task-loader/-/gulp-task-loader-1.5.0.tgz#0e0f2d87a09dcb4f83921c246cab8635ebe19a96"
-  integrity sha512-uREmXvImL326d8MjODCjH3ArVbucgXAbT2mL4xnvLxR1dfvUqGAEThSbsyi2iyZPDG7hp15dDac07bHYiW6jBw==
-  dependencies:
-    object-assign "^4.0.1"
 
 gulp-uglify@^3.0.2:
   version "3.0.2"
