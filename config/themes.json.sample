@@ -23,7 +23,7 @@
     "locale": ["en_US", "pl_PL"],
     "parent": "blank",
     "stylesDir": "web/css",
-    "postcss": ["plugins.autoprefixer()"],
+    "postcss": ["autoprefixer()"],
     "disableSuffix": true,
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"

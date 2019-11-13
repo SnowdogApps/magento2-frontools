@@ -8,5 +8,4 @@ export const env = parseArgs(process.argv.slice(2))
 export const projectPath = path.join(fs.realpathSync('../../../'), '/')
 export const tempPath = path.join(projectPath, 'var/view_preprocessed/frontools/')
 export const themes = configLoader('themes.json', false)
-
-export let browserSyncInstances = []
+export const browserSyncInstances = {}

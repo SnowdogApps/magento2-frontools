@@ -1,39 +1,49 @@
 import { src } from 'gulp'
 import path from 'path'
-import fs from 'fs-extra'
-import globby from 'globby'
 import gulpIf from 'gulp-if'
-import babel from 'gulp-babel'
+import sass from 'gulp-sass'
 import rename from 'gulp-rename'
 import multiDest from 'gulp-multi-dest'
 import logger from 'gulp-logger'
 import plumber from 'gulp-plumber'
 import notify from 'gulp-notify'
 import sourcemaps from 'gulp-sourcemaps'
-import uglify from 'gulp-uglify'
+import cssnano from 'cssnano'
+import autoprefixer from 'autoprefixer'
+import postcss from 'gulp-postcss'
 
-import {
-  env,
-  themes,
-  tempPath,
-  projectPath,
-  browserSyncInstances
-} from './config'
+import configLoader from '../helpers/config-loader'
+import sassError from './sass-error'
+import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
 
-export default (name, file) => {
+
+export default function(name, file) {
   const theme = themes[name]
   const srcBase = path.join(tempPath, theme.dest)
+  const stylesDir = theme.stylesDir ? theme.stylesDir : 'styles'
   const dest = []
   const disableMaps = env.disableMaps || false
   const production = env.prod || false
-  const babelConfig = {
-    presets: [
-      require('@babel/preset-env')
-    ]
+  const postcssConfig = []
+  const disableSuffix = theme.disableSuffix || false
+  const browserslist = configLoader('browserslist.json')
+
+  if (theme.postcss) {
+    theme.postcss.forEach(el => {
+      postcssConfig.push(eval(el))
+    })
+  }
+  else {
+    postcssConfig.push(autoprefixer({ overrideBrowserslist: browserslist }))
   }
 
   function adjustDestinationDirectory(file) {
-    file.dirname = file.dirname.replace('web/', '')
+    if (file.dirname.startsWith(stylesDir)) {
+      file.dirname = file.dirname.replace(stylesDir, 'css')
+    }
+    else {
+      file.dirname = file.dirname.replace('/' + stylesDir, '')
+    }
     return file
   }
 
@@ -41,26 +51,8 @@ export default (name, file) => {
     dest.push(path.join(projectPath, theme.dest, locale))
   })
 
-  // Cleanup existing files from pub to remove symlinks
-  globby.sync(file || srcBase + '/**/*.babel.js')
-    .forEach(file => {
-      theme.locale.forEach(locale => {
-        fs.removeSync(
-          file
-            .replace(
-              srcBase,
-              path.join(projectPath, theme.dest, locale)
-            )
-            .replace(
-              new RegExp('web/([^_]*)$'),
-              '$1'
-            )
-        )
-      })
-    })
-
-  const gulpTask = src(
-    file || srcBase + '/**/*.babel.js',
+  const gulpTask = src( // eslint-disable-line one-var
+    file || srcBase + '/**/*.scss',
     { base: srcBase }
   )
     .pipe(
@@ -72,9 +64,10 @@ export default (name, file) => {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(babel(babelConfig))
-    .pipe(gulpIf(production, uglify()))
-    .pipe(gulpIf(production, rename({ suffix: '.min' })))
+    .pipe(sass().on('error', sassError(env.ci || false)))
+    .pipe(gulpIf(production, postcss([cssnano()])))
+    .pipe(gulpIf(postcssConfig.length, postcss(postcssConfig || [])))
+    .pipe(gulpIf(production && !disableSuffix, rename({ suffix: '.min' })))
     .pipe(gulpIf(!disableMaps, sourcemaps.write('.', { includeContent: true })))
     .pipe(rename(adjustDestinationDirectory))
     .pipe(multiDest(dest))

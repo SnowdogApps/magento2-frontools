@@ -3060,7 +3060,7 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
-fancy-log@^1.1.0, fancy-log@^1.2.0, fancy-log@^1.3.2:
+fancy-log@^1.1.0, fancy-log@^1.3.2, fancy-log@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/fancy-log/-/fancy-log-1.3.3.tgz#dbc19154f558690150a23953a0adbd035be45fc7"
   integrity sha512-k9oEhlyc0FrVh25qYuSELjr8oxsCoc4/LEZfg2iJJrfEk/tZL9bCoJE47gqAvI2m/AUjluCS4+3I0eTx8n3AEw==
@@ -3232,16 +3232,6 @@ findup-sync@^3.0.0:
     detect-file "^1.0.0"
     is-glob "^4.0.0"
     micromatch "^3.0.4"
-    resolve-dir "^1.0.1"
-
-findup-sync@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-4.0.0.tgz#956c9cdde804052b881b428512905c4a5f2cdef0"
-  integrity sha512-6jvvn/12IC4quLBL1KNokxC7wWTvYncaVUYSoxWw7YykPLuRrnv4qdHcSOywOI5RpkOVGeQRtWM8/q+G6W6qfQ==
-  dependencies:
-    detect-file "^1.0.0"
-    is-glob "^4.0.0"
-    micromatch "^4.0.2"
     resolve-dir "^1.0.1"
 
 fined@^1.0.1:
@@ -3755,19 +3745,6 @@ gulp-if@^3.0.0:
     ternary-stream "^3.0.0"
     through2 "^3.0.1"
 
-gulp-load-plugins@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/gulp-load-plugins/-/gulp-load-plugins-2.0.1.tgz#8fbff22095301a08c0f73f53f3e2a895a7258bd8"
-  integrity sha512-WTYIvfEg3j9dRUUkLSE0+MIliU2Jvvc3J7f7fb66ifqSEPS/Ki2xwGfcl68dJN8b+ZGl+9CE3sOl4hfiLmcUIQ==
-  dependencies:
-    array-unique "^0.3.2"
-    fancy-log "^1.2.0"
-    findup-sync "^4.0.0"
-    gulplog "^1.0.0"
-    has-gulplog "^0.1.0"
-    micromatch "^4.0.2"
-    resolve "^1.12.0"
-
 gulp-logger@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/gulp-logger/-/gulp-logger-0.0.2.tgz#0ec000bf91e8cae424305da0f9057af3158332b0"
@@ -3849,13 +3826,6 @@ gulp-rimraf@^1.0.0:
     rimraf "^2.6.2"
     through2 "^3.0.1"
 
-gulp-sass-error@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/gulp-sass-error/-/gulp-sass-error-1.0.5.tgz#1f35cb20b9585f3fc993da68c502bc243f5c3efb"
-  integrity sha1-HzXLILlYXz/Jk9poxQK8JD9cPvs=
-  dependencies:
-    gulp-util "^3.0.7"
-
 gulp-sass-lint@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/gulp-sass-lint/-/gulp-sass-lint-1.4.0.tgz#6f7096c5abcbc0ce99ddf060c9e1a99067a47ebe"
@@ -3921,7 +3891,7 @@ gulp-uglify@^3.0.2:
     uglify-js "^3.0.5"
     vinyl-sourcemaps-apply "^0.2.0"
 
-gulp-util@^3.0.0, gulp-util@^3.0.7, gulp-util@^3.0.8:
+gulp-util@^3.0.0:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   integrity sha1-AFTh50RQLifATBh8PsxQXdVLu08=
@@ -7341,7 +7311,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.3.2, resolve@^1.4.0:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.3.2, resolve@^1.4.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.12.0.tgz#3fc644a35c84a48554609ff26ec52b66fa577df6"
   integrity sha512-B/dOmuoAik5bKcD6s6nXDCjzUKnaDvdkRyAk6rsmsKLipWj4797iothd7jmmUhWTfinVMU+wc56rYKsit2Qy4w==

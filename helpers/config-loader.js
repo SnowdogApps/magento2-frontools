@@ -6,7 +6,7 @@ import yaml from 'js-yaml'
 import errorMessage from './error-message'
 import { projectPath } from './config'
 
-export default (file, plugins, failOnError = true) => {
+export default (file, failOnError = true) => {
   const externalPath = path.join(projectPath, 'dev/tools/frontools/config/', file)
 
   // Check if file exists inside the config directory
@@ -29,10 +29,7 @@ export default (file, plugins, failOnError = true) => {
   }
 
   if (failOnError) {
-    throw new plugins.util.PluginError({
-      'plugin' : 'config',
-      'message': errorMessage('You have to create ' + file)
-    })
+    throw new Error(errorMessage('You have to create ' + file))
   }
 
   return {}

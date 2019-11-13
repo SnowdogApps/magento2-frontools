@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import marked from 'marked'
 import markedTerminal from 'marked-terminal'
+import log from 'fancy-log'
 
 export default function(callback) {
   // Display formatted readme.md
@@ -8,8 +9,7 @@ export default function(callback) {
     renderer: new markedTerminal()
   })
 
-  // eslint-disable-next-line no-console
-  console.log(marked(fs.readFileSync('./README.md', 'UTF-8')))
+  log.info(marked(fs.readFileSync('./README.md', 'UTF-8')))
 
   callback()
 }

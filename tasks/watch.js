@@ -11,11 +11,11 @@ module.exports = function(resolve) { // eslint-disable-line func-names
   plugins.helper = {}
   plugins.helper.babel = require('../helper/babel')
   plugins.helper.cssLint = require('../helper/css-lint')
-  plugins.helper.dependecyTree = require('../helper/dependency-tree-builder')
+  plugins.helper.dependecyTree = require('../../old/helper/dependency-tree-builder')
   plugins.helper.inheritance = require('../helper/inheritance-resolver')
-  plugins.helper.sass = require('../helper/scss')
-  plugins.helper.sassLint = require('../helper/sass-lint')
-  plugins.helper.svg = require('../helper/svg')
+  plugins.helper.sass = require('../../old/helper/scss')
+  plugins.helper.sassLint = require('../../old/helper/sass-lint')
+  plugins.helper.svg = require('../../old/helper/svg')
 
   plugins.util.log(
     plugins.util.colors.yellow('Initializing watcher...')

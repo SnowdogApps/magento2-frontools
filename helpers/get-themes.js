@@ -1,24 +1,16 @@
-import PluginError from 'plugin-error'
-
+import { env } from './config'
 import errorMessage from './error-message'
-import { env, themes } from './config'
+import configLoader from './config-loader'
 
-const themeName = env.theme || false
-const themesNames = Object.keys(themes)
+export default () => {
+  const themes = configLoader('themes.json')
 
-// If themes is empty we throw a configuration error
-if (themesNames.length === 0) {
-  throw new PluginError({
-    'plugin' : 'config',
-    'message': errorMessage('You have to create themes.json')
-  })
+  const themeName = env.theme || false
+  const themesNames = Object.keys(themes)
+
+  if (themeName && themesNames.indexOf(themeName) === -1) {
+    throw new Error(errorMessage(themeName + ' theme is not defined in themes.json'))
+  }
+
+  return themeName ? [themeName] : themesNames
 }
-
-if (themeName && themesNames.indexOf(themeName) === -1) {
-  throw new PluginError({
-    plugin : 'config',
-    message: errorMessage(themeName + ' theme is not defined in themes.json')
-  })
-}
-
-export default themeName ? [themeName] : themesNames
