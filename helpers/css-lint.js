@@ -18,7 +18,7 @@ export default (name, file) => {
   const stylelintConfig = configLoader('stylelint.yml')
   const files = globby.sync(srcBase + '/**/*.css')
 
-  return src(file || files.length ? files : '.')
+  return src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
       !env.ci,
       plumber({

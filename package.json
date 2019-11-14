@@ -69,7 +69,7 @@
     "styles": "gulp styles",
     "svg": "gulp svg",
     "watch": "gulp watch",
-    "test": "eslint *.js helper/*.js task/*.js"
+    "test": "eslint *.js helpers/*.js tasks/*.js"
   },
   "engines": {
     "node": ">=12.13.0 <13.0.0"

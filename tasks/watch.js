@@ -1,49 +1,46 @@
-'use strict'
-module.exports = function(resolve) { // eslint-disable-line func-names
-  // Global variables
-  const gulp    = this.gulp
-  const plugins = this.opts.plugins
-  const config  = this.opts.configs
-  const themes  = plugins.getThemes()
+import fs from 'fs-extra'
+import path from 'path'
+import chokidar from 'chokidar'
+import globby from 'globby'
+import colors from 'ansi-colors'
+import log from 'fancy-log'
 
-  config.watcher = require('../helper/config-loader')('watcher.json', plugins, config)
+import configLoader from '../helpers/config-loader'
+import babel from '../helpers/babel'
+import cssLint from '../helpers/css-lint'
+import dependecyTree from '../helpers/dependency-tree-builder'
+import inheritance from '../helpers/inheritance-resolver'
+import sass from '../helpers/scss'
+import sassLint from '../helpers/sass-lint'
+import svg from '../helpers/svg'
 
-  plugins.helper = {}
-  plugins.helper.babel = require('../helper/babel')
-  plugins.helper.cssLint = require('../helper/css-lint')
-  plugins.helper.dependecyTree = require('../../old/helper/dependency-tree-builder')
-  plugins.helper.inheritance = require('../helper/inheritance-resolver')
-  plugins.helper.sass = require('../../old/helper/scss')
-  plugins.helper.sassLint = require('../../old/helper/sass-lint')
-  plugins.helper.svg = require('../../old/helper/svg')
+import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
+import getThemes from '../helpers/get-themes'
 
-  plugins.util.log(
-    plugins.util.colors.yellow('Initializing watcher...')
-  )
+export const watch = callback => {
+  log(colors.yellow('Initializing watcher...'))
 
-  themes.forEach(name => {
-    const theme = config.themes[name]
-    const themeTempSrc = plugins.path.join(config.tempPath, theme.dest)
-    const themeDest = plugins.path.join(config.projectPath, theme.dest)
-    const themeSrc = [plugins.path.join(config.projectPath, theme.src)]
+  // Chokidar watcher config
+  const watcherConfig = configLoader('watcher.json')
+  watcherConfig.ignoreInitial = true
+
+  getThemes().forEach(name => {
+    const theme = themes[name]
+    const themeTempSrc = path.join(tempPath, theme.dest)
+    const themeDest = path.join(projectPath, theme.dest)
+    const themeSrc = [path.join(projectPath, theme.src)]
 
     // Add modules source directeoried to theme source paths array
     if (theme.modules) {
       Object.keys(theme.modules).forEach(module => {
-        themeSrc.push(plugins.path.join(config.projectPath, theme.modules[module]))
+        themeSrc.push(path.join(projectPath, theme.modules[module]))
       })
     }
 
-    // Chokidar watcher config
-    const watcherConfig = {
-      ignoreInitial: true,
-      usePolling: config.watcher.usePolling
-    }
-
     // Initialize watchers
-    const tempWatcher = plugins.chokidar.watch(themeTempSrc, watcherConfig)
-    const srcWatcher = plugins.chokidar.watch(themeSrc, watcherConfig)
-    const destWatcher = plugins.chokidar.watch(themeDest, watcherConfig)
+    const tempWatcher = chokidar.watch(themeTempSrc, watcherConfig)
+    const srcWatcher = chokidar.watch(themeSrc, watcherConfig)
+    const destWatcher = chokidar.watch(themeDest, watcherConfig)
 
     let reinitTimeout = false
     let reinitPaths = []
@@ -54,45 +51,45 @@ module.exports = function(resolve) { // eslint-disable-line func-names
       sassDependecyTree = {}
 
       // Find all main SASS files
-      plugins.globby.sync([
+      globby.sync([
         themeTempSrc + '/**/*.scss',
         '!/**/_*.scss'
       ]).forEach(file => {
         // Generate array of main file dependecies
-        sassDependecyTree[file] = plugins.helper.dependecyTree(plugins, file)
+        sassDependecyTree[file] = dependecyTree(file)
       })
     }
 
     generateSassDependencyTree()
 
-    function reinitialize(path) {
+    function reinitialize(filePath) {
       // Reset previously set timeout
       clearTimeout(reinitTimeout)
-      reinitPaths.push(path)
+      reinitPaths.push(filePath)
 
       // Timeout to run only once while moving or renaming files
       reinitTimeout = setTimeout(() => {
         const paths = reinitPaths
         reinitPaths = []
 
-        plugins.util.log(
-          plugins.util.colors.yellow('Change detected.') + ' ' +
-          plugins.util.colors.green('Theme:') + ' ' +
-          plugins.util.colors.blue(name) + ' ' +
-          plugins.util.colors.green(`${paths.length} file(s) changed`)
+        log(
+          colors.yellow('Change detected.') + ' ' +
+          colors.green('Theme:') + ' ' +
+          colors.blue(name) + ' ' +
+          colors.green(`${paths.length} file(s) changed`)
         )
 
-        plugins.util.log(
-          plugins.util.colors.yellow('Resolving inheritance.') + ' ' +
-          plugins.util.colors.green('Theme:') + ' ' +
-          plugins.util.colors.blue(name)
+        log(
+          colors.yellow('Resolving inheritance.') + ' ' +
+          colors.green('Theme:') + ' ' +
+          colors.blue(name)
         )
 
         // Disable watcher to not fire tons of events while solving inheritance
         tempWatcher.unwatch(themeTempSrc)
 
         // Run inheritance resolver just for one theme without parent(s)
-        plugins.helper.inheritance(plugins, config, name, false).then(() => {
+        inheritance(name, false).then(() => {
           // Regenerate SASS Dependency Tree
           generateSassDependencyTree()
 
@@ -100,9 +97,9 @@ module.exports = function(resolve) { // eslint-disable-line func-names
           tempWatcher.add(themeTempSrc)
 
           // Emit event on added / moved / renamed / deleted file to trigger regualr pipeline
-          paths.forEach(path => {
-            if (plugins.fs.existsSync(path)) {
-              plugins.globby.sync(themeTempSrc + '/**/' + plugins.path.basename(path))
+          paths.forEach(filePath => {
+            if (fs.existsSync(filePath)) {
+              globby.sync(themeTempSrc + '/**/' + path.basename(filePath))
                 .forEach(file => {
                   tempWatcher.emit('change', file)
                 })
@@ -121,73 +118,73 @@ module.exports = function(resolve) { // eslint-disable-line func-names
 
     // print msg when temp dir watcher is initialized
     tempWatcher.on('ready', () => {
-      plugins.util.log(
-        plugins.util.colors.yellow('Watcher initialized!') + ' ' +
-        plugins.util.colors.green('Theme:') + ' ' +
-        plugins.util.colors.blue(name) + ' ' +
-        plugins.util.colors.green('and dependencies...')
+      log(
+        colors.yellow('Watcher initialized!') + ' ' +
+        colors.green('Theme:') + ' ' +
+        colors.blue(name) + ' ' +
+        colors.green('and dependencies...')
       )
     })
 
     // Events handling
-    tempWatcher.on('change', path => {
+    tempWatcher.on('change', filePath => {
       // Print message to know what's going on
-      plugins.util.log(
-        plugins.util.colors.yellow('Change detected.') + ' ' +
-        plugins.util.colors.green('Theme:') + ' ' +
-        plugins.util.colors.blue(name) + ' ' +
-        plugins.util.colors.green('File:') + ' ' +
-        plugins.util.colors.blue(plugins.path.relative(themeTempSrc, path))
+      log(
+        colors.yellow('Change detected.') + ' ' +
+        colors.green('Theme:') + ' ' +
+        colors.blue(name) + ' ' +
+        colors.green('File:') + ' ' +
+        colors.blue(path.relative(themeTempSrc, filePath))
       )
 
       // SASS Lint
-      if (!plugins.util.env.disableLinting) {
-        if (plugins.path.extname(path) === '.scss') {
-          plugins.helper.sassLint(gulp, plugins, config, name, path)
+      if (!env.disableLinting) {
+        if (path.extname(filePath) === '.scss') {
+          sassLint(name, filePath)
         }
       }
 
       // SASS Compilation
-      if (plugins.path.extname(path) === '.scss') {
+      if (path.extname(filePath) === '.scss') {
         Object.keys(sassDependecyTree).forEach(file => {
-          if (sassDependecyTree[file].includes(path)) {
-            plugins.helper.sass(gulp, plugins, config, name, file)
+          if (sassDependecyTree[file].includes(filePath)) {
+            sass(name, file)
           }
         })
       }
 
       // Babel
-      if (plugins.path.basename(path).includes('.babel.js')) {
-        plugins.helper.babel(gulp, plugins, config, name, path)
+      if (path.basename(filePath).includes('.babel.js')) {
+        babel(name, filePath)
       }
 
       // SVG Sprite
-      if (plugins.path.extname(path) === '.svg') {
-        plugins.helper.svg(gulp, plugins, config, name)
+      if (path.extname(filePath) === '.svg') {
+        svg(name)
       }
 
       // Files that require reload after save
       if (['.html', '.phtml', '.xml', '.csv', '.js', '.vue'].some(
-        ext => plugins.path.extname(path) === ext
+        ext => path.extname(filePath) === ext
       )) {
-        if (plugins.browserSyncInstances) {
-          Object.keys(plugins.browserSyncInstances).forEach((instanceKey) => {
-            const instance = plugins.browserSyncInstances[instanceKey]
+        if (browserSyncInstances) {
+          Object.keys(browserSyncInstances).forEach((instanceKey) => {
+            const instance = browserSyncInstances[instanceKey]
             instance.reload()
           })
         }
       }
     })
 
-    destWatcher.on('change', path => {
+    destWatcher.on('change', filePath => {
       // CSS Lint
-      if (!plugins.util.env.disableLinting) {
-        if (plugins.path.extname(path) === '.css') {
-          plugins.helper.cssLint(gulp, plugins, config, name, path)
+      if (!env.disableLinting) {
+        if (path.extname(filePath) === '.css') {
+          cssLint(name, filePath)
         }
       }
     })
   })
 
-  resolve()
+  callback()
 }

@@ -16,7 +16,7 @@ export default (name, file) => {
   const sassLintConfig = configLoader('sass-lint.yml')
   const files = globby.sync(srcBase + '/**/*.scss')
 
-  return src(file || files.length ? files : '.')
+  return src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
       !env.ci,
       plumber({
