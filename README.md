@@ -18,7 +18,7 @@ If you want to know more about this project, let's join [Magento Community Engin
 3. Run `yarn` or `npm install`
 4. Decide where you want to keep your config files.
 You can store them in Frontools `config` directory or in `dev/tools/frontools/config`.
-There is a `gulp setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
+There is a `setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
 5. Define your themes in `themes.json`.
 
@@ -47,6 +47,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
+Plase use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of instaling `gulp-cli` globally.
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
