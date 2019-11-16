@@ -16,3 +16,8 @@ rules:
   font-family-no-missing-generic-family-keyword: null
   no-duplicate-selectors: null
   max-empty-lines: null
+  declaration-colon-space-after: null
+  block-opening-brace-space-after: null
+  declaration-block-single-line-max-declarations: null
+  number-leading-zero: null
+  function-comma-space-after: null

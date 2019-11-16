@@ -24,7 +24,7 @@
     "parent": "blank",
     "stylesDir": "web/css",
     "includePaths": ["../../../node_modules"],
-    "postcss": ["plugins.autoprefixer()"],
+    "postcss": ["autoprefixer()"],
     "disableSuffix": true,
     "modules": {
       "Snowdog_Sample": "vendor/snowdog/module-sample"

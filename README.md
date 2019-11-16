@@ -8,9 +8,9 @@ If you want to know more about this project, let's join [Magento Community Engin
 
 ## Requirements
 * Unix-like OS (please, do not ask about Windows support)
-* Node.js LTS version (currently branch v6). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
-* Gulp CLI global package - `yarn global add gulp-cli` or `npm install -g gulp-cli`
-* Magento 2 project with SASS based theme i.e. [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass)
+* Node.js [LTS version](https://nodejs.org/en/about/releases/). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
+* (optional) Gulp CLI installed globally - `yarn global add gulp-cli` or `npm install -g gulp-cli`
+* Magento 2 project with SASS based theme for example [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass) or [Alpaca Theme](https://github.com/SnowdogApps/magento2-alpaca-theme)
 
 ## Installation
 1. Run `composer require snowdog/frontools`
@@ -18,7 +18,7 @@ If you want to know more about this project, let's join [Magento Community Engin
 3. Run `yarn` or `npm install`
 4. Decide where you want to keep your config files.
 You can store them in Frontools `config` directory or in `dev/tools/frontools/config`.
-There is a `gulp setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
+There is a `setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
 5. Define your themes in `themes.json`.
 
@@ -47,6 +47,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
+Plase use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of instaling `gulp-cli` globally.
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
@@ -59,7 +60,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.
   * `--disableMaps` - Disable inline source maps generation.
-* `email-fix` - Fixes email stylesheet for Magento < 2.3.0. [Related issue](https://github.com/MyIntervals/emogrifier/issues/296)
+* `emailfix` - Fixes email stylesheet for Magento < 2.3.0. [Related issue](https://github.com/MyIntervals/emogrifier/issues/296)
   * `--prod` - Production output - minifies styles and add `.min` sufix.
 * `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
   * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
