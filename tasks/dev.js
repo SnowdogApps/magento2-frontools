@@ -3,7 +3,7 @@ import browserSync from 'browser-sync'
 import configLoader from '../helpers/config-loader'
 import { browserSyncInstances } from '../helpers/config'
 
-export const dev = () => {
+export const dev = callback => {
   let browserSyncConfig = configLoader('browser-sync.json')
 
   if (!Array.isArray(browserSyncConfig)) {
@@ -27,4 +27,5 @@ export const dev = () => {
     browserSyncInstances[instance] = browserSync.create()
     browserSyncInstances[instance].init(bsConfig)
   })
+  callback()
 }
