@@ -1,4 +1,4 @@
-import { series } from 'gulp'
+import { series, parallel } from 'gulp'
 
 import pipelineHelper from './helpers/pipeline'
 
@@ -17,7 +17,7 @@ import { watch as watchTask } from './tasks/watch'
 export const babel = series(inheritanceTask, babelTask)
 export const clean = cleanTask
 export const csslint = cssLintTask
-export const dev = series(pipelineHelper, inheritanceTask, babelTask, stylesTask, devTask, watchTask)
+export const dev = series(pipelineHelper, inheritanceTask, babelTask, stylesTask, parallel(devTask, watchTask))
 export const emailfix = emailFixTask
 export const inheritance = inheritanceTask
 export const sasslint = sassLintTask
