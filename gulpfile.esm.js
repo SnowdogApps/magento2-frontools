@@ -3,9 +3,9 @@ import { series } from 'gulp'
 import pipelineHelper from './helpers/pipeline'
 
 import { babel as babelTask } from './tasks/babel'
+import { browserSync as browserSyncTask } from './tasks/browser-sync'
 import { clean as cleanTask } from './tasks/clean'
 import { csslint as cssLintTask } from './tasks/css-lint'
-import { dev as devTask } from './tasks/dev'
 import { emailFix as emailFixTask } from './tasks/email-fix'
 import { inheritance as inheritanceTask } from './tasks/inheritance'
 import { sasslint as sassLintTask } from './tasks/sass-lint'
@@ -17,7 +17,7 @@ import { watch as watchTask } from './tasks/watch'
 export const babel = series(inheritanceTask, babelTask)
 export const clean = cleanTask
 export const csslint = cssLintTask
-export const dev = series(pipelineHelper, inheritanceTask, babelTask, stylesTask, devTask, watchTask)
+export const dev = series(pipelineHelper, inheritanceTask, babelTask, stylesTask, browserSyncTask, watchTask)
 export const emailfix = emailFixTask
 export const inheritance = inheritanceTask
 export const sasslint = sassLintTask

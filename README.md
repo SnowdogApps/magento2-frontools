@@ -30,7 +30,7 @@ Check `config/themes.json.sample` to get samples.
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
 - `disableSuffix` - disable adding `.min` suffix using `--prod` flag.
-- `postcss` - (deafult `["plugins.autoprefixer()"]`) PostCSS plugins config. Have to be an array.
+- `postcss` - (deafult `["autoprefixer({ overrideBrowserslist: browserslist })"]`) PostCSS plugins config. Have to be an array.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
@@ -47,7 +47,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
-Plase use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of instaling `gulp-cli` globally.
+Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of installing `gulp-cli` globally.
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.

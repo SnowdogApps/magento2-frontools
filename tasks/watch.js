@@ -17,7 +17,7 @@ import svg from '../helpers/svg'
 import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
 import getThemes from '../helpers/get-themes'
 
-export const watch = callback => {
+export const watch = () => {
   log(colors.yellow('Initializing watcher...'))
 
   // Chokidar watcher config
@@ -185,6 +185,4 @@ export const watch = callback => {
       }
     })
   })
-
-  callback()
 }
