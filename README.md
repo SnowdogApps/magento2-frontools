@@ -47,7 +47,7 @@ You will find sample config files for theses plugins in `vendor/snowdog/frontool
 * Create [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) configuration
 
 ## Tasks list
-Plase use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of instaling `gulp-cli` globally.
+Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of installing `gulp-cli` globally.
 * `babel` - Run [Babel](https://babeljs.io/), a compiler for writing next generation JavaScript.
   * `--theme name` - Process single theme.
   * `--prod` - Production output - minifies and uglyfy code.
