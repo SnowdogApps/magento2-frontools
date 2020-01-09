@@ -1,9 +1,9 @@
-import browserSync from 'browser-sync'
+import bs from 'browser-sync'
 
 import configLoader from '../helpers/config-loader'
 import { browserSyncInstances } from '../helpers/config'
 
-export const dev = async() => {
+export const browserSync = async() => {
   let browserSyncConfig = configLoader('browser-sync.json')
 
   if (!Array.isArray(browserSyncConfig)) {
@@ -25,7 +25,7 @@ export const dev = async() => {
     }
 
     return new Promise(resolve => {
-      browserSyncInstances[instance] = browserSync.create()
+      browserSyncInstances[instance] = bs.create()
       browserSyncInstances[instance].init(bsConfig, () => resolve())
     })
   }))
