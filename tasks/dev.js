@@ -3,7 +3,7 @@ import browserSync from 'browser-sync'
 import configLoader from '../helpers/config-loader'
 import { browserSyncInstances } from '../helpers/config'
 
-export const dev = () => {
+export const dev = async() => {
   let browserSyncConfig = configLoader('browser-sync.json')
 
   if (!Array.isArray(browserSyncConfig)) {
@@ -11,7 +11,7 @@ export const dev = () => {
   }
 
   // Setup browser-sync
-  browserSyncConfig.forEach((bsConfig, index) => {
+  await Promise.all(browserSyncConfig.map((bsConfig, index) => {
     const instance = `browserSyncInstance${index}`
 
     if (!bsConfig.port) {
@@ -24,7 +24,9 @@ export const dev = () => {
       bsConfig.ui.port = 3000 + (100 * index) + 1
     }
 
-    browserSyncInstances[instance] = browserSync.create()
-    browserSyncInstances[instance].init(bsConfig)
-  })
+    return new Promise(resolve => {
+      browserSyncInstances[instance] = browserSync.create()
+      browserSyncInstances[instance].init(bsConfig, () => resolve())
+    })
+  }))
 }
