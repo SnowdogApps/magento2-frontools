@@ -30,13 +30,13 @@ Check `config/themes.json.sample` to get samples.
 - `parent` - name of parent theme
 - `stylesDir` - (default `styles`) path to styles directory. For `theme-blank-sass` it's `styles`. By default Magento 2 use `web/css`.
 - `disableSuffix` - disable adding `.min` suffix using `--prod` flag.
-- `postcss` - (deafult `["autoprefixer({ overrideBrowserslist: browserslist })"]`) PostCSS plugins config. Have to be an array.
+- `postcss` - (default `["autoprefixer({ overrideBrowserslist: browserslist })"]`) PostCSS plugins config. Have to be an array.
 - `modules` - list of modules witch you want to map inside your theme
 - `ignore` - array of ignore patterns
 
 ## `watcher.json` structure
 Check `config/watcher.json.sample` to get samples.
-- `usePolling` - set this to `true` to successfully watch files over a network (i.e. Docker or Vagrant) or when your watcher dosen't work well. Warining, enabling this option may lead to high CPU utilization! [chokidar docs](https://github.com/paulmillr/chokidar#performance)
+- `usePolling` - set this to `true` to successfully watch files over a network (i.e. Docker or Vagrant) or when your watcher dosen't work well. Warning, enabling this option may lead to high CPU utilization! [chokidar docs](https://github.com/paulmillr/chokidar#performance)
 
 ## Optional configurations for 3rd party plugins
 You will find sample config files for theses plugins in `vendor/snowdog/frontools/config` directory.
@@ -73,7 +73,7 @@ Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of insta
 * `styles` - Use this task to manually trigger styles processing pipeline.
   * `--theme name` - Process single theme.
   * `--disableMaps` - Disable inline source maps generation.
-  * `--prod` - Production output - minifies styles and add `.min` sufix.
+  * `--prod` - Production output - minifies styles and add `.min` suffix.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `svg` - Run [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) to generate SVG sprite.
   * `--theme name` - Process single theme.
