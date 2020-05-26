@@ -12,8 +12,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@babel/core": "^7.7.7",
-    "@babel/preset-env": "^7.7.7",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "ansi-colors": "^4.1.1",
     "autoprefixer": "^9.7.3",
     "browser-sync": "^2.26.7",
