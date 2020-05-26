@@ -15,7 +15,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "ansi-colors": "^4.1.1",
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.8.0",
     "browser-sync": "^2.26.7",
     "chokidar": "^3.3.1",
     "cssnano": "^4.1.10",
