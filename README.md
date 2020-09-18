@@ -62,8 +62,9 @@ Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of insta
   * `--disableMaps` - Disable inline source maps generation.
 * `emailfix` - Fixes email stylesheet for Magento < 2.3.0. [Related issue](https://github.com/MyIntervals/emogrifier/issues/296)
   * `--prod` - Production output - minifies styles and add `.min` sufix.
-* `eslint` - Watch and run [eslint](https://github.com/adametry/gulp-eslint) on specified JS file.
-  * `--file fileName` - You have to specify what file you want to lint, fileName without .js.
+* `eslint` - Run [eslint](https://github.com/adametry/gulp-eslint) against all JS files.
+  * `--theme name` - Process single theme.
+  * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests.
   * `--theme name` - Process single theme.
