@@ -1,51 +1,35 @@
+extends:
+  - eslint:recommended
+  - idiomatic
+parserOptions:
+  ecmaVersion: 2017
+  sourceType: module
 env:
   node: true
-  browser: true
-  amd: true
   es6: true
-  jquery: true
 rules:
-  indent: 0
-  brace-style: [2, "stroustrup"]
-  comma-style: [2, "last"]
-  default-case: 2
-  func-style: [2, "declaration"]
-  no-floating-decimal: 2
-  no-nested-ternary: 2
-  no-undefined: 2
-  radix: 2
-  space-before-function-paren: [2, "never"]
-  space-after-keywords: [1, "always"]
-  space-before-blocks: 2
-  spaced-comment: [2, "always", { exceptions: ["-"] }]
-  valid-jsdoc: [1, { requireReturn: false, prefer: { return: "returns" }}]
-  wrap-iife: [2, "inside"]
-  guard-for-in: 1
-  strict: [2, "global"]
-  global-strict: 0
-  camelcase: 1
-  curly: [2, "all"]
-  eqeqeq: [2, "allow-null"]
-  no-empty: 1
-  no-underscore-dangle: 0
-  no-use-before-define: 1
-  no-obj-calls: 2
-  no-unused-vars: [0, {"vars": "local", "args": "after-used"}]
-  new-cap: 2
-  no-shadow: 1
-  no-invalid-regexp: 2
-  comma-dangle: [2, "never"]
-  no-undef: 2
-  no-new: 2
-  no-extra-semi: 2
-  no-caller: 1
-  semi: 2
-  quotes: [1, "single"]
-  no-unreachable: 2
-  eol-last: 1
-  no-alert: 2
-  no-debugger: 2
-  no-console: 2
-globals:
-  jQuery: false
-  $j: true
+  no-multi-spaces: 0
+  space-in-parens: 0
+  array-bracket-spacing: 0
+  computed-property-spacing: 0
+  key-spacing: 0
+  no-var: 2
+  indent:
+    - 2
+    - 2
+    -
+      VariableDeclarator:
+        var: 2
+        let: 2
+        const: 3
+  brace-style:
+    - 2
+    - 'stroustrup'
+    -
+      allowSingleLine: false
+  one-var:
+    - 2
+    - never
+  semi:
+    - 2
+    - never

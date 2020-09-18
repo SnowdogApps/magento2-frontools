@@ -7,6 +7,7 @@ import { browserSync as browserSyncTask } from './tasks/browser-sync'
 import { clean as cleanTask } from './tasks/clean'
 import { csslint as cssLintTask } from './tasks/css-lint'
 import { emailFix as emailFixTask } from './tasks/email-fix'
+import { eslint as eslintTask } from './tasks/eslint'
 import { inheritance as inheritanceTask } from './tasks/inheritance'
 import { sasslint as sassLintTask } from './tasks/sass-lint'
 import { setup as setupTask } from './tasks/setup'
@@ -19,6 +20,7 @@ export const clean = cleanTask
 export const csslint = cssLintTask
 export const dev = series(pipelineHelper, inheritanceTask, babelTask, stylesTask, browserSyncTask, watchTask)
 export const emailfix = emailFixTask
+export const eslint = eslintTask
 export const inheritance = inheritanceTask
 export const sasslint = sassLintTask
 export const setup = setupTask
