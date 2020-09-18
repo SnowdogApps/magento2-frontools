@@ -24,6 +24,7 @@ export default function(name, file) {
   const dest = []
   const disableMaps = env.disableMaps || false
   const production = env.prod || false
+  const includePaths = theme.includePaths ? theme.includePaths : []
   const postcssConfig = []
   const disableSuffix = theme.disableSuffix || false
   const browserslist = configLoader('browserslist.json')
@@ -64,7 +65,7 @@ export default function(name, file) {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(sass().on('error', sassError(env.ci || false)))
+    .pipe(sass({ includePaths: includePaths }).on('error', sassError(env.ci || false)))
     .pipe(gulpIf(production, postcss([cssnano()])))
     .pipe(gulpIf(postcssConfig.length, postcss(postcssConfig || [])))
     .pipe(gulpIf(production && !disableSuffix, rename({ suffix: '.min' })))
