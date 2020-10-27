@@ -1,7 +1,8 @@
 import { src } from 'gulp'
 import path from 'path'
 import gulpIf from 'gulp-if'
-import sass from 'gulp-sass'
+import dartSass from 'sass'
+import gulpSass from 'gulp-sass'
 import rename from 'gulp-rename'
 import multiDest from 'gulp-multi-dest'
 import logger from 'gulp-logger'
@@ -16,7 +17,6 @@ import configLoader from '../helpers/config-loader'
 import sassError from './sass-error'
 import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
 
-
 export default function(name, file) {
   const theme = themes[name]
   const srcBase = path.join(tempPath, theme.dest)
@@ -28,6 +28,12 @@ export default function(name, file) {
   const postcssConfig = []
   const disableSuffix = theme.disableSuffix || false
   const browserslist = configLoader('browserslist.json')
+  const sassCompiler = configLoader('sass-compiler.json', false)
+
+  // Set Sass compiler to Dart Sass
+  if (sassCompiler === 'dart-sass') {
+    gulpSass.compiler = dartSass
+  }
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
@@ -65,7 +71,7 @@ export default function(name, file) {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(sass({ includePaths: includePaths }).on('error', sassError(env.ci || false)))
+    .pipe(gulpSass({ includePaths: includePaths }).on('error', sassError(env.ci || false)))
     .pipe(gulpIf(production, postcss([cssnano()])))
     .pipe(gulpIf(postcssConfig.length, postcss(postcssConfig || [])))
     .pipe(gulpIf(production && !disableSuffix, rename({ suffix: '.min' })))
