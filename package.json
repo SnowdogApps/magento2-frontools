@@ -73,6 +73,6 @@
     "test": "eslint *.js helpers/*.js tasks/*.js"
   },
   "engines": {
-    "node": ">=12.13.0 <13.0.0"
+    "node": ">=12.13.0 <13.0.0 || >=14.14.0 <15.0.0"
   }
 }
