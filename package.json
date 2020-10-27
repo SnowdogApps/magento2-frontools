@@ -1,6 +1,6 @@
 {
   "name": "magento2-frontools",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "author": {
     "name": "Bartek Igielski",
     "email": "igloczek@gmail.com"
@@ -48,6 +48,7 @@
     "minimist": "^1.2.5",
     "postcss-reporter": "^6.0.1",
     "run-sequence": "^2.2.1",
+    "sass": "^1.27.0",
     "stylelint": "^11.1.1",
     "stylelint-config-standard": "^19.0.0"
   },
@@ -72,6 +73,6 @@
     "test": "eslint *.js helpers/*.js tasks/*.js"
   },
   "engines": {
-    "node": ">=12.13.0 <13.0.0"
+    "node": ">=12.13.0 <13.0.0 || >=14.14.0 <15.0.0"
   }
 }

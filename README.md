@@ -38,6 +38,11 @@ Check `config/themes.json.sample` to get samples.
 Check `config/watcher.json.sample` to get samples.
 - `usePolling` - set this to `true` to successfully watch files over a network (i.e. Docker or Vagrant) or when your watcher dosen't work well. Warning, enabling this option may lead to high CPU utilization! [chokidar docs](https://github.com/paulmillr/chokidar#performance)
 
+## `sass-compiler.json` structure
+You can choose Sass compiler between the default, but [already deprecated](https://github.com/sass/node-sass/issues/2952), `node-sass` or a newer and faster `dart-sass`.
+
+Since the Dart Sass does not have the same set of features as Node Sass, for now we will keep the older version as default.
+
 ## Optional configurations for 3rd party plugins
 You will find sample config files for theses plugins in `vendor/snowdog/frontools/config` directory.
 * Create [browserSync](https://www.browsersync.io/) configuration
