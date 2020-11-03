@@ -71,6 +71,8 @@ Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of insta
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
+* `magepackBundle` Run [magepack](https://github.com/magesuite/magepack) `bundle` command. Please refer to the Magepack docs for usage details.
+* `magepackGenerate` Run [magepack](https://github.com/magesuite/magepack) `generate` command. Please refer to the Magepack docs for usage details.
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests.
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
