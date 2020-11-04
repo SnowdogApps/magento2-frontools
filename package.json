@@ -66,6 +66,8 @@
     "emailfix": "gulp emailfix",
     "eslint": "gulp eslint",
     "inheritance": "gulp inheritance",
+    "magepackBundle": "gulp magepackBundle",
+    "magepackGenerate": "gulp magepackGenerate",
     "sasslint": "gulp sasslint",
     "setup": "gulp setup",
     "styles": "gulp styles",
