@@ -42,7 +42,7 @@
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^3.14.0",
-    "marked": "^1.1.1",
+    "marked": "^1.2.2",
     "marked-terminal": "^4.1.0",
     "merge-stream": "^2.0.0",
     "minimist": "^1.2.5",
