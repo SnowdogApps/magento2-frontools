@@ -11,7 +11,7 @@ function getContent(filePath) {
     return yaml.safeLoad(fs.readFileSync(filePath))
   }
 
-  if (filePath.endsWith('.yml')) {
+  if (filePath.endsWith('.json')) {
     return JSON.parse(fs.readFileSync(filePath))
   }
 
