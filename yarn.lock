@@ -5722,10 +5722,10 @@ lru-queue@0.1:
   dependencies:
     es5-ext "~0.10.2"
 
-magepack@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/magepack/-/magepack-2.3.2.tgz#282e0ceca6c0e415c9fbc2dbc2d4cd50ea587e24"
-  integrity sha512-u7IfcInzFTEmbO2oubSSsLUEX7Pk10k/RNDTwp9pLBMI4rSYGrDqVGwpy8ShaBbJVKyvcbHwwvdCOyiVAeLxUA==
+magepack@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/magepack/-/magepack-2.4.0.tgz#525caf99a8986064e3c51899ded090f1aa0f0f3d"
+  integrity sha512-wwczPRMdAGU7PLpK/myb1jee3YRPQ1Ol+oTyLa2fLjtzL5cwytvOz1WlEde006p0gFt3fO/oABoyRVufhXa0gQ==
   dependencies:
     commander "^5.0.0"
     consola "^2.11.3"
