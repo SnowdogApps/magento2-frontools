@@ -71,9 +71,16 @@ Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of insta
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `inheritance` - Create necessary symlinks to resolve theme styles inheritance and make the base for styles processing. You have to run in before styles compilation and after adding new files.
-* `magepackBundle --config <path_to_magepack.config.js>` - Run [magepack](https://github.com/magesuite/magepack) `bundle` command. Please refer to the Magepack docs for usage details.
+* `magepackBundle` - Run [magepack](https://github.com/magesuite/magepack) `bundle` command.
+  * `-c` or `--config` - (required) Path to previously generated Magepack config file.
   * `--theme name` - Process single theme.
-* `magepackGenerate` - Run [magepack](https://github.com/magesuite/magepack) `generate` command. Please refer to the Magepack docs for usage details.
+* `magepackGenerate` - Run [magepack](https://github.com/magesuite/magepack) `generate` command.
+  * `--cms-url` - (required) URL to one of CMS pages (e.g. homepage).
+  * `--category-url` - (required) URL to one of category pages.
+  * `--product-url` - (required) URL to one of product pages.
+  * `-u` or `--auth-username` - Username for Basic Auth.
+  * `-p` or `--auth-password` - Passoword for Basic Auth.
+  * `-d` or `--debug` - Turn on debugging mode.
 * `sasslint` - Run [sass-lint](https://github.com/sasstools/sass-lint) based tests.
   * `--theme name` - Process single theme.
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
