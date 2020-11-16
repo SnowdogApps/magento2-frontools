@@ -6,26 +6,30 @@ import yaml from 'js-yaml'
 import errorMessage from './error-message'
 import { projectPath } from './config'
 
+function getContent(filePath) {
+  if (filePath.endsWith('.yml')) {
+    return yaml.safeLoad(fs.readFileSync(filePath))
+  }
+
+  if (filePath.endsWith('.json')) {
+    return JSON.parse(fs.readFileSync(filePath))
+  }
+
+  if (filePath.endsWith('.js')) {
+    return require(filePath)
+  }
+}
+
 export default (file, failOnError = true) => {
   const externalPath = path.join(projectPath, 'dev/tools/frontools/config/', file)
 
   // Check if file exists inside the config directory
   if (globby.sync(externalPath).length) {
-    if (file.includes('yml')) {
-      return yaml.safeLoad(fs.readFileSync(externalPath))
-    }
-    else {
-      return JSON.parse(fs.readFileSync(externalPath))
-    }
+    return getContent(externalPath)
   }
 
   if (globby.sync('config/' + file).length) {
-    if (file.includes('yml')) {
-      return yaml.safeLoad(fs.readFileSync('config/' + file))
-    }
-    else {
-      return JSON.parse(fs.readFileSync('config/' + file))
-    }
+    return getContent('config/' + file)
   }
 
   if (failOnError) {
