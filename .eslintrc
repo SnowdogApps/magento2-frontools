@@ -18,6 +18,7 @@ rules:
     - 2
     - 2
     -
+      SwitchCase: 1
       VariableDeclarator:
         var: 2
         let: 2
