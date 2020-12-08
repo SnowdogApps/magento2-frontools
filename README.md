@@ -93,6 +93,8 @@ Please use `yarn [taskName]` or `npm run [taskName]` to avoid necessity of insta
   * `--ci` - Enable throwing errors. Useful in CI/CD pipelines.
 * `svg` - Run [svg-sprite](https://github.com/jkphl/gulp-svg-sprite) to generate SVG sprite.
   * `--theme name` - Process single theme.
+* `svginline` - Create Svg inline [gulp-sass-inline-svg](https://www.npmjs.com/package/gulp-sass-inline-svg)
+  * Put svg icon in /web/icons/svg/
 * `watch` - Watch for style changes and run processing tasks.
   * `--theme name` - Process single theme.
   * `--disableLinting` - Disable SASS and CSS linting.

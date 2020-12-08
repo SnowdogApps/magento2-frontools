@@ -42,6 +42,7 @@
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^3.14.0",
+    "m2-sass-inlinesvg": "^1.0.4",
     "magepack": "^2.4.0",
     "marked": "^1.2.2",
     "marked-terminal": "^4.1.0",
@@ -73,6 +74,7 @@
     "setup": "gulp setup",
     "styles": "gulp styles",
     "svg": "gulp svg",
+    "svginline": "gulp svginline",
     "watch": "gulp watch",
     "test": "eslint *.js helpers/*.js tasks/*.js"
   },

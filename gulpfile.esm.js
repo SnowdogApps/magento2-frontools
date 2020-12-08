@@ -13,6 +13,7 @@ import { sasslint as sassLintTask } from './tasks/sass-lint'
 import { setup as setupTask } from './tasks/setup'
 import { styles as stylesTask } from './tasks/styles'
 import { svg as svgTask } from './tasks/svg'
+import { svginline as svgInlineTask } from './tasks/svginline'
 import { watch as watchTask } from './tasks/watch'
 import magepackBundleTask from './tasks/magepack-bundle'
 import magepackGenerateTask from './tasks/magepack-generate'
@@ -28,6 +29,7 @@ export const sasslint = sassLintTask
 export const setup = setupTask
 export const styles = series(inheritanceTask, stylesTask)
 export const svg = series(inheritanceTask, svgTask)
+export const svginline = series(inheritanceTask, svgInlineTask)
 export const watch = watchTask
 export const magepackBundle = magepackBundleTask
 export const magepackGenerate = magepackGenerateTask
