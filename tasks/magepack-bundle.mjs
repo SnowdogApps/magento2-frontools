@@ -14,6 +14,10 @@ function getThemesGlobPattern() {
 }
 
 export default async function() {
+  if (!env['c'] && !env['config']) {
+    throw 'Please set the config path!'
+  }
+
   const configPath = env.c || env.config
   const themesGlobPattern = getThemesGlobPattern()
   await bundle(configPath, themesGlobPattern)
