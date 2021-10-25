@@ -1,6 +1,6 @@
 import path from 'path'
 import gulp from 'gulp'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import stylelint from 'stylelint'
 import postcss from 'gulp-postcss'
 import plumber from 'gulp-plumber'
@@ -16,7 +16,7 @@ export default (name, file) => {
   const theme = themes[name]
   const srcBase = path.join(projectPath, theme.dest)
   const stylelintConfig = configLoader('stylelint.yml')
-  const files = globby.sync(srcBase + '/**/*.css')
+  const files = globbySync(srcBase + '/**/*.css')
 
   return gulp.src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(

@@ -1,6 +1,6 @@
 import path from 'path'
 import fs from 'fs-extra'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import yaml from 'js-yaml'
 
 import errorMessage from './error-message.mjs'
@@ -8,7 +8,7 @@ import { projectPath } from './config.mjs'
 
 function getContent(filePath) {
   if (filePath.endsWith('.yml')) {
-    return yaml.safeLoad(fs.readFileSync(filePath))
+    return yaml.load(fs.readFileSync(filePath))
   }
 
   if (filePath.endsWith('.json')) {
@@ -24,11 +24,11 @@ export default (file, failOnError = true) => {
   const externalPath = path.join(projectPath, 'dev/tools/frontools/config/', file)
 
   // Check if file exists inside the config directory
-  if (globby.sync(externalPath).length) {
+  if (globbySync(externalPath).length) {
     return getContent(externalPath)
   }
 
-  if (globby.sync('config/' + file).length) {
+  if (globbySync('config/' + file).length) {
     return getContent('config/' + file)
   }
 
