@@ -1,4 +1,4 @@
-import { src } from 'gulp'
+import gulp from 'gulp'
 import path from 'path'
 import fs from 'fs-extra'
 import globby from 'globby'
@@ -12,13 +12,8 @@ import notify from 'gulp-notify'
 import sourcemaps from 'gulp-sourcemaps'
 import uglify from 'gulp-uglify'
 
-import {
-  env,
-  themes,
-  tempPath,
-  projectPath,
-  browserSyncInstances
-} from './config'
+import configLoader from './config-loader.mjs'
+import { env, themes, tempPath, projectPath, browserSyncInstances } from './config.mjs'
 
 export default (name, file) => {
   const theme = themes[name]
@@ -26,9 +21,12 @@ export default (name, file) => {
   const dest = []
   const disableMaps = env.disableMaps || false
   const production = env.prod || false
+  const browserslist = configLoader('browserslist.json')
   const babelConfig = {
     presets: [
-      require('@babel/preset-env')
+      ['@babel/preset-env', {
+        targets: browserslist.join(', ')
+      }]
     ]
   }
 
@@ -59,7 +57,7 @@ export default (name, file) => {
       })
     })
 
-  const gulpTask = src(
+  const gulpTask = gulp.src(
     file || srcBase + '/**/*.babel.js',
     { base: srcBase }
   )

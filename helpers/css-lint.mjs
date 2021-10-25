@@ -1,5 +1,5 @@
 import path from 'path'
-import { src } from 'gulp'
+import gulp from 'gulp'
 import globby from 'globby'
 import stylelint from 'stylelint'
 import postcss from 'gulp-postcss'
@@ -9,8 +9,8 @@ import notify from 'gulp-notify'
 import logger from 'gulp-logger'
 import reporter from 'postcss-reporter'
 
-import { env, themes, projectPath } from './config'
-import configLoader from './config-loader'
+import { env, themes, projectPath } from './config.mjs'
+import configLoader from './config-loader.mjs'
 
 export default (name, file) => {
   const theme = themes[name]
@@ -18,7 +18,7 @@ export default (name, file) => {
   const stylelintConfig = configLoader('stylelint.yml')
   const files = globby.sync(srcBase + '/**/*.css')
 
-  return src(file ? file : files.length ? files : '.')
+  return gulp.src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
       !env.ci,
       plumber({

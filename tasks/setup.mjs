@@ -3,7 +3,7 @@ import path from 'path'
 import log from 'fancy-log'
 import colors from 'ansi-colors'
 
-import { env, projectPath } from '../helpers/config'
+import { env, projectPath } from '../helpers/config.mjs'
 
 export const setup = callback => {
   // Create a relative symlink in project root to /vendor/snowdog/frontools

@@ -1,4 +1,4 @@
-import { src, dest } from 'gulp'
+import gulp from 'gulp'
 import path from 'path'
 import gulpIf from 'gulp-if'
 import plumber from 'gulp-plumber'
@@ -6,7 +6,7 @@ import notify from 'gulp-notify'
 import logger from 'gulp-logger'
 import replace from 'gulp-replace'
 
-import { env, projectPath, themes } from './config'
+import { env, projectPath, themes } from './config.mjs'
 
 export default name => {
   const production = env.prod || false
@@ -14,7 +14,7 @@ export default name => {
   const srcBase = path.join(projectPath, theme.dest)
   const emailFilename = production ? 'email-inline.min.css' : 'email-inline.css'
 
-  return src(srcBase + '/**/*/' + emailFilename, { base: './' })
+  return gulp.src(srcBase + '/**/*/' + emailFilename, { base: './' })
     .pipe(gulpIf(
       !env.ci,
       plumber({
@@ -27,5 +27,5 @@ export default name => {
       afterEach: ' has been fixed!'
     }))
     .pipe(replace('@charset "UTF-8";', ''))
-    .pipe(dest('./'))
+    .pipe(gulp.dest('./'))
 }

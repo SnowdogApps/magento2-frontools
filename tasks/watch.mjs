@@ -5,17 +5,17 @@ import globby from 'globby'
 import colors from 'ansi-colors'
 import log from 'fancy-log'
 
-import configLoader from '../helpers/config-loader'
-import babel from '../helpers/babel'
-import cssLint from '../helpers/css-lint'
-import dependecyTree from '../helpers/dependency-tree-builder'
-import inheritance from '../helpers/inheritance-resolver'
-import sass from '../helpers/scss'
-import sassLint from '../helpers/sass-lint'
-import svg from '../helpers/svg'
+import configLoader from '../helpers/config-loader.mjs'
+import babel from '../helpers/babel.mjs'
+import cssLint from '../helpers/css-lint.mjs'
+import dependecyTree from '../helpers/dependency-tree-builder.mjs'
+import inheritance from '../helpers/inheritance-resolver.mjs'
+import sass from '../helpers/scss.mjs'
+import sassLint from '../helpers/sass-lint.mjs'
+import svg from '../helpers/svg.mjs'
 
-import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
-import getThemes from '../helpers/get-themes'
+import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config.mjs'
+import getThemes from '../helpers/get-themes.mjs'
 
 export const watch = () => {
   log(colors.yellow('Initializing watcher...'))

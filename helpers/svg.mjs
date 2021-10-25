@@ -1,4 +1,4 @@
-import { src } from 'gulp'
+import gulp from 'gulp'
 import path from 'path'
 import gulpIf from 'gulp-if'
 import multiDest from 'gulp-multi-dest'
@@ -7,8 +7,8 @@ import plumber from 'gulp-plumber'
 import notify from 'gulp-notify'
 import svgSprite from 'gulp-svg-sprite'
 
-import configLoader from './config-loader'
-import { env, tempPath, projectPath, themes, browserSyncInstances } from './config'
+import configLoader from './config-loader.mjs'
+import { env, tempPath, projectPath, themes, browserSyncInstances } from './config.mjs'
 
 export default name => {
   const theme = themes[name]
@@ -20,7 +20,7 @@ export default name => {
     dest.push(path.join(projectPath, theme.dest, locale))
   })
 
-  const gulpTask = src(srcBase + '/**/icons/**/*.svg')
+  const gulpTask = gulp.src(srcBase + '/**/icons/**/*.svg')
     .pipe(
       gulpIf(
         !env.ci,

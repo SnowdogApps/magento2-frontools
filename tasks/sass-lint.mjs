@@ -2,8 +2,8 @@ import mergeStream from 'merge-stream'
 import log from 'fancy-log'
 import colors from 'ansi-colors'
 
-import helper from '../helpers/sass-lint'
-import themes from '../helpers/get-themes'
+import helper from '../helpers/sass-lint.mjs'
+import themes from '../helpers/get-themes.mjs'
 
 export const sasslint = () => {
   const streams = mergeStream()

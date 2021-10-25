@@ -1,7 +1,7 @@
 import bs from 'browser-sync'
 
-import configLoader from '../helpers/config-loader'
-import { browserSyncInstances } from '../helpers/config'
+import configLoader from '../helpers/config-loader.mjs'
+import { browserSyncInstances } from '../helpers/config.mjs'
 
 export const browserSync = async() => {
   let browserSyncConfig = configLoader('browser-sync.json')

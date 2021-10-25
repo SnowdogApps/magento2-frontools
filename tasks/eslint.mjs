@@ -2,8 +2,8 @@ import mergeStream from 'merge-stream'
 import log from 'fancy-log'
 import colors from 'ansi-colors'
 
-import helper from '../helpers/eslint'
-import themes from '../helpers/get-themes'
+import helper from '../helpers/eslint.mjs'
+import themes from '../helpers/get-themes.mjs'
 
 export const eslint = () => {
   const streams = mergeStream()

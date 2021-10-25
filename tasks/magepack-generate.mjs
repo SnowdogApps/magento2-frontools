@@ -1,6 +1,6 @@
-import generate from 'magepack/lib/generate'
+import generate from 'magepack/lib/generate.js'
 
-import { env } from '../helpers/config'
+import { env } from '../helpers/config.mjs'
 
 export default async function() {
   const config = {

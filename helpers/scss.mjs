@@ -1,7 +1,8 @@
-import { src } from 'gulp'
+import gulp from 'gulp'
 import path from 'path'
 import gulpIf from 'gulp-if'
 import dartSass from 'sass'
+import nodeSass from 'node-sass'
 import gulpSass from 'gulp-sass'
 import rename from 'gulp-rename'
 import multiDest from 'gulp-multi-dest'
@@ -13,9 +14,9 @@ import cssnano from 'cssnano'
 import autoprefixer from 'autoprefixer'
 import postcss from 'gulp-postcss'
 
-import configLoader from '../helpers/config-loader'
-import sassError from './sass-error'
-import { env, themes, tempPath, projectPath, browserSyncInstances } from '../helpers/config'
+import configLoader from './config-loader.mjs'
+import sassError from './sass-error.mjs'
+import { env, themes, tempPath, projectPath, browserSyncInstances } from './config.mjs'
 
 export default function(name, file) {
   const theme = themes[name]
@@ -29,11 +30,6 @@ export default function(name, file) {
   const disableSuffix = theme.disableSuffix || false
   const browserslist = configLoader('browserslist.json')
   const sassCompiler = configLoader('sass-compiler.json', false)
-
-  // Set Sass compiler to Dart Sass
-  if (sassCompiler === 'dart-sass') {
-    gulpSass.compiler = dartSass
-  }
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
@@ -58,7 +54,7 @@ export default function(name, file) {
     dest.push(path.join(projectPath, theme.dest, locale))
   })
 
-  const gulpTask = src( // eslint-disable-line one-var
+  const gulpTask = gulp.src( // eslint-disable-line one-var
     file || srcBase + '/**/*.scss',
     { base: srcBase }
   )
@@ -71,7 +67,8 @@ export default function(name, file) {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(gulpSass({ includePaths: includePaths }).on('error', sassError(env.ci || false)))
+    .pipe(gulpSass(sassCompiler === 'dart-sass' ? dartSass : nodeSass)({ includePaths: includePaths })
+      .on('error', sassError(env.ci || false)))
     .pipe(gulpIf(production, postcss([cssnano()])))
     .pipe(gulpIf(postcssConfig.length, postcss(postcssConfig || [])))
     .pipe(gulpIf(production && !disableSuffix, rename({ suffix: '.min' })))
