@@ -1,10 +1,6 @@
 {
   "name": "magento2-frontools",
   "version": "1.11.0",
-  "author": {
-    "name": "Bartek Igielski",
-    "email": "igloczek@gmail.com"
-  },
   "private": true,
   "repository": {
     "type": "git",
@@ -36,7 +32,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-rimraf": "^1.0.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.0.0",
     "gulp-sass-lint": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-svg-sprite": "^1.5.0",
@@ -47,7 +43,7 @@
     "marked-terminal": "^4.1.0",
     "merge-stream": "^2.0.0",
     "minimist": "^1.2.5",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "postcss-reporter": "^6.0.1",
     "run-sequence": "^2.2.1",
     "sass": "^1.28.0",
@@ -77,6 +73,9 @@
     "test": "eslint *.js helpers/*.js tasks/*.js"
   },
   "engines": {
-    "node": ">=12.13.0 <13.0.0 || >=14.14.0 <15.0.0"
+    "node": ">=14.14.0 <15.0.0  || >=16.12.0 <17.0.0"
+  },
+  "volta": {
+    "node": "16.12.0"
   }
 }
