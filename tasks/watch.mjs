@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import chokidar from 'chokidar'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import colors from 'ansi-colors'
 import log from 'fancy-log'
 
@@ -51,7 +51,7 @@ export const watch = () => {
       sassDependecyTree = {}
 
       // Find all main SASS files
-      globby.sync([
+      globbySync([
         themeTempSrc + '/**/*.scss',
         '!/**/_*.scss'
       ]).forEach(file => {
@@ -99,7 +99,7 @@ export const watch = () => {
           // Emit event on added / moved / renamed / deleted file to trigger regualr pipeline
           paths.forEach(filePath => {
             if (fs.existsSync(filePath)) {
-              globby.sync(themeTempSrc + '/**/' + path.basename(filePath))
+              globbySync(themeTempSrc + '/**/' + path.basename(filePath))
                 .forEach(file => {
                   tempWatcher.emit('change', file)
                 })

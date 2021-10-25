@@ -1,7 +1,7 @@
 import gulp from 'gulp'
 import path from 'path'
 import fs from 'fs-extra'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import gulpIf from 'gulp-if'
 import babel from 'gulp-babel'
 import rename from 'gulp-rename'
@@ -40,7 +40,7 @@ export default (name, file) => {
   })
 
   // Cleanup existing files from pub to remove symlinks
-  globby.sync(file || srcBase + '/**/*.babel.js')
+  globbySync(file || srcBase + '/**/*.babel.js')
     .forEach(file => {
       theme.locale.forEach(locale => {
         fs.removeSync(

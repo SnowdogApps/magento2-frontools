@@ -1,6 +1,6 @@
 import path from 'path'
 import gulp from 'gulp'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import plumber from 'gulp-plumber'
 import gulpIf from 'gulp-if'
 import notify from 'gulp-notify'
@@ -14,7 +14,7 @@ export default (name, file) => {
   const theme = themes[name]
   const srcBase = path.join(tempPath, theme.dest)
   const sassLintConfig = configLoader('sass-lint.yml')
-  const files = globby.sync(srcBase + '/**/*.scss')
+  const files = globbySync(srcBase + '/**/*.scss')
 
   return gulp.src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
