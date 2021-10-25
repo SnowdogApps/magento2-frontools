@@ -1,6 +1,6 @@
-import { env } from './config'
-import errorMessage from './error-message'
-import configLoader from './config-loader'
+import { env } from './config.mjs'
+import errorMessage from './error-message.mjs'
+import configLoader from './config-loader.mjs'
 
 export default () => {
   const themes = configLoader('themes.json')

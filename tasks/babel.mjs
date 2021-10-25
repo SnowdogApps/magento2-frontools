@@ -1,6 +1,6 @@
 import mergeStream from 'merge-stream'
-import helper from '../helpers/babel'
-import themes from '../helpers/get-themes'
+import helper from '../helpers/babel.mjs'
+import themes from '../helpers/get-themes.mjs'
 
 export const babel = () => {
   const streams = mergeStream()

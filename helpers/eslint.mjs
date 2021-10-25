@@ -1,5 +1,5 @@
 import path from 'path'
-import { src } from 'gulp'
+import gulp from 'gulp'
 import globby from 'globby'
 import eslint from 'gulp-eslint'
 import plumber from 'gulp-plumber'
@@ -7,8 +7,8 @@ import gulpIf from 'gulp-if'
 import notify from 'gulp-notify'
 import logger from 'gulp-logger'
 
-import { env, themes, projectPath } from './config'
-import configLoader from './config-loader'
+import { env, themes, projectPath } from './config.mjs'
+import configLoader from './config-loader.mjs'
 
 export default (name, file) => {
   const theme = themes[name]
@@ -16,7 +16,7 @@ export default (name, file) => {
   const eslintConfig = configLoader('eslint.json')
   const files = globby.sync(srcBase + '/**/*.js')
 
-  return src(file ? file : files.length ? files : '.')
+  return gulp.src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
       !env.ci,
       plumber({

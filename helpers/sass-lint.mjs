@@ -1,5 +1,5 @@
 import path from 'path'
-import { src } from 'gulp'
+import gulp from 'gulp'
 import globby from 'globby'
 import plumber from 'gulp-plumber'
 import gulpIf from 'gulp-if'
@@ -7,8 +7,8 @@ import notify from 'gulp-notify'
 import logger from 'gulp-logger'
 import sassLint from 'gulp-sass-lint'
 
-import { env, themes, tempPath } from './config'
-import configLoader from './config-loader'
+import { env, themes, tempPath } from './config.mjs'
+import configLoader from './config-loader.mjs'
 
 export default (name, file) => {
   const theme = themes[name]
@@ -16,7 +16,7 @@ export default (name, file) => {
   const sassLintConfig = configLoader('sass-lint.yml')
   const files = globby.sync(srcBase + '/**/*.scss')
 
-  return src(file ? file : files.length ? files : '.')
+  return gulp.src(file ? file : files.length ? files : '.')
     .pipe(gulpIf(
       !env.ci,
       plumber({

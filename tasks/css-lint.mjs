@@ -2,8 +2,8 @@ import mergeStream from 'merge-stream'
 import log from 'fancy-log'
 import colors from 'ansi-colors'
 
-import helper from '../helpers/css-lint'
-import themes from '../helpers/get-themes'
+import helper from '../helpers/css-lint.mjs'
+import themes from '../helpers/get-themes.mjs'
 
 export const csslint = () => {
   const streams = mergeStream()

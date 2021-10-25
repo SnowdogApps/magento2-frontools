@@ -3,8 +3,8 @@ import fs from 'fs-extra'
 import globby from 'globby'
 import yaml from 'js-yaml'
 
-import errorMessage from './error-message'
-import { projectPath } from './config'
+import errorMessage from './error-message.mjs'
+import { projectPath } from './config.mjs'
 
 function getContent(filePath) {
   if (filePath.endsWith('.yml')) {

@@ -3,8 +3,8 @@ import mergeStream from 'merge-stream'
 import colors from 'ansi-colors'
 import log from 'fancy-log'
 
-import helper from '../helpers/email-fix'
-import themes from '../helpers/get-themes'
+import helper from '../helpers/email-fix.mjs'
+import themes from '../helpers/get-themes.mjs'
 
 export const emailFix = () => {
   const streams = mergeStream()
