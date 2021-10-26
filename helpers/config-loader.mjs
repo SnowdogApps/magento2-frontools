@@ -7,6 +7,11 @@ import errorMessage from './error-message.mjs'
 import { projectPath } from './config.mjs'
 
 function getContent(filePath) {
+  if (filePath.endsWith('.browserslistrc')) {
+    process.env.BROWSERSLIST_CONFIG = path.resolve(filePath)
+    return
+  }
+
   if (filePath.endsWith('.yml')) {
     return yaml.load(fs.readFileSync(filePath))
   }

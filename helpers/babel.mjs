@@ -21,14 +21,8 @@ export default (name, file) => {
   const dest = []
   const disableMaps = env.disableMaps || false
   const production = env.prod || false
-  const browserslist = configLoader('browserslist.json')
-  const babelConfig = {
-    presets: [
-      ['@babel/preset-env', {
-        targets: browserslist.join(', ')
-      }]
-    ]
-  }
+
+  configLoader('.browserslistrc')
 
   function adjustDestinationDirectory(file) {
     file.dirname = file.dirname.replace('web/', '')
@@ -70,7 +64,7 @@ export default (name, file) => {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(babel(babelConfig))
+    .pipe(babel(configLoader('babel.config.json')))
     .pipe(gulpIf(production, uglify()))
     .pipe(gulpIf(production, rename({ suffix: '.min' })))
     .pipe(gulpIf(!disableMaps, sourcemaps.write('.', { includeContent: true })))
