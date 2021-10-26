@@ -28,8 +28,9 @@ export default function(name, file) {
   const includePaths = theme.includePaths ? theme.includePaths : []
   const postcssConfig = []
   const disableSuffix = theme.disableSuffix || false
-  const browserslist = configLoader('browserslist.json')
   const sassCompiler = configLoader('sass-compiler.json', false)
+
+  configLoader('.browserslistrc')
 
   if (theme.postcss) {
     theme.postcss.forEach(el => {
@@ -37,7 +38,7 @@ export default function(name, file) {
     })
   }
   else {
-    postcssConfig.push(autoprefixer({ overrideBrowserslist: browserslist }))
+    postcssConfig.push(autoprefixer())
   }
 
   function adjustDestinationDirectory(file) {
