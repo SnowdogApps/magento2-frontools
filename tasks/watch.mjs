@@ -5,10 +5,11 @@ import { globbySync } from 'globby'
 import colors from 'ansi-colors'
 import log from 'fancy-log'
 
-import configLoader from '../helpers/config-loader.mjs'
 import babel from '../helpers/babel.mjs'
+import configLoader from '../helpers/config-loader.mjs'
 import cssLint from '../helpers/css-lint.mjs'
 import dependecyTree from '../helpers/dependency-tree-builder.mjs'
+import eslint from '../helpers/eslint.mjs'
 import inheritance from '../helpers/inheritance-resolver.mjs'
 import sass from '../helpers/scss.mjs'
 import sassLint from '../helpers/sass-lint.mjs'
@@ -115,6 +116,20 @@ export const watch = () => {
       .on('addDir', reinitialize)
       .on('unlink', reinitialize)
       .on('unlinkDir', reinitialize)
+      .on('change', filePath => {
+        // Linters
+        if (env.disableLinting) {
+          return
+        }
+
+        if (path.extname(filePath) === '.scss') {
+          sassLint(name, filePath)
+        }
+
+        if (path.extname(filePath) === '.js') {
+          eslint(name, filePath)
+        }
+      })
 
     // print msg when temp dir watcher is initialized
     tempWatcher.on('ready', () => {
@@ -137,13 +152,6 @@ export const watch = () => {
         colors.blue(path.relative(themeTempSrc, filePath))
       )
 
-      // SASS Lint
-      if (!env.disableLinting) {
-        if (path.extname(filePath) === '.scss') {
-          sassLint(name, filePath)
-        }
-      }
-
       // SASS Compilation
       if (path.extname(filePath) === '.scss') {
         Object.keys(sassDependecyTree).forEach(file => {
@@ -154,7 +162,7 @@ export const watch = () => {
       }
 
       // Babel
-      if (path.basename(filePath).includes('.babel.js')) {
+      if (path.basename(filePath).endsWith('.babel.js')) {
         babel(name, filePath)
       }
 
