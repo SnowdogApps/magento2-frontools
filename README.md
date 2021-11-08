@@ -3,12 +3,9 @@
 # Magento 2 Frontools
 Set of front-end tools for Magento 2
 
-## Questions
-If you want to know more about this project, let's join [Magento Community Engineering Slack](https://tinyurl.com/engcom-slack) and ask questions on #magefront channel.
-
 ## Requirements
 * Unix-like OS (please, do not ask about Windows support)
-* Node.js [LTS version](https://nodejs.org/en/about/releases/). We recommend to use [avn](https://github.com/wbyoung/avn) to automate version switching. Required configuration is already added to repository as `.node-version` file.
+* Node.js [LTS version](https://nodejs.org/en/about/releases/). We recommend using [Volta](https://volta.sh/).
 * Magento 2 project with SASS based theme for example [SASS version of "Blank"](https://github.com/SnowdogApps/magento2-theme-blank-sass) or [Alpaca Theme](https://github.com/SnowdogApps/magento2-alpaca-theme)
 
 ## Installation
@@ -16,7 +13,7 @@ If you want to know more about this project, let's join [Magento Community Engin
 2. Go to package directory `cd vendor/snowdog/frontools`
 3. Run `yarn` or `npm install`
 4. Decide where you want to keep your config files.
-You can store them in Frontools `config` directory or in `dev/tools/frontools/config`.
+You can store them in Frontools `config` directory or in `dev/tools/frontools/config` (recommended).
 There is a `setup` task to copy all sample config files from the `config` to `dev/tools/frontools/config` and create a convenient symlink `tools` in the project root.
 If you want to keep config files inside frontools `config` dir, you have to handle this manually.
 5. Define your themes in `themes.json`.
