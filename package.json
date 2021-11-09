@@ -12,7 +12,7 @@
     "@babel/preset-env": "^7.15.8",
     "ansi-colors": "^4.1.1",
     "autoprefixer": "^10.3.7",
-    "browser-sync": "^2.27.5",
+    "browser-sync": "^2.27.7",
     "chokidar": "^3.5.2",
     "cssnano": "^5.0.8",
     "eslint": "^8.1.0",
