@@ -16,6 +16,7 @@ import { svg as svgTask } from './tasks/svg.mjs'
 import { watch as watchTask } from './tasks/watch.mjs'
 import magepackBundleTask from './tasks/magepack-bundle.mjs'
 import magepackGenerateTask from './tasks/magepack-generate.mjs'
+import partytownTask from './tasks/partytown.mjs'
 
 export const babel = gulp.series(inheritanceTask, babelTask)
 export const clean = cleanTask
@@ -31,5 +32,6 @@ export const svg = gulp.series(inheritanceTask, svgTask)
 export const watch = watchTask
 export const magepackBundle = magepackBundleTask
 export const magepackGenerate = magepackGenerateTask
+export const partytown = partytownTask
 
 export { default as default } from './tasks/default.mjs'

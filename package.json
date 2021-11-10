@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "@builder.io/partytown": "^0.0.11",
     "ansi-colors": "^4.1.1",
     "autoprefixer": "^10.3.7",
     "browser-sync": "^2.27.5",
@@ -62,6 +63,7 @@
     "inheritance": "gulp inheritance",
     "magepackBundle": "gulp magepackBundle",
     "magepackGenerate": "gulp magepackGenerate",
+    "partytown": "gulp partytown",
     "sasslint": "gulp sasslint",
     "setup": "gulp setup",
     "styles": "gulp styles",

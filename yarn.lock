@@ -868,6 +868,11 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
+"@builder.io/partytown@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.0.11.tgz#6da4ac500f7f5d2409da5ab17a92b9bbd94f7da7"
+  integrity sha512-9AQVMLJmH5Rb2Prz2SDN6uP4srjHVbIYMDp4m78w1ashhyZOsxup22Is1yVGPgeQX2B1RhidF5zpdGLPQCVOHg==
+
 "@dabh/diagnostics@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@dabh/diagnostics/-/diagnostics-2.0.2.tgz#290d08f7b381b8f94607dc8f471a12c675f9db31"
