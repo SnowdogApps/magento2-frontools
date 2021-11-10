@@ -12,6 +12,8 @@ export default async function() {
   try {
     console.log(`Copying files from ${partytownLibPath} to ${publicPath}`)
     await fs.copy(partytownLibPath, publicPath)
+    await fs.copy(`${partytownLibPath}/partytown.js`, `${publicPath}/partytown.min.js`)
+    await fs.copy(`${partytownLibPath}/debug/partytown.js`, `${publicPath}/debug/partytown.min.js`)
   } catch (err) {
     console.error(err)
   }
