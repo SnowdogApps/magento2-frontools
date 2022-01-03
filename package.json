@@ -44,6 +44,7 @@
     "merge-stream": "^2.0.0",
     "minimist": "^1.2.5",
     "node-sass": "^6.0.1",
+    "postcss": "^8.4.5",
     "postcss-reporter": "^7.0.4",
     "progress": "^2.0.3",
     "run-sequence": "^2.2.1",
