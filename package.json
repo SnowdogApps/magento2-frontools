@@ -1,6 +1,6 @@
 {
   "name": "magento2-frontools",
-  "version": "1.12.2",
+  "version": "1.13.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
     "watch": "gulp watch",
     "test": "eslint *.js helpers/*.js tasks/*.js"
   },
-
   "dependencies": {
     "@babel/core": "^7.24.3",
     "@babel/preset-env": "^7.24.3",
@@ -70,5 +69,8 @@
     "run-sequence": "^2.2.1",
     "sass": "^1.72.0",
     "stylelint": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0 <22.0.0"
   }
 }
