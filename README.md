@@ -1,6 +1,11 @@
+# **DEPRECATED** 
+
+## This is no longer supported, please consider using [Cream fork](https://github.com/creaminternet/magento2-frontools) instead.
+
+
 [![Packagist](https://img.shields.io/packagist/v/snowdog/frontools.svg)](https://packagist.org/packages/snowdog/frontools) [![Packagist](https://img.shields.io/packagist/dt/snowdog/frontools.svg)](https://packagist.org/packages/snowdog/frontools)
 
-# Magento 2 Frontools
+## Magento 2 Frontools
 Set of front-end tools for Magento 2
 
 ## Requirements
