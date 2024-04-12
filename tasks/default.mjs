@@ -1,5 +1,5 @@
 import fs from 'fs-extra'
-import marked from 'marked'
+import {marked} from 'marked'
 import markedTerminal from 'marked-terminal'
 import log from 'fancy-log'
 
